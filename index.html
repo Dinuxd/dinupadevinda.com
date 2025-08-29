@@ -57,7 +57,7 @@
       background: color-mix(in hsl, var(--surface), transparent 35%);
       border-bottom:1px solid var(--line);
     }
-    .nav .container{ display:flex; align-items:center; gap:18px; padding:14px 0; }
+    .nav .container{ display:flex; align-items:center; gap:18px; padding:14px 0; position:relative; }
     .brand{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px }
     .brand .logo{
       inline-size: 34px; block-size: 34px; border-radius: 10px; flex:0 0 auto;
@@ -75,6 +75,8 @@
       color:var(--text); border-color: color-mix(in hsl, var(--accent) 55%, transparent);
       background: linear-gradient(135deg, color-mix(in hsl, var(--accent) 18%, transparent), transparent);
     }
+    .theme-toggle{ margin-left:8px; border:1px solid var(--line); border-radius:999px; padding:8px 12px; cursor:pointer; color:var(--muted); }
+    .menu-toggle{ display:none; }
     .theme-toggle{ margin-left:8px; border:1px solid var(--line); border-radius:999px; padding:8px 12px; cursor:pointer; color:var(--muted); }
 
     /* =====================
@@ -113,7 +115,7 @@
       border:1px solid color-mix(in hsl, var(--accent) 55%, var(--line)); position:relative; box-shadow: var(--shadow-lg);
       overflow:hidden; isolation:isolate;
     }
-    .hex img{ position:absolute; inset:0; width:100%; height:122%; object-fit:cover; }
+    .hex img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
     .hex::after{ content:""; position:absolute; inset:0; }
     .hex::before{ content:""; position:absolute; inset:0; background: radial-gradient(60% 55% at 50% 35%, rgba(255,255,255,.08), transparent 58%), linear-gradient(160deg, rgba(0,0,0,.08), rgba(0,0,0,.45)); pointer-events:none; }
     .halo{ position:absolute; inset:-16px; filter: blur(28px); border-radius:40px; background: conic-gradient(var(--accent), var(--accent-2), var(--accent)); opacity:.55; z-index:-1; animation: hueCycle 24s linear infinite; }
@@ -132,6 +134,23 @@
     .grid.cols-3{ grid-template-columns: repeat(3, minmax(0,1fr)); }
     @media (max-width: 950px){ .hero-grid{ grid-template-columns:1fr; } .grid.cols-3{ grid-template-columns:1fr 1fr } }
     @media (max-width: 720px){ .grid.cols-2, .grid.cols-3{ grid-template-columns:1fr } }
+
+    /* Mobile nav & small-screen tuning */
+    @media (max-width: 860px){
+      .menu-toggle{ display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:12px; border:1px solid var(--line); background: rgba(255,255,255,.02); color:var(--muted); cursor:pointer; }
+      .navlinks{ position:absolute; left:12px; right:12px; top: calc(100% + 8px); display:none; flex-direction:column; gap:6px; background: color-mix(in hsl, var(--surface), transparent 15%); border:1px solid var(--line); border-radius:14px; padding:10px; box-shadow: var(--shadow-md); }
+      .nav.open .navlinks{ display:flex; }
+      .navlinks a{ padding:10px 12px; border-radius:10px; }
+    }
+    @media (max-width: 600px){
+      .pad-xl{ padding:22px; }
+      .hero{ padding: 40px 0 24px; }
+      .hex{ --size: min(68vw, 220px); }
+      .socials{ gap:8px; }
+      .socials .btn{ flex:1 1 48%; }
+      .btn{ padding:10px 12px; border-radius:10px; }
+      .chip{ padding:7px 10px; }
+    } }
 
     .panel{ border:1px solid var(--line); border-radius: var(--radius-lg); background: linear-gradient(180deg, color-mix(in hsl, var(--surface) 88%, transparent), rgba(255,255,255,.01)); box-shadow: var(--shadow-md); overflow:hidden }
     .panel .head{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; border-bottom: 1px solid var(--line); }
@@ -208,6 +227,7 @@
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
       <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌗</button>
     </div>
   </header>
@@ -234,7 +254,7 @@
 
       <div class="hex-wrap reveal" style="position:relative">
         <div class="halo" aria-hidden="true"></div>
-        <div class="hex" title="Dinupa Devinda"><img src="avatar.jpg" alt="Dinupa Devinda"/></div>
+        <div class="hex" title="Dinupa Devinda"><img src="avatar.jpg" alt="Dinupa Devinda headshot"/></div>
       </div>
     </div>
   </section>
@@ -549,7 +569,7 @@
   </section>
 
   <footer class="container">
-    <div class="small">© <span id="year"></span> Dinupa Devinda✨</div>
+    <div class="small">© <span id="year"></span> Dinupa Devinda • Built with HTML/CSS/JS • Animated accents hue‑cycle for fun ✨</div>
   </footer>
 
   <script>
@@ -560,6 +580,12 @@
     // Sticky nav active link on scroll
     const sections = $$("section[id]");
     const navLinks = $$(".navlinks a");
+    const navRoot = document.querySelector("header.nav");
+    const menuToggle = $("#menuToggle");
+    if(menuToggle){
+      menuToggle.addEventListener('click', ()=> navRoot.classList.toggle('open'));
+      navLinks.forEach(a=> a.addEventListener('click', ()=> navRoot.classList.remove('open')));
+    }
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
