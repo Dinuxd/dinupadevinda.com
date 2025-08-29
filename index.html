@@ -115,7 +115,7 @@
       border:1px solid color-mix(in hsl, var(--accent) 55%, var(--line)); position:relative; box-shadow: var(--shadow-lg);
       overflow:hidden; isolation:isolate;
     }
-    .hex img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .hex img{ position:absolute; inset:0; width:100%; height:122%; object-fit:cover; }
     .hex::after{ content:""; position:absolute; inset:0; }
     .hex::before{ content:""; position:absolute; inset:0; background: radial-gradient(60% 55% at 50% 35%, rgba(255,255,255,.08), transparent 58%), linear-gradient(160deg, rgba(0,0,0,.08), rgba(0,0,0,.45)); pointer-events:none; }
     .halo{ position:absolute; inset:-16px; filter: blur(28px); border-radius:40px; background: conic-gradient(var(--accent), var(--accent-2), var(--accent)); opacity:.55; z-index:-1; animation: hueCycle 24s linear infinite; }
@@ -144,6 +144,17 @@
     }
     @media (max-width: 600px){
       .pad-xl{ padding:22px; }
+      .hero{ padding: 40px 0 24px; }
+      .hero-grid{ gap:14px; }
+      .hex{ --size: min(62vw, 180px); }
+      .halo{ display:none; }
+      h1{ font-size: clamp(28px, 8vw, 36px); }
+      .subtitle{ font-size: 16px; }
+      .socials{ gap:8px; }
+      .socials .btn{ flex:1 1 48%; }
+      .btn{ padding:10px 12px; border-radius:10px; }
+      .chip{ padding:7px 10px; }
+    }
       .hero{ padding: 40px 0 24px; }
       .hex{ --size: min(68vw, 220px); }
       .socials{ gap:8px; }
@@ -208,6 +219,13 @@
 
     /* LIGHT THEME (optional) */
     .light{ --bg:#f7f9ff; --surface:#ffffff; --text:#0c1020; --muted:#5a627a; --line:#e6e9f3; }
+  
+    /* Very small phones */
+    @media (max-width: 420px){
+      .brand{ font-size:14px; }
+      .navlinks{ left:8px; right:8px; }
+      .btn{ padding:9px 10px; font-size:14px; }
+    }
   </style>
 </head>
 <body>
