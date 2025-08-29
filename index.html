@@ -1,1321 +1,629 @@
-<!--
-  Single-file Portfolio — Electronics / ML / CS
-  ------------------------------------------------
-  How to use:
-  1) Open this file directly in your browser (double-click). No build step needed.
-  2) Edit your name and details in the <header> Hero section and the JSON-LD block.
-  3) Update skills, projects, experience, publications, testimonials, and contact info inline.
-  4) Everything is embedded (SVGs, icons, JS, CSS). No external files or network requests.
-
-  Notes:
-  - Theme toggle (☀️/🌙) persists via localStorage.
-  - Animations respect prefers-reduced-motion.
-  - Canvas constellation auto-disables on low-power devices.
-  - “Download CV” generates a small text CV on the fly; replace with your own data-URI PDF if desired.
-  - Print view includes About + Experience for a clean résumé printout.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dinupa Devinda — Electronics & ML Engineer</title>
-<meta name="description" content="Portfolio of [Your Name], an Electronics & ML Engineer specializing in embedded systems, model deployment, and scalable software. Projects in ESP32, STM32, PyTorch, TensorFlow, and microservices." />
-
-<!-- Open Graph (static values, local-only image via data URI) -->
-<meta property="og:title" content=" Dinupa Devinda — Electronics & ML Engineer" />
-<meta property="og:description" content="Electronics Engineer • ML Engineer • Computer Scientist. Embedded, edge AI, and scalable software projects." />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%23212529'/><stop offset='100%' stop-color='%2311161b'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif' font-size='64' fill='%23a78bfa'>[Your Name]</text><text x='50%' y='68%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif' font-size='28' fill='%2338bdf8'>Electronics • ML • CS</text></svg>" />
-
-<!-- JSON-LD (Person + WebSite) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "[Your Name]",
-  "jobTitle": "Electronics & ML Engineer",
-  "url": "about:blank",
-  "worksFor": { "@type": "Organization", "name": "Independent" },
-  "sameAs": ["#","#","#","#"],
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Colombo",
-    "addressCountry": "Sri Lanka"
-  },
-  "knowsAbout": ["Embedded Systems","STM32","ESP32","Machine Learning","PyTorch","TensorFlow","Computer Vision"]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"WebSite",
-  "name":"[Your Name] — Portfolio",
-  "url":"about:blank",
-  "description":"Portfolio of [Your Name], Electronics & ML Engineer"
-}
-</script>
-
-<style>
-  /* ========= CSS RESET & THEME ========= */
-  *,*::before,*::after{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height:1.6;
-    background: var(--bg);
-    color: var(--text);
-    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-  }
-  :root{
-    --accent-blue:#38bdf8; --accent-violet:#a78bfa; --accent-lime:#a3e635; --accent-amber:#fbbf24;
-
-    --bg: radial-gradient(1200px 800px at 15% 10%, #0d1117, #0b0f14) fixed;
-    --panel: rgba(255,255,255,0.06);
-    --border: rgba(255,255,255,0.12);
-    --text:#e6eef6; --muted:#aab6c4;
-    --shadow: 0 10px 30px rgba(0,0,0,.45);
-    --code-bg: #0f1621;
-    --grid-color: rgba(255,255,255,0.04);
-    --focus: 0 0 0 3px rgba(56,189,248,.45);
-  }
-  .theme-light{
-    --bg: radial-gradient(1200px 800px at 15% 10%, #f7fafc, #edf2f7) fixed;
-    --panel: rgba(255,255,255,0.7);
-    --border: rgba(0,0,0,0.1);
-    --text:#12161c; --muted:#4b5563;
-    --shadow: 0 10px 30px rgba(0,0,0,.10);
-    --code-bg: #f1f5f9;
-    --grid-color: rgba(0,0,0,0.06);
-    --focus: 0 0 0 3px rgba(167,139,250,.45);
-  }
-
-  @media (prefers-color-scheme: light){
-    :root:not(.theme-dark){ /* default to light if user prefers */
-      --bg: radial-gradient(1200px 800px at 15% 10%, #f7fafc, #edf2f7) fixed;
-      --panel: rgba(255,255,255,0.7);
-      --border: rgba(0,0,0,0.1);
-      --text:#12161c; --muted:#4b5563;
-      --shadow: 0 10px 30px rgba(0,0,0,.10);
-      --code-bg: #f1f5f9;
-      --grid-color: rgba(0,0,0,0.06);
-      --focus: 0 0 0 3px rgba(167,139,250,.45);
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dinupa Devinda — Electrical & Electronic Engineering</title>
+  <meta name="description" content="Dinupa Devinda | Electrical & Electronic Engineering undergraduate. Embedded systems, automation, IoT, computer vision. Projects, certifications, experience, contact." />
+  <meta name="theme-color" content="#0f1220" />
+  <style>
+    /* =====================
+       THEME & TOKENS
+       ===================== */
+    :root{
+      --bg:#0b0e19;          /* dark base */
+      --surface:#121526;     /* card surface */
+      --text:#e6e8ef;        /* primary text */
+      --muted:#a6accd;       /* secondary text */
+      --line:#232844;        /* dividers */
+      --hue: 190;            /* starting accent hue */
+      --accent: hsl(var(--hue) 100% 60%);
+      --accent-2: hsl(calc(var(--hue) + 25) 100% 60%);
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --shadow-lg: 0 18px 60px rgba(0,0,0,.45), 0 3px 12px rgba(0,0,0,.3);
+      --shadow-md: 0 10px 30px rgba(0,0,0,.35), 0 3px 10px rgba(0,0,0,.2);
+      --shadow-sm: 0 6px 18px rgba(0,0,0,.25);
+      --grid-max: 1180px;
+      --speed-fast: 180ms;
     }
-  }
 
-  /* ========= GLOBAL UTILS ========= */
-  .container{width:min(1100px, 92%); margin-inline:auto}
-  .panel{
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
-    box-shadow: var(--shadow);
-  }
-  .section{padding:80px 0}
-  .section__title{
-    font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.2rem);
-    margin:0 0 24px; letter-spacing:.3px;
-  }
-  .tag{display:inline-block; padding:.25rem .5rem; border-radius:999px; border:1px solid var(--border); background:transparent; font-size:.85rem; color:var(--muted)}
-  .chip{display:inline-flex; align-items:center; gap:.4rem; padding:.35rem .65rem; border-radius:999px; border:1px solid var(--border); font-size:.85rem; background:rgba(255,255,255,.03)}
-  .accent{color:var(--accent-violet)}
-  .btn{
-    appearance:none; border:none; cursor:pointer; font-weight:600;
-    padding:.8rem 1rem; border-radius:12px; transition:transform .15s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet)); color:#0b0f14;
-    box-shadow: 0 5px 18px rgba(56,189,248,.3);
-  }
-  .btn:hover{transform: translateY(-1px)}
-  .btn.secondary{background:transparent; color:var(--text); border:1px solid var(--border)}
-  .btn.icon{display:inline-flex; align-items:center; gap:.5rem}
-  .visually-hidden{position:absolute!important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
-  :focus-visible{outline: none; box-shadow: var(--focus)}
+    /* Accent hue gentle animation */
+    @keyframes hueCycle { to { filter: hue-rotate(360deg); } }
 
-  /* subtle grid background */
-  body::before{
-    content:"";
-    position:fixed; inset:0; pointer-events:none;
-    background:
-      linear-gradient(transparent 0, transparent calc(100% - 140px), rgba(167,139,250,.10) calc(100% - 140px)) no-repeat,
-      linear-gradient(to right, var(--grid-color) 1px, transparent 1px) 0 0/ 40px 40px,
-      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px) 0 0/ 40px 40px;
-    mask-image: radial-gradient(60% 60% at 50% 10%, rgba(0,0,0,.9), transparent 80%);
-    z-index:-1;
-  }
-
-  /* ========= SKIP LINK & NAV ========= */
-  .skip-link{position:absolute; left:-9999px; top:auto}
-  .skip-link:focus{left:16px; top:16px; z-index:9999; background:#fff; color:#111; padding:.6rem 1rem; border-radius:8px}
-
-  .nav{
-    position:sticky; top:0; z-index:1000; backdrop-filter: blur(8px);
-    background: rgba(10,12,16,0.5);
-    border-bottom:1px solid var(--border);
-  }
-  .theme-light .nav{background: rgba(255,255,255,0.6)}
-  .nav__wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0}
-  .nav__left{display:flex; align-items:center; gap:16px}
-  .logo{display:inline-flex; align-items:center; gap:.65rem; text-decoration:none; color:var(--text); font-weight:700}
-  .logo svg{width:30px; height:30px}
-  .logo .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
-  .nav__links{display:flex; gap:8px; align-items:center}
-  .nav__links a{
-    text-decoration:none; color:var(--muted); font-weight:600; padding:.55rem .75rem; border-radius:10px; border:1px solid transparent
-  }
-  .nav__links a.active{color:var(--text); border-color:var(--border); background:rgba(255,255,255,.04)}
-  .nav__right{display:flex; align-items:center; gap:8px}
-  .hamburger{display:none}
-  .theme-toggle{background:transparent; border:1px solid var(--border); border-radius:12px; padding:.5rem .7rem; cursor:pointer; color:var(--text)}
-  @media (max-width: 880px){
-    .hamburger{display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border:1px solid var(--border); border-radius:12px; background:transparent; cursor:pointer; position:relative}
-    .hamburger span,.hamburger::before,.hamburger::after{
-      content:""; display:block; width:20px; height:2px; background:var(--text); position:absolute; transition: transform .25s ease, opacity .2s;
+    html, body{ height:100%; }
+    body{
+      margin:0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 85% -10%, rgba(0,255,255,.08), transparent 60%),
+                  radial-gradient(800px 500px at -10% 20%, rgba(0,180,255,.06), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
     }
-    .hamburger span{transform:translateY(0)}
-    .hamburger::before{transform:translateY(-6px)}
-    .hamburger::after{transform:translateY(6px)}
-    .hamburger[aria-expanded="true"] span{opacity:0}
-    .hamburger[aria-expanded="true"]::before{transform:rotate(45deg)}
-    .hamburger[aria-expanded="true"]::after{transform:rotate(-45deg)}
-    .nav__links{position:absolute; left:0; right:0; top:100%; background:inherit; border-bottom:1px solid var(--border); display:grid; grid-template-columns:1fr; padding:10px; gap:6px; transform-origin: top center; transform: scaleY(0.98); opacity:0; pointer-events:none}
-    .nav__links.open{opacity:1; transform: scaleY(1); pointer-events:auto}
-    .nav__wrap{flex-wrap:wrap}
-  }
 
-  /* ========= HERO ========= */
-  .hero{position:relative; padding: 84px 0 64px; overflow:hidden}
-  .hero__grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; align-items:center}
-  @media (max-width: 960px){ .hero__grid{grid-template-columns:1fr} }
-  .hero__title{font-size: clamp(2.1rem, 1.2rem + 3vw, 3.4rem); line-height:1.15; margin:0 0 12px}
-  .hero__subtitle{font-size: clamp(1.05rem, .8rem + 1vw, 1.25rem); color:var(--muted)}
-  .hero__cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
-  .status-chip{display:inline-flex; align-items:center; gap:.5rem; margin-top:10px}
-  .status-dot{width:10px; height:10px; border-radius:50%; background: var(--accent-lime); box-shadow:0 0 0 6px rgba(163,230,53,.15)}
-  .scroll-cue{position:absolute; left:50%; transform:translateX(-50%); bottom:8px; font-size:.85rem; color:var(--muted); display:flex; align-items:center; gap:6px}
-  .scroll-cue svg{opacity:.9}
-  .canvas-wrap{position:absolute; inset:0; z-index:-1; pointer-events:none}
-  canvas#stars{width:100%; height:100%}
-  .hero .panel{padding:26px}
+    a{ color:var(--text); text-decoration:none }
+    .muted{ color:var(--muted) }
+    .accent{ color:var(--accent) }
 
-  /* ========= ABOUT ========= */
-  .about__grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:22px}
-  @media (max-width: 920px){ .about__grid{grid-template-columns:1fr} }
-  .facts{display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:10px}
-  .fact{padding:12px; border-radius:12px}
-  .copy-btn{margin-left:8px}
-  .toast{position:fixed; right:16px; bottom:16px; background:#111; color:#fff; padding:.7rem 1rem; border-radius:10px; opacity:0; transform: translateY(8px); transition:opacity .25s, transform .25s; z-index:1100}
-  .toast.show{opacity:1; transform: translateY(0)}
-  .code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace; background:var(--code-bg); padding:.2rem .45rem; border-radius:8px; border:1px solid var(--border)}
+    .container{ width: min(100% - 2rem, var(--grid-max)); margin: 0 auto; }
 
-  /* ========= EXPERTISE RINGS ========= */
-  .rings{display:grid; grid-template-columns: repeat(3, minmax(160px,1fr)); gap:18px; place-items:center; text-align:center}
-  @media (max-width: 720px){ .rings{grid-template-columns:1fr; gap:14px} }
-  .ring{position:relative; width:180px; height:180px}
-  .ring svg{width:100%; height:100%}
-  .ring__label{position:absolute; inset:0; display:grid; place-items:center; font-weight:700}
-  .ring__track{stroke: rgba(255,255,255,.15)}
-  .ring__bar{stroke: url(#gradRing)}
-  .ring__title{margin-top:8px; font-weight:700}
+    /* =====================
+       NAVBAR
+       ===================== */
+    .nav{
+      position:sticky; top:0; z-index:999;
+      backdrop-filter: blur(10px) saturate(120%);
+      background: color-mix(in hsl, var(--surface), transparent 35%);
+      border-bottom:1px solid var(--line);
+    }
+    .nav .container{ display:flex; align-items:center; gap:18px; padding:14px 0; }
+    .brand{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px }
+    .brand .logo{
+      inline-size: 34px; block-size: 34px; border-radius: 10px; flex:0 0 auto;
+      background: conic-gradient(from 180deg, var(--accent), var(--accent-2), var(--accent));
+      filter: drop-shadow(0 8px 20px color-mix(in hsl, var(--accent) 40%, transparent));
+      animation: hueCycle 16s linear infinite;
+    }
+    .navlinks{ margin-left:auto; display:flex; gap: 8px; flex-wrap:wrap }
+    .navlinks a{
+      padding:8px 14px; border-radius:999px; color:var(--muted);
+      border:1px solid transparent;
+      transition:all var(--speed-fast) ease;
+    }
+    .navlinks a:hover, .navlinks a.active{
+      color:var(--text); border-color: color-mix(in hsl, var(--accent) 55%, transparent);
+      background: linear-gradient(135deg, color-mix(in hsl, var(--accent) 18%, transparent), transparent);
+    }
+    .theme-toggle{ margin-left:8px; border:1px solid var(--line); border-radius:999px; padding:8px 12px; cursor:pointer; color:var(--muted); }
 
-  /* ========= SKILLS MATRIX ========= */
-  .tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px}
-  .tabs button{border:1px solid var(--border); background:transparent; color:var(--text); border-radius:999px; padding:.45rem .8rem; cursor:pointer}
-  .tabs button[aria-pressed="true"]{background:rgba(167,139,250,.18)}
-  .skills-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap:10px}
-  .skill{display:flex; align-items:center; gap:10px; padding:10px; border-radius:12px}
-  .skill__bar{flex:1}
-  .skill__bar svg{width:100%; height:10px}
-  .tooltip{position:absolute; left:-9999px}
-  .skill:focus-within .tooltip, .skill:hover .tooltip{position:absolute; left:auto; inset:auto auto auto 0; transform:translateY(-130%); background:rgba(0,0,0,.85); color:#fff; padding:.35rem .6rem; border-radius:8px; font-size:.8rem; white-space:nowrap}
+    /* =====================
+       HERO
+       ===================== */
+    .hero{ position:relative; padding: 64px 0 42px; }
+    .hero-grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap:36px; align-items:center; }
+    .card{
+      background: linear-gradient(180deg, color-mix(in hsl, var(--surface) 85%, transparent), color-mix(in hsl, #000 5%, transparent)), rgba(255,255,255,.01);
+      border:1px solid var(--line); border-radius: var(--radius-xl); box-shadow:var(--shadow-lg);
+    }
+    .pad-xl{ padding:34px; }
 
-  /* ========= PROJECTS ========= */
-  .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px}
-  .projects{display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:14px}
-  .card{display:flex; flex-direction:column; overflow:hidden; border-radius:16px}
-  .card__media{aspect-ratio:16/9; background:linear-gradient(135deg, rgba(56,189,248,.35), rgba(167,139,250,.35)); display:grid; place-items:center}
-  .card__body{padding:14px; display:flex; flex-direction:column; gap:10px}
-  .stack{display:flex; gap:6px; flex-wrap:wrap}
-  .card__actions{display:flex; gap:8px; margin-top:auto}
-  .card__actions a{ text-decoration:none }
-  .filters button{border:1px solid var(--border); background:transparent; color:var(--text); border-radius:999px; padding:.45rem .8rem; cursor:pointer}
-  .filters button[aria-pressed="true"]{background:rgba(56,189,248,.18)}
+    h1{ font-size: clamp(36px, 4.5vw, 54px); margin:0 0 8px; line-height:1.08; }
+    h2{ font-size: clamp(22px, 2.6vw, 32px); margin:0 0 12px; }
+    .subtitle{ font-weight:600; font-size: 18px; margin-bottom:8px }
 
-  /* Modal */
-  .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.6); z-index:1200}
-  .modal[open]{display:flex}
-  .modal__dialog{width:min(880px, 92%); max-height:86vh; overflow:auto}
-  .modal__header{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; position:sticky; top:0; background:var(--panel); border-bottom:1px solid var(--border)}
-  .modal__content{padding:16px; display:grid; gap:12px}
-  .close-btn{background:transparent; border:1px solid var(--border); border-radius:10px; padding:.5rem .7rem; cursor:pointer}
+    .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px }
+    .btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; border:1px solid var(--line); color:var(--text); transition: transform var(--speed-fast) ease, border-color var(--speed-fast) ease, background var(--speed-fast) ease; }
+    .btn:hover{ transform: translateY(-1px); border-color: color-mix(in hsl, var(--accent) 45%, transparent); background: linear-gradient(180deg, color-mix(in hsl, var(--accent) 10%, transparent), transparent); }
+    .btn.primary{ border-color: transparent; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0b0e19; font-weight:700; box-shadow:0 10px 26px color-mix(in hsl, var(--accent) 35%, transparent); }
+    .btn.ghost{ color:var(--muted) }
 
-  /* ========= EXPERIENCE ========= */
-  .timeline{position:relative; margin-left:12px}
-  .timeline::before{content:""; position:absolute; left:18px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent-violet), var(--accent-blue))}
-  .t-item{position:relative; margin:24px 0 24px 46px; padding:12px; border-radius:14px}
-  .t-dot{position:absolute; left:-34px; top:12px; width:16px; height:16px; border-radius:50%; background:var(--accent-amber); box-shadow: 0 0 0 6px rgba(251,191,36,.18)}
-  .t-role{margin:0 0 4px; font-weight:700}
-  .t-meta{color:var(--muted); font-size:.9rem}
+    .socials{ display:flex; gap:10px; margin-top:14px }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px; padding:8px 12px;
+      border:1px dashed color-mix(in hsl, var(--accent) 55%, transparent); border-radius:999px; color:var(--muted);
+      background: linear-gradient(180deg, color-mix(in hsl, var(--accent) 8%, transparent), transparent);
+    }
 
-  /* ========= PUBLICATIONS ========= */
-  .pubs{display:grid; gap:12px}
-  .pub{padding:12px; border-radius:14px}
+    /* Hex avatar */
+    .hex-wrap{ display:grid; place-items:center; }
+    .hex{
+      --size: 260px; width: var(--size); aspect-ratio: 1/1; clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
+      background: radial-gradient(60% 60% at 50% 40%, color-mix(in hsl, var(--accent) 65%, transparent), transparent 65%), linear-gradient(160deg, color-mix(in hsl, var(--surface) 92%, transparent), color-mix(in hsl, #000 8%, transparent));
+      border:1px solid color-mix(in hsl, var(--accent) 55%, var(--line)); position:relative; box-shadow: var(--shadow-lg);
+      overflow:hidden; isolation:isolate;
+    }
+    .hex img{ position:absolute; inset:0; width:100%; height:122%; object-fit:cover; }
+    .hex::after{ content:""; position:absolute; inset:0; }
+    .hex::before{ content:""; position:absolute; inset:0; background: radial-gradient(60% 55% at 50% 35%, rgba(255,255,255,.08), transparent 58%), linear-gradient(160deg, rgba(0,0,0,.08), rgba(0,0,0,.45)); pointer-events:none; }
+    .halo{ position:absolute; inset:-16px; filter: blur(28px); border-radius:40px; background: conic-gradient(var(--accent), var(--accent-2), var(--accent)); opacity:.55; z-index:-1; animation: hueCycle 24s linear infinite; }
+    .hex::after{ content:""; position:absolute; inset:0; }
+    .hex::before{ content:""; position:absolute; inset:0; background: radial-gradient(60% 55% at 50% 35%, rgba(255,255,255,.08), transparent 58%), linear-gradient(160deg, rgba(0,0,0,.08), rgba(0,0,0,.45)); pointer-events:none; }
+    .halo{ position:absolute; inset:-16px; filter: blur(28px); border-radius:40px; background: conic-gradient(var(--accent), var(--accent-2), var(--accent)); opacity:.55; z-index:-1; animation: hueCycle 24s linear infinite; }
 
-  /* ========= TESTIMONIALS ========= */
-  .carousel{position:relative; overflow:hidden}
-  .slides{display:flex; transition:transform .5s ease}
-  .testimonial{min-width:100%; padding:16px}
-  .carousel__dots{display:flex; gap:6px; justify-content:center; margin-top:8px}
-  .dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.25)}
-  .dot.active{background:var(--accent-lime)}
+    /* =====================
+       SECTIONS
+       ===================== */
+    section{ scroll-margin-top: 90px; }
+    .section{ padding: 56px 0; }
+    .section h3{ font-size: clamp(22px, 2.2vw, 30px); margin:0 0 16px }
+    .grid{ display:grid; gap:18px }
+    .grid.cols-2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid.cols-3{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+    @media (max-width: 950px){ .hero-grid{ grid-template-columns:1fr; } .grid.cols-3{ grid-template-columns:1fr 1fr } }
+    @media (max-width: 720px){ .grid.cols-2, .grid.cols-3{ grid-template-columns:1fr } }
 
-  /* ========= CONTACT ========= */
-  .form{display:grid; gap:10px}
-  .form input,.form textarea{
-    width:100%; padding:.8rem .9rem; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.04); color:var(--text)
-  }
-  .socials{display:flex; gap:10px; flex-wrap:wrap}
+    .panel{ border:1px solid var(--line); border-radius: var(--radius-lg); background: linear-gradient(180deg, color-mix(in hsl, var(--surface) 88%, transparent), rgba(255,255,255,.01)); box-shadow: var(--shadow-md); overflow:hidden }
+    .panel .head{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; border-bottom: 1px solid var(--line); }
+    .panel .body{ padding:18px }
 
-  /* ========= FOOTER & MISC ========= */
-  footer{padding:20px 0; border-top:1px solid var(--border); color:var(--muted)}
-  .back-to-top{
-    position:fixed; right:16px; bottom:80px; width:42px; height:42px; display:grid; place-items:center;
-    border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.05); cursor:pointer; opacity:.85
-  }
+    /* =====================
+       SKILLS
+       ===================== */
+    .skills-wrap{ display:flex; flex-wrap:wrap; gap:10px }
+    .pill{ padding:8px 12px; border-radius: 999px; border:1px solid var(--line); color:var(--muted); background: rgba(255,255,255,.02) }
+    .pill.hot{ border-color: color-mix(in hsl, var(--accent) 40%, var(--line)); background: linear-gradient(180deg, color-mix(in hsl, var(--accent) 10%, transparent), transparent); color: var(--text) }
 
-  /* ========= REVEAL ANIMS ========= */
-  .reveal{opacity:0; transform: translateY(12px); transition:opacity .6s ease, transform .6s ease}
-  .reveal.show{opacity:1; transform:none}
+    /* =====================
+       PROJECTS & CERTS
+       ===================== */
+    .toolbar{ display:flex; gap:10px; flex-wrap:wrap; }
+    .toolbar .filter{ padding:8px 12px; border-radius:999px; border:1px solid var(--line); color:var(--muted); cursor:pointer; background: rgba(255,255,255,.02) }
+    .filter.active{ color:var(--text); border-color: color-mix(in hsl, var(--accent) 50%, var(--line)); background: linear-gradient(180deg, color-mix(in hsl, var(--accent) 12%, transparent), transparent) }
 
-  /* ========= PRINT ========= */
-  @media print{
-    body{background:#fff; color:#000}
-    .nav,.hero,.filters,.projects .card__actions,.carousel,.contact,.footer,.back-to-top,.scroll-cue,.canvas-wrap{display:none !important}
-    .section{padding:10px 0}
-    .panel{border: none; box-shadow: none; background:#fff}
-    a::after{content:" (" attr(href) ")"; font-size:.85em}
-  }
-</style>
+    .card-proj, .card-cert{ position:relative; display:flex; flex-direction:column; gap:10px; padding:18px; border:1px solid var(--line); border-radius:14px; background: linear-gradient(180deg, color-mix(in hsl, var(--surface) 90%, transparent), rgba(255,255,255,.015)); box-shadow: var(--shadow-sm); transition: transform var(--speed-fast) ease, border-color var(--speed-fast) ease; }
+    .card-proj:hover, .card-cert:hover{ transform: translateY(-2px); border-color: color-mix(in hsl, var(--accent) 45%, var(--line)); }
+    .tags{ display:flex; gap:8px; flex-wrap:wrap; }
+    .tag{ font-size:12px; padding:4px 8px; border:1px solid var(--line); border-radius:999px; color:var(--muted) }
+
+    .meta{ color:var(--muted); font-size:13px }
+
+    /* =====================
+       TIMELINE (EXP / EDU)
+       ===================== */
+    .timeline{ position:relative; padding-left:24px }
+    .timeline::before{ content:""; position:absolute; left:8px; top:6px; bottom:6px; width:2px; background: linear-gradient(var(--accent), transparent); filter:hue-rotate(0); animation: hueCycle 20s linear infinite; }
+    .t-item{ position:relative; padding: 10px 0 12px }
+    .t-item::before{ content:""; position:absolute; left:-1px; top:14px; width:10px; height:10px; border-radius:3px; background: var(--accent); box-shadow:0 0 10px color-mix(in hsl, var(--accent) 60%, transparent) }
+
+    /* =====================
+       CONTACT
+       ===================== */
+    .contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:18px }
+    @media (max-width: 850px){ .contact-grid{ grid-template-columns:1fr } }
+    .form input, .form textarea{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--line);
+      background: rgba(255,255,255,.02); color:var(--text);
+    }
+    .form textarea{ min-height: 140px; resize:vertical }
+
+    /* =====================
+       FOOTER
+       ===================== */
+    footer{ padding:28px 0 60px; color:var(--muted); text-align:center }
+    .small{ font-size: 13px }
+
+    /* Appear on scroll */
+    .reveal{ opacity:0; translate: 0 16px; transition: opacity .45s ease, translate .45s ease }
+    .reveal.show{ opacity:1; translate: 0 0 }
+
+    /* LIGHT THEME (optional) */
+    .light{ --bg:#f7f9ff; --surface:#ffffff; --text:#0c1020; --muted:#5a627a; --line:#e6e9f3; }
+  </style>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
-
-<!-- ========== NAV ========== -->
-<nav class="nav panel" aria-label="Primary">
-  <div class="container nav__wrap">
-    <div class="nav__left">
-      <a href="#home" class="logo" aria-label="Home">
-        <!-- Monogram SVG -->
-        <svg aria-hidden="true" viewBox="0 0 64 64" role="img">
-          <defs>
-            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#a78bfa"/>
-            </linearGradient>
-          </defs>
-          <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#lg)"/>
-          <path d="M18 42V22h6l8 10 8-10h6v20h-6V31l-8 10-8-10v11z" fill="#0b0f14"/>
-        </svg>
-        <span class="mono">YN</span>
-      </a>
-      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span></button>
-    </div>
-    <div class="nav__links" id="navLinks">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#publications">Publications</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <div class="nav__right">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
-    </div>
-  </div>
-</nav>
-
-<main id="main">
-
-<!-- ========== HERO ========== -->
-<header class="hero section container" id="home" aria-label="Hero">
-  <div class="canvas-wrap" aria-hidden="true">
-    <canvas id="stars"></canvas>
-  </div>
-  <div class="hero__grid">
-    <div class="panel reveal">
-      <p class="tag">Open to opportunities</p>
-      <h1 class="hero__title"><span class="accent">[Your Name]</span></h1>
-      <p class="hero__subtitle">
-        <strong class="mono" id="roleTyper">Electronics Engineer</strong> • ML Engineer • Computer Scientist
-      </p>
-      <p>
-        I design reliable embedded systems, deploy efficient ML models on edge hardware, and architect clean, scalable software.
-        My work bridges <span class="code">electronics</span>, <span class="code">machine learning</span>, and <span class="code">computer science</span>.
-      </p>
-      <div class="hero__cta">
-        <a class="btn icon" href="#projects" aria-label="View Projects">
-          <!-- Arrow icon -->
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 5l7 7-7 7v-4H4v-6h9V5z"/></svg>
-          View Projects
-        </a>
-        <button class="btn secondary icon" id="downloadCV" aria-label="Download CV">
-          <!-- Download icon -->
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 20h14v-2H5v2zm7-18l-5 5h3v6h4V7h3l-5-5z"/></svg>
-          Download CV
-        </button>
+  <header class="nav">
+    <div class="container">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Dinupa <b>Devinda</b></span>
       </div>
-      <div class="status-chip">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span class="muted">Currently consulting on edge AI and IIoT</span>
-      </div>
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certs">Certifications</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌗</button>
     </div>
-    <div class="panel reveal" aria-label="Quick Profile">
-      <h2 class="section__title">Electronics • ML • CS</h2>
-      <p>
-        Colombo, Sri Lanka • 5+ years building embedded products, deploying CNNs at the edge, and shipping robust backend services.
-        I favor measurable outcomes, power-aware designs, and developer-friendly tooling.
-      </p>
-      <ul>
-        <li>Embedded: STM32, ESP32, motor control, power modes &lt;50 mW idle</li>
-        <li>ML: PyTorch/TensorFlow, SSD/Mask R-CNN, optimization for ARM</li>
-        <li>CS: microservices, clean APIs, CI/CD, observability</li>
-      </ul>
-    </div>
-  </div>
-  <div class="scroll-cue" aria-hidden="true">
-    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 16l-6-6h12z"/></svg>
-    scroll
-  </div>
-</header>
+  </header>
 
-<!-- ========== ABOUT ========== -->
-<section class="section" id="about" aria-label="About">
-  <div class="container">
-    <h2 class="section__title">About</h2>
-    <div class="about__grid">
-      <article class="panel reveal">
-        <p>
-          I’m an engineer who blends hardware intuition with statistical learning. I design embedded
-          firmware for STM32/ESP32, implement perception pipelines (PyTorch/TensorFlow), and deploy models
-          to constrained devices with careful profiling. I enjoy turning loss analysis into practical fixes,
-          from optimizing ISR latency to quantizing CNNs without losing accuracy.
-        </p>
-        <div class="facts">
-          <div class="fact panel">
-            <strong>Location</strong><br/>Colombo, Sri Lanka
-          </div>
-          <div class="fact panel">
-            <strong>Experience</strong><br/>5+ years
-          </div>
-          <div class="fact panel">
-            <strong>Email</strong><br/>
-            <span id="emailText">you@domain.com</span>
-            <button class="btn secondary copy-btn" id="copyEmail" aria-label="Copy email">Copy</button>
-          </div>
-          <div class="fact panel">
-            <strong>Languages</strong><br/>English, Sinhala
-          </div>
-        </div>
-      </article>
-      <aside class="panel reveal">
-        <h3 class="section__title" style="font-size:1.2rem">Quick Facts</h3>
-        <ul>
-          <li>Edge deployments on Raspberry Pi/Jetson with <span class="code">&lt;12 ms</span> latency</li>
-          <li>EMI-hardened sensor chains; robust PCB layouts (KiCad)</li>
-          <li>Data pipelines and dashboards for manufacturing KPIs</li>
-          <li>Git, Docker, and CI that developers actually like</li>
-        </ul>
-        <p class="muted">* Ask me about low-power telemetry and FFT-guided CNN design.</p>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- ========== EXPERTISE + SKILL RINGS ========== -->
-<section class="section" id="skills" aria-label="Skills">
-  <div class="container">
-    <h2 class="section__title">Expertise</h2>
-    <div class="rings">
-      <!-- Gradient def shared per ring via <defs> -->
-      <div class="ring panel reveal" data-percent="92" aria-label="Electronics proficiency 92%">
-        <svg viewBox="0 0 120 120" role="img" aria-hidden="true">
-          <defs>
-            <linearGradient id="gradRing" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#a78bfa"/>
-            </linearGradient>
-          </defs>
-          <circle class="ring__track" cx="60" cy="60" r="50" stroke-width="12" fill="none"/>
-          <circle class="ring__bar" cx="60" cy="60" r="50" stroke-width="12" fill="none"
-                  stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314"/>
-        </svg>
-        <div class="ring__label">
-          <div>
-            <div style="font-size:1.6rem" class="mono"><span class="ring__value">0</span>%</div>
-            <div class="ring__title">Electronics</div>
-          </div>
-        </div>
-      </div>
-      <div class="ring panel reveal" data-percent="88" aria-label="Machine Learning proficiency 88%">
-        <svg viewBox="0 0 120 120" role="img" aria-hidden="true">
-          <circle class="ring__track" cx="60" cy="60" r="50" stroke-width="12" fill="none"/>
-          <circle class="ring__bar" cx="60" cy="60" r="50" stroke-width="12" fill="none"
-                  stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314"/>
-        </svg>
-        <div class="ring__label">
-          <div>
-            <div style="font-size:1.6rem" class="mono"><span class="ring__value">0</span>%</div>
-            <div class="ring__title">Machine Learning</div>
-          </div>
-        </div>
-      </div>
-      <div class="ring panel reveal" data-percent="85" aria-label="Computer Science proficiency 85%">
-        <svg viewBox="0 0 120 120" role="img" aria-hidden="true">
-          <circle class="ring__track" cx="60" cy="60" r="50" stroke-width="12" fill="none"/>
-          <circle class="ring__bar" cx="60" cy="60" r="50" stroke-width="12" fill="none"
-                  stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314"/>
-        </svg>
-        <div class="ring__label">
-          <div>
-            <div style="font-size:1.6rem" class="mono"><span class="ring__value">0</span>%</div>
-            <div class="ring__title">Computer Science</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <h3 class="section__title" style="margin-top:26px">Skills Matrix</h3>
-    <div class="panel reveal" style="padding:14px">
-      <div class="tabs" role="tablist" aria-label="Skill categories">
-        <button role="tab" aria-selected="true" aria-pressed="true" data-scope="all">All</button>
-        <button role="tab" aria-selected="false" data-scope="electronics">Electronics</button>
-        <button role="tab" aria-selected="false" data-scope="ml">ML</button>
-        <button role="tab" aria-selected="false" data-scope="cs">CS</button>
-        <button role="tab" aria-selected="false" data-scope="tooling">Tooling</button>
-      </div>
-      <div class="skills-grid" id="skillsGrid" aria-live="polite">
-        <!-- Example skill -->
-        <div class="skill panel" tabindex="0" data-scope="electronics">
-          <span class="chip">STM32</span>
-          <div class="skill__bar">
-            <svg viewBox="0 0 100 10" aria-label="Proficiency 85%">
-              <rect x="0" y="0" width="100" height="10" rx="5" fill="rgba(255,255,255,.08)"></rect>
-              <rect x="0" y="0" width="85" height="10" rx="5" fill="#38bdf8"></rect>
-            </svg>
-          </div>
-          <span class="tooltip" role="tooltip">Low-power modes, DMA, ISR latency tuning</span>
-        </div>
-
-        <div class="skill panel" tabindex="0" data-scope="electronics">
-          <span class="chip">ESP32</span>
-          <div class="skill__bar">
-            <svg viewBox="0 0 100 10" aria-label="Proficiency 90%"><rect width="100" height="10" rx="5" fill="rgba(255,255,255,.08)"/><rect width="90" height="10" rx="5" fill="#a78bfa"/></svg>
-          </div>
-          <span class="tooltip">FreeRTOS tasks, Wi-Fi/LTE telemetry, TLS/MQTT</span>
-        </div>
-
-        <div class="skill panel" tabindex="0" data-scope="ml">
-          <span class="chip">PyTorch</span>
-          <div class="skill__bar"><svg viewBox="0 0 100 10" aria-label="Proficiency 88%"><rect width="100" height="10" rx="5" fill="rgba(255,255,255,.08)"/><rect width="88" height="10" rx="5" fill="#a3e635"/></svg></div>
-          <span class="tooltip">SSD/Mask R-CNN, quantization-aware training</span>
-        </div>
-
-        <div class="skill panel" tabindex="0" data-scope="ml">
-          <span class="chip">TensorFlow</span>
-          <div class="skill__bar"><svg viewBox="0 0 100 10" aria-label="Proficiency 80%"><rect width="100" height="10" rx="5" fill="rgba(255,255,255,.08)"/><rect width="80" height="10" rx="5" fill="#fbbf24"/></svg></div>
-          <span class="tooltip">TF 2.x migration, TFLite on ARM</span>
-        </div>
-
-        <div class="skill panel" tabindex="0" data-scope="cs">
-          <span class="chip">C/C++</span>
-          <div class="skill__bar"><svg viewBox="0 0 100 10" aria-label="Proficiency 90%"><rect width="100" height="10" rx="5" fill="rgba(255,255,255,.08)"/><rect width="90" height="10" rx="5" fill="#38bdf8"/></svg></div>
-          <span class="tooltip">Embedded drivers, memory-safe patterns</span>
-        </div>
-
-        <div class="skill panel" tabindex="0" data-scope="cs">
-          <span class="chip">Python</span>
-          <div class="skill__bar"><svg viewBox="0 0 100 10" aria-label="Proficiency 92%"><rect width="100" height="10" rx="5" fill="rgba(255,255,255,.08)"/><rect width="92" height="10" rx="5" fill="#a78bfa"/></svg></div>
-          <span class="tooltip">Data pipelines, CV, fast prototyping</span>
-        </div>
-
-        <div class="skill panel" tabindex="0" data-scope="tooling">
-          <span class="chip">Git & Docker</span>
-          <div class="skill__bar"><svg viewBox="0 0 100 10" aria-label="Proficiency 85%"><rect width="100" height="10" rx="5" fill="rgba(255,255,255,.08)"/><rect width="85" height="10" rx="5" fill="#a3e635"/></svg></div>
-          <span class="tooltip">CI pipelines, reproducible builds</span>
-        </div>
-
-        <div class="skill panel" tabindex="0" data-scope="electronics">
-          <span class="chip">KiCad</span>
-          <div class="skill__bar"><svg viewBox="0 0 100 10" aria-label="Proficiency 75%"><rect width="100" height="10" rx="5" fill="rgba(255,255,255,.08)"/><rect width="75" height="10" rx="5" fill="#fbbf24"/></svg></div>
-          <span class="tooltip">4-layer boards, EMI, ground strategy</span>
-        </div>
-
-        <div class="skill panel" tabindex="0" data-scope="ml">
-          <span class="chip">OpenCV</span>
-          <div class="skill__bar"><svg viewBox="0 0 100 10" aria-label="Proficiency 80%"><rect width="100" height="10" rx="5" fill="rgba(255,255,255,.08)"/><rect width="80" height="10" rx="5" fill="#38bdf8"/></svg></div>
-          <span class="tooltip">Pre/Post-processing, classical CV</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== PROJECTS ==========
-     Each project card includes inline SVG cover and opens a modal with a detailed case study. -->
-<section class="section" id="projects" aria-label="Projects">
-  <div class="container">
-    <h2 class="section__title">Projects</h2>
-    <div class="filters" role="tablist" aria-label="Project filters">
-      <button role="tab" aria-pressed="true" data-filter="all">All</button>
-      <button role="tab" data-filter="electronics">Electronics</button>
-      <button role="tab" data-filter="ml">ML</button>
-      <button role="tab" data-filter="cs">CS</button>
-    </div>
-
-    <div class="projects" id="projectGrid" aria-live="polite">
-      <!-- Project 1 -->
-      <article class="card panel reveal" tabindex="0"
-        data-category="electronics cs"
-        data-title="SenseGrid IIoT Platform"
-        data-summary="Modular ESP32 + 4G telemetry with MQTT and TLS, streaming to local dashboards."
-        data-stack="ESP32, LTE (A7680C), MQTT, TLS, ThingsBoard"
-        data-metrics="Uptime 99.7%; Power 1.8W; Latency 140ms"
-        data-arch="sensors-edge-cloud">
-        <div class="card__media" aria-hidden="true">
-          <!-- Inline SVG cover -->
-          <svg viewBox="0 0 400 225">
-            <defs><linearGradient id="pg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#a78bfa"/></linearGradient></defs>
-            <rect width="400" height="225" rx="16" fill="url(#pg1)" opacity=".25"/>
-            <g fill="none" stroke="#38bdf8" stroke-width="2" opacity=".9">
-              <rect x="30" y="40" width="110" height="70" rx="10"/>
-              <rect x="260" y="40" width="110" height="70" rx="10"/>
-              <line x1="140" y1="75" x2="260" y2="75"/>
-              <circle cx="200" cy="160" r="36" stroke="#a78bfa"/>
-              <line x1="200" y1="124" x2="200" y2="60"/>
-            </g>
-          </svg>
-        </div>
-        <div class="card__body">
-          <h3>SenseGrid IIoT Platform</h3>
-          <p>ESP32 + LTE nodes push signed MQTT telemetry; OTA and per-site dashboards.</p>
-          <div class="stack">
-            <span class="chip">ESP32</span><span class="chip">MQTT</span><span class="chip">TLS</span><span class="chip">ThingsBoard</span>
-          </div>
-          <div class="card__actions">
-            <a href="#" class="btn secondary">GitHub</a>
-            <button class="btn" data-open="case">Case Study</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 2 -->
-      <article class="card panel reveal" tabindex="0"
-        data-category="ml cs"
-        data-title="CartonBox Detector (SSD-Lite)"
-        data-summary="Custom MobileNetV2 backbone for SSD-Lite; tuned anchors for carton boxes."
-        data-stack="PyTorch, ONNX, TensorRT, Raspberry Pi 4"
-        data-metrics="Accuracy 92%; Inference 12ms; FLOPs 0.65G"
-        data-arch="cv-edge">
-        <div class="card__media" aria-hidden="true">
-          <svg viewBox="0 0 400 225">
-            <defs><linearGradient id="pg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a3e635"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient></defs>
-            <rect width="400" height="225" rx="16" fill="url(#pg2)" opacity=".25"/>
-            <g fill="none" stroke="#a3e635" stroke-width="2" opacity=".9">
-              <rect x="80" y="60" width="240" height="120" rx="10"/>
-              <rect x="120" y="90" width="80" height="60" rx="10" stroke="#38bdf8"/>
-              <rect x="210" y="90" width="80" height="60" rx="10" stroke="#38bdf8"/>
-            </g>
-          </svg>
-        </div>
-        <div class="card__body">
-          <h3>CartonBox Detector (SSD-Lite)</h3>
-          <p>Edge-optimized detector; quantized INT8 for ARM NEON; robust post-processing.</p>
-          <div class="stack">
-            <span class="chip">PyTorch</span><span class="chip">TensorRT</span><span class="chip">Raspberry Pi</span>
-          </div>
-          <div class="card__actions">
-            <a href="#" class="btn secondary">GitHub</a>
-            <button class="btn" data-open="case">Case Study</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 3 -->
-      <article class="card panel reveal" tabindex="0"
-        data-category="electronics cs"
-        data-title="Micromouse Maze Robot"
-        data-summary="ESP32 + VL6180X ToF array; PID motor control and wall-following."
-        data-stack="ESP32, TB6612FNG, ToF, FreeRTOS"
-        data-metrics="Solve time 11.4s; Drift &lt; 2cm; Idle &lt; 40mW"
-        data-arch="robotics">
-        <div class="card__media" aria-hidden="true">
-          <svg viewBox="0 0 400 225">
-            <defs><linearGradient id="pg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fbbf24"/><stop offset="100%" stop-color="#a78bfa"/></linearGradient></defs>
-            <rect width="400" height="225" rx="16" fill="url(#pg3)" opacity=".25"/>
-            <g fill="none" stroke="#fbbf24" stroke-width="2" opacity=".9">
-              <path d="M60 165h280M100 165V60M300 165V60M140 165V90M260 165V90" />
-              <circle cx="200" cy="120" r="18" stroke="#a78bfa"/>
-            </g>
-          </svg>
-        </div>
-        <div class="card__body">
-          <h3>Micromouse Maze Robot</h3>
-          <p>Sensor fusion with IMU + ToF, precise control loops, collision-safe logic.</p>
-          <div class="stack">
-            <span class="chip">ESP32</span><span class="chip">PID</span><span class="chip">Sensor Fusion</span>
-          </div>
-          <div class="card__actions">
-            <a href="#" class="btn secondary">GitHub</a>
-            <button class="btn" data-open="case">Case Study</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 4 -->
-      <article class="card panel reveal" tabindex="0"
-        data-category="cs ml"
-        data-title="Mask R-CNN Modernization"
-        data-summary="Migrated legacy code to TF 2.19/Keras 3 with dynamic batch-safe ops."
-        data-stack="TensorFlow 2.19, Keras 3, COCO"
-        data-metrics="Training +30%; Memory −22%; Reproducibility ↑"
-        data-arch="dl-training">
-        <div class="card__media" aria-hidden="true">
-          <svg viewBox="0 0 400 225">
-            <rect width="400" height="225" rx="16" fill="rgba(167,139,250,.25)"/>
-            <g fill="none" stroke="#a78bfa" stroke-width="2">
-              <rect x="60" y="50" width="110" height="50" rx="8"/>
-              <rect x="230" y="50" width="110" height="50" rx="8"/>
-              <line x1="170" y1="75" x2="230" y2="75"/>
-              <rect x="145" y="130" width="110" height="50" rx="8" stroke="#38bdf8"/>
-              <line x1="200" y1="100" x2="200" y2="130"/>
-            </g>
-          </svg>
-        </div>
-        <div class="card__body">
-          <h3>Mask R-CNN Modernization</h3>
-          <p>Removed deprecated APIs, normalized [0,1] coords, unit-tested training loop.</p>
-          <div class="stack"><span class="chip">TensorFlow</span><span class="chip">Keras</span><span class="chip">COCO</span></div>
-          <div class="card__actions">
-            <a href="#" class="btn secondary">GitHub</a>
-            <button class="btn" data-open="case">Case Study</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 5 -->
-      <article class="card panel reveal" tabindex="0"
-        data-category="electronics ml"
-        data-title="Smart Aquaculture Controller"
-        data-summary="Closed-loop control with thermal & pH sensors, predictive feeding."
-        data-stack="ESP32, pH/Temp, PID, TinyML"
-        data-metrics="Power 1.8W; pH drift &lt;0.03; Yield +12%"
-        data-arch="control-ml">
-        <div class="card__media" aria-hidden="true">
-          <svg viewBox="0 0 400 225">
-            <rect width="400" height="225" rx="16" fill="rgba(56,189,248,.25)"/>
-            <g fill="none" stroke="#38bdf8" stroke-width="2">
-              <path d="M60 160c30-40 60-40 90 0s60 40 90 0 60-40 90 0" />
-              <circle cx="200" cy="110" r="18" stroke="#a3e635"/>
-            </g>
-          </svg>
-        </div>
-        <div class="card__body">
-          <h3>Smart Aquaculture Controller</h3>
-          <p>PID thermal control + TinyML feed predictor; robust EMI-tolerant sensing.</p>
-          <div class="stack"><span class="chip">ESP32</span><span class="chip">PID</span><span class="chip">TinyML</span></div>
-          <div class="card__actions">
-            <a href="#" class="btn secondary">GitHub</a>
-            <button class="btn" data-open="case">Case Study</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Project 6 -->
-      <article class="card panel reveal" tabindex="0"
-        data-category="cs"
-        data-title="ATS Gateway Service"
-        data-summary="Spring Boot API gateway; JWT, rate limits, observability."
-        data-stack="Java, Spring Boot, Mongo, Docker"
-        data-metrics="P99 42ms; Errors −63%; Zero-downtime deploys"
-        data-arch="gateway">
-        <div class="card__media" aria-hidden="true">
-          <svg viewBox="0 0 400 225">
-            <rect width="400" height="225" rx="16" fill="rgba(251,191,36,.25)"/>
-            <g fill="none" stroke="#fbbf24" stroke-width="2">
-              <rect x="60" y="50" width="90" height="120" rx="10"/>
-              <rect x="250" y="50" width="90" height="120" rx="10"/>
-              <path d="M150 110h100" />
-              <path d="M150 85h100M150 135h100" opacity=".7"/>
-            </g>
-          </svg>
-        </div>
-        <div class="card__body">
-          <h3>ATS Gateway Service</h3>
-          <p>Clean routing, security, and tracing for microservices; smooth migrations.</p>
-          <div class="stack"><span class="chip">Spring Boot</span><span class="chip">JWT</span><span class="chip">Docker</span></div>
-          <div class="card__actions">
-            <a href="#" class="btn secondary">GitHub</a>
-            <button class="btn" data-open="case">Case Study</button>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-
-  <!-- Case Study Modal (populated dynamically) -->
-  <dialog class="modal" id="caseModal" role="dialog" aria-modal="true" aria-labelledby="caseTitle" aria-describedby="caseDesc">
-    <div class="modal__dialog panel">
-      <div class="modal__header">
-        <h3 id="caseTitle" class="mono">Case Study</h3>
-        <button class="close-btn" id="caseClose" aria-label="Close case study">Close ✕</button>
-      </div>
-      <div class="modal__content">
-        <p id="caseDesc"></p>
-        <div id="caseMetrics" class="stack"></div>
-        <div class="panel" id="caseArch" aria-label="Architecture diagram" style="padding:12px">
-          <!-- Inline architecture SVG inserted here -->
-        </div>
-        <div>
-          <h4>Challenges & Outcomes</h4>
-          <ul id="caseBullets">
-            <!-- Populated -->
-          </ul>
-        </div>
-      </div>
-    </div>
-  </dialog>
-</section>
-
-<!-- ========== EXPERIENCE TIMELINE ========== -->
-<section class="section" id="experience" aria-label="Experience">
-  <div class="container">
-    <h2 class="section__title">Experience</h2>
-    <div class="timeline">
-      <article class="t-item panel reveal">
-        <div class="t-dot" aria-hidden="true"></div>
-        <h3 class="t-role">Electronics & ML Engineer — Freelance</h3>
-        <div class="t-meta">2023 — Present • Colombo, Sri Lanka</div>
-        <ul>
-          <li>Designed ESP32/LTE telemetry nodes with secure MQTT/TLS and OTA updates.</li>
-          <li>Deployed SSD-Lite detector on Raspberry Pi — <span class="code">12 ms</span> latency.</li>
-          <li>Implemented dashboards tracking OEE/MTBF; reduced downtime by 14%.</li>
-        </ul>
-      </article>
-
-      <article class="t-item panel reveal">
-        <div class="t-dot" aria-hidden="true"></div>
-        <h3 class="t-role">Embedded Systems Intern — Manufacturing</h3>
-        <div class="t-meta">2022 — 2023 • Colombo</div>
-        <ul>
-          <li>Firmware for STM32 motor control; optimized ISR and DMA pipelines.</li>
-          <li>Robust sensor conditioning & EMI mitigation on 4-layer PCBs (KiCad).</li>
-        </ul>
-      </article>
-
-      <article class="t-item panel reveal">
-        <div class="t-dot" aria-hidden="true"></div>
-        <h3 class="t-role">Software Engineer — Platform</h3>
-        <div class="t-meta">2020 — 2022 • Remote</div>
-        <ul>
-          <li>Built Spring Boot APIs with JWT, rate limiting, and OpenAPI docs.</li>
-          <li>Dockerized services with CI/CD, improved P99 from 120ms to 42ms.</li>
-        </ul>
-      </article>
-
-      <aside class="t-item panel reveal">
-        <h3 class="t-role">Education</h3>
-        <div class="t-meta">BSc (Hons) — Electrical & Electronic Engineering</div>
-        <p>Relevant coursework: Digital Design, Signals & Systems, Computer Vision, Embedded Systems, ML, Data Structures.</p>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- ========== PUBLICATIONS & TALKS ========== -->
-<section class="section" id="publications" aria-label="Publications and Talks">
-  <div class="container">
-    <h2 class="section__title">Publications & Talks</h2>
-    <div class="pubs">
-      <article class="pub panel reveal">
-        <h3>FFT-Guided CNN Design for Edge Detection</h3>
-        <p class="muted">Edge AI Summit 2025</p>
-        <p>Mapped spatial frequency to CNN kernel sizes and depth; built interpretable, low-FLOP models for on-device inference.</p>
-        <p class="mono">DOI: 10.0000/edge.2025.001</p>
-      </article>
-      <article class="pub panel reveal">
-        <h3>Low-Power IIoT Telemetry with ESP32 + 4G</h3>
-        <p class="muted">Industrial IoT Conf. 2024</p>
-        <p>Power budgeting & sleep strategies; secure MQTT over LTE with hardware crypto acceleration.</p>
-        <p class="mono">DOI: 10.0000/iiot.2024.123</p>
-      </article>
-      <article class="pub panel reveal">
-        <h3>Modernizing Mask R-CNN for TensorFlow 2.x</h3>
-        <p class="muted">ML Systems Meetup 2025 — Invited Talk</p>
-        <p>Practical migration pitfalls, dynamic shapes, and data-pipeline stabilization for reproducible training.</p>
-        <p class="mono">DOI: 10.0000/tf2.2025.777</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ========== TESTIMONIALS ==========
-     Small carousel with auto-advance (pause on hover). -->
-<section class="section" aria-label="Testimonials">
-  <div class="container">
-    <h2 class="section__title">What People Say</h2>
-    <div class="panel carousel reveal" id="carousel" aria-roledescription="carousel">
-      <div class="slides" id="slides">
-        <blockquote class="testimonial">
-          <p>“Hands down the most reliable embedded + ML engineer we’ve worked with.
-            Ships measurable improvements without drama.”</p>
-          <footer>— Product Lead, IIoT Startup</footer>
-        </blockquote>
-        <blockquote class="testimonial">
-          <p>“Took our legacy Mask R-CNN codebase to TF 2.x and made it faster and simpler.
-            Documentation was stellar.”</p>
-          <footer>— Research Engineer, CV Lab</footer>
-        </blockquote>
-        <blockquote class="testimonial">
-          <p>“Diagnosed EMI issues and redesigned the PCB. Field failures dropped to near zero.”</p>
-          <footer>— Manufacturing Manager</footer>
-        </blockquote>
-      </div>
-      <div class="carousel__dots" id="dots" aria-hidden="true"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== CONTACT ==========
-     Client-side validation + mailto fallback. -->
-<section class="section" id="contact" aria-label="Contact">
-  <div class="container">
-    <h2 class="section__title">Contact</h2>
-    <div class="panel reveal" style="padding:14px">
-      <form class="form" id="contactForm" novalidate>
-        <div>
-          <label for="name">Name</label>
-          <input id="name" name="name" required placeholder="Your name" />
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" required placeholder="you@example.com" />
-        </div>
-        <div>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" required placeholder="How can I help?"></textarea>
-        </div>
-        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
-          <button class="btn" type="submit">Send</button>
-          <span class="muted" style="font-size:.9rem">No backend here — this will open your email client as a fallback.</span>
-        </div>
-      </form>
-
-      <div style="margin-top:14px">
-        <h3 class="section__title" style="font-size:1.1rem">Social</h3>
+  <!-- ===================== HERO ===================== -->
+  <section id="home" class="hero container">
+    <div class="hero-grid">
+      <div class="card pad-xl reveal">
+        <div class="chip">Electrical & Electronic Engineering Undergraduate</div>
+        <h1>Hello, I'm <span class="accent">Dinupa Devinda</span></h1>
+        <div class="subtitle">Embedded Systems • Automation • Computer Vision</div>
+        <p class="muted">I build practical, low-latency systems that blend electronics, software and ML: from SMT-line conveyors and AGVs to Raspberry‑Pi vision and Spring Boot APIs. Currently R&D Engineering Intern at Sri Lanka Telecom.</p>
         <div class="socials">
-          <a class="chip" href="#" aria-label="GitHub">
-            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5A12 12 0 0 0 0 12.7c0 5.4 3.4 10 8.2 11.6.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.6-1.5-2-1.5-2-1.2-.8.1-.8.1-.8 1.3.1 2 .1 2.8 1.8 1.2 2 3.2 1.4 4 .9.1-.9.5-1.4.9-1.7-2.7-.3-5.5-1.4-5.5-6.2 0-1.4.5-2.5 1.3-3.4-.1-.3-.6-1.7.1-3.5 0 0 1-.3 3.5 1.3a11.4 11.4 0 0 1 6.4 0C19.6 4 20.6 4.3 20.6 4.3c.7 1.8.2 3.2.1 3.5.8.9 1.3 2 1.3 3.4 0 4.7-2.8 5.8-5.5 6.2.5.4 1 .9 1 2v3c0 .3.2.7.8.6A12.2 12.2 0 0 0 24 12.7 12 12 0 0 0 12 .5z"/></svg>
-            GitHub
-          </a>
-          <a class="chip" href="#" aria-label="LinkedIn">
-            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5 2.5 2.5 0 0 1 4.98 3.5zM3 9h4v12H3zM14.5 9c-2.2 0-3.5 1.2-3.5 3.1V21h-4V9h4v1.9c.6-1.1 1.9-2 3.9-2 3 0 5.1 2 5.1 6.4V21h-4v-5.8c0-1.8-.6-3.2-2.4-3.2z"/></svg>
-            LinkedIn
-          </a>
-          <a class="chip" href="#" aria-label="Kaggle">
-            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 4h3v7l5-7h4l-6.1 8L18 20h-4l-5-7v7H6z"/></svg>
-            Kaggle
-          </a>
-          <a class="chip" href="#" aria-label="Google Scholar">
-            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3L1 12h4v7h6v-5h2v5h6v-7h4z"/></svg>
-            Scholar
-          </a>
+          <a class="btn ghost" href="mailto:dwmddevinda@gmail.com" aria-label="Email">✉️ <span class="muted">dwmddevinda@gmail.com</span></a>
+          <a class="btn ghost" href="tel:+94754634737" aria-label="Call">📞 <span class="muted">+94 75 463 4737</span></a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/dinupa-devinda-cv" target="_blank" rel="noopener">in <span class="muted">LinkedIn</span></a>
+          <a class="btn ghost" href="https://github.com/Dinuxd" target="_blank" rel="noopener">🐙 <span class="muted">GitHub</span></a>
+        </div>
+        <div class="cta-row">
+          <a class="btn primary" href="Dinupa Devinda CV.pdf" download>⬇︎ Download CV</a>
+          <a class="btn" href="#projects">See Projects</a>
+        </div>
+      </div>
+
+      <div class="hex-wrap reveal" style="position:relative">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="hex" title="Dinupa Devinda"><img src="avatar.jpg" alt="Dinupa Devinda"/></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="section">
+    <div class="container grid cols-2">
+      <div class="panel reveal">
+        <div class="head"><h3>About</h3></div>
+        <div class="body">
+          <p>Multidisciplinary undergraduate focused on <b>Electrical & Electronics Engineering</b> with a solid foundation in <b>computer science</b> and <b>management accountancy</b> (CIMA Cert BA). I enjoy turning messy real‑world constraints into reliable, maintainable systems and documenting them clearly.</p>
+          <p class="muted small">Interested in: embedded Linux, edge ML, mechatronics, industrial automation, and sustainable hardware design.</p>
+        </div>
+      </div>
+      <div class="panel reveal">
+        <div class="head"><h3>At a glance</h3></div>
+        <div class="body">
+          <div class="skills-wrap">
+            <span class="pill hot">Raspberry Pi</span>
+            <span class="pill hot">ESP32 / Arduino</span>
+            <span class="pill">C / C++ / Assembly</span>
+            <span class="pill">Java • Spring Boot</span>
+            <span class="pill">C# • WinForms</span>
+            <span class="pill">Python • OpenCV • TFLite</span>
+            <span class="pill">TensorFlow / PyTorch</span>
+            <span class="pill">Proteus • LTspice • Multisim</span>
+            <span class="pill">MATLAB • Simulink</span>
+            <span class="pill">SMEMA • Motion Control</span>
+            <span class="pill">SQL Server • MySQL</span>
+            <span class="pill">GitHub • Postman</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-</main>
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="panel reveal">
+        <div class="head"><h3>Skills</h3></div>
+        <div class="body">
+          <div class="grid cols-3">
+            <div>
+              <h4>Embedded & Electronics</h4>
+              <div class="skills-wrap">
+                <span class="pill hot">Embedded C/C++</span>
+                <span class="pill">ESP32 • Arduino</span>
+                <span class="pill">Raspberry Pi</span>
+                <span class="pill">I²C • SPI • 1‑Wire</span>
+                <span class="pill">Sensors • Actuators</span>
+                <span class="pill">SMEMA</span>
+                <span class="pill">PCB/Proto • Soldering</span>
+                <span class="pill">Proteus • LTspice</span>
+              </div>
+            </div>
+            <div>
+              <h4>Software & Data</h4>
+              <div class="skills-wrap">
+                <span class="pill hot">Java • Spring Boot</span>
+                <span class="pill">C# • .NET • WinForms</span>
+                <span class="pill">Python • NumPy • OpenCV</span>
+                <span class="pill">TensorFlow • PyTorch</span>
+                <span class="pill">REST • Postman</span>
+                <span class="pill">SQL Server • MySQL</span>
+              </div>
+            </div>
+            <div>
+              <h4>Tools</h4>
+              <div class="skills-wrap">
+                <span class="pill hot">Git • GitHub</span>
+                <span class="pill">MATLAB • Simulink</span>
+                <span class="pill">AutoCAD • FreeCAD</span>
+                <span class="pill">Multisim</span>
+                <span class="pill">MPLAB X • VS Code • IntelliJ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- ========== FOOTER ========== -->
-<footer class="container">
-  <div class="footer panel" style="padding:12px">
-    <small>© <span id="year"></span> [Your Name]. Built with HTML/CSS/JS — single file.</small>
-  </div>
-</footer>
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="panel reveal">
+        <div class="head">
+          <h3>Highlighted Projects</h3>
+          <div class="toolbar" role="tablist" aria-label="Project filters">
+            <button class="filter active" data-filter="all" role="tab">All</button>
+            <button class="filter" data-filter="embedded" role="tab">Embedded</button>
+            <button class="filter" data-filter="software" role="tab">Software</button>
+            <button class="filter" data-filter="electronics" role="tab">Electronics</button>
+          </div>
+        </div>
+        <div class="body">
+          <div class="grid cols-3" id="projectGrid">
+            
+            <article class="card-proj" data-cat="embedded">
+              <h4>Automated Aquarium Management</h4>
+              <p class="muted">Raspberry Pi 4 based aquaculture system: pH & temperature control, servo feeder, dual‑solenoid water change, and TFLite vision for water clarity.</p>
+              <div class="tags">
+                <span class="tag">Raspberry Pi</span><span class="tag">Python</span><span class="tag">TFLite</span><span class="tag">Sensors</span>
+              </div>
+              <span class="meta">Jan 2025 – Jun 2025 • SLIIT</span>
+            </article>
 
-<button class="back-to-top" id="toTop" aria-label="Back to top">
-  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 14l5-5 5 5z"/></svg>
-</button>
+            <article class="card-proj" data-cat="software">
+              <h4>EduPress Store – E‑Commerce + Print Queue</h4>
+              <p class="muted">Full‑stack platform merging stationery shop and print‑on‑demand with live pricing and order workflow.</p>
+              <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span><span class="tag">XAMPP</span></div>
+              <span class="meta">2025 • UoK</span>
+              <a class="btn ghost" href="https://github.com/Dinuxd/EduPress-Store-Website" target="_blank" rel="noopener">GitHub ↗</a>
+            </article>
 
-<!-- Toast (for clipboard copy, form errors, etc.) -->
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+            <article class="card-proj" data-cat="software">
+              <h4>Music Streaming Desktop App</h4>
+              <p class="muted">Neon‑styled WinForms player with SQL Server, SHA‑256 auth, playlists, and RDLC reports.</p>
+              <div class="tags"><span class="tag">C#</span><span class="tag">.NET 8</span><span class="tag">SQL Server</span></div>
+              <span class="meta">2025 • UoK</span>
+              <a class="btn ghost" href="https://github.com/Dinuxd/MusicPlayerApp" target="_blank" rel="noopener">GitHub ↗</a>
+            </article>
 
-<script defer>
-(() => {
-  'use strict';
+            <article class="card-proj" data-cat="embedded electronics">
+              <h4>SMT Line – PCB Conveyor Automation</h4>
+              <p class="muted">Replaced manual transfer between PnP and reflow oven. SMEMA handshake, stepper motion, SICK sensors.</p>
+              <div class="tags"><span class="tag">Arduino</span><span class="tag">TB6560</span><span class="tag">SMEMA</span></div>
+              <span class="meta">2024 • Variosystems</span>
+            </article>
 
-  /* ========== UTILITIES ========== */
-  const $ = (sel, root=document) => root.querySelector(sel);
-  const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const lowPower = prefersReduced || (navigator.deviceMemory && navigator.deviceMemory <= 2);
-  const toastEl = $('#toast');
-  function toast(msg, ms=1800){
-    toastEl.textContent = msg;
-    toastEl.classList.add('show');
-    setTimeout(()=>toastEl.classList.remove('show'), ms);
-  }
+            <article class="card-proj" data-cat="embedded electronics">
+              <h4>Factory AGV (Stage‑1)</h4>
+              <p class="muted">Arduino Mega + Pololu G2 drivers, four 150:1 gear motors and encoders for line‑following transport.</p>
+              <div class="tags"><span class="tag">Arduino</span><span class="tag">Motor Control</span><span class="tag">IR/Ultrasonic</span></div>
+              <span class="meta">2024 • Variosystems</span>
+            </article>
 
-  /* ========== THEME TOGGLE ========== */
-  const themeToggle = $('#themeToggle');
-  const savedTheme = localStorage.getItem('theme');
-  if(savedTheme === 'light') document.documentElement.classList.add('theme-light');
-  if(savedTheme === 'dark') document.documentElement.classList.add('theme-dark');
-  themeToggle.textContent = document.documentElement.classList.contains('theme-light') ? '🌙' : '☀️';
-  themeToggle.addEventListener('click', () => {
-    const root = document.documentElement;
-    if(root.classList.contains('theme-dark')){
-      root.classList.remove('theme-dark');
-      root.classList.add('theme-light');
-      localStorage.setItem('theme','light');
-      themeToggle.textContent='🌙';
-    } else if(root.classList.contains('theme-light')){
-      root.classList.remove('theme-light');
-      root.classList.add('theme-dark');
-      localStorage.setItem('theme','dark');
-      themeToggle.textContent='☀️';
-    } else {
-      // Default to dark first toggle
-      root.classList.add('theme-dark');
-      localStorage.setItem('theme','dark');
-      themeToggle.textContent='☀️';
-    }
-  });
+            <article class="card-proj" data-cat="electronics">
+              <h4>2nd‑Order Multiple‑Feedback Band‑Pass Filter</h4>
+              <p class="muted">Single‑supply, 2–5 kHz passband; designed, simulated (Multisim), and built on dot‑board; oscilloscope‑validated.</p>
+              <div class="tags"><span class="tag">Analog</span><span class="tag">Multisim</span><span class="tag">Soldering</span></div>
+              <span class="meta">2024 • SLIIT</span>
+            </article>
 
-  /* ========== NAV: HAMBURGER & SCROLLSPY ========== */
-  const hamburger = $('#hamburger');
-  const navLinks = $('#navLinks');
-  hamburger?.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    hamburger.setAttribute('aria-expanded', String(open));
-  });
-  // Close menu on link click (mobile)
-  $$('#navLinks a').forEach(a=>a.addEventListener('click',()=> {
-    navLinks.classList.remove('open');
-    hamburger.setAttribute('aria-expanded','false');
-  }));
+            <article class="card-proj" data-cat="software">
+              <h4>Boarding‑Room Management API</h4>
+              <p class="muted">Java 21 + Spring Boot 3; 5 services, 17 endpoints; JPA/Hibernate with SQL Server; Postman‑validated.</p>
+              <div class="tags"><span class="tag">Spring Boot</span><span class="tag">SQL Server</span><span class="tag">REST</span></div>
+              <span class="meta">2025</span>
+            </article>
 
-  // Scrollspy
-  const sections = ['home','about','skills','projects','experience','publications','contact'].map(id=>('#'+id));
-  const linkMap = new Map($$('#navLinks a').map(a=>[a.getAttribute('href'), a]));
-  const spyObs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        const id = '#'+e.target.id;
-        linkMap.forEach(l=>l.classList.remove('active'));
-        linkMap.get(id)?.classList.add('active');
-      }
-    });
-  }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
-  sections.forEach(sel=>{ const sec=$(sel); if(sec) spyObs.observe(sec) });
+            <article class="card-proj" data-cat="embedded electronics">
+              <h4>Pad‑Printing Flame Treatment Automation</h4>
+              <p class="muted">Linear motion rig under Teca‑Print FLG 201; Arduino + TB6560; speed control via potentiometer.</p>
+              <div class="tags"><span class="tag">Stepper</span><span class="tag">Arduino</span></div>
+              <span class="meta">2024 • Variosystems</span>
+            </article>
 
-  /* ========== HERO: TYPING EFFECT ========== */
-  const roles = ['Electronics Engineer','ML Engineer','Computer Scientist'];
-  const roleEl = $('#roleTyper');
-  let ri=0, ci=0, erasing=false;
-  let typingId;
-  function typeLoop(){
-    if(prefersReduced){ roleEl.textContent = roles[0]; return; }
-    const str = roles[ri];
-    if(!erasing){
-      roleEl.textContent = str.slice(0, ci++);
-      if(ci>str.length+8){ erasing=true; }
-    }else{
-      roleEl.textContent = str.slice(0, ci--);
-      if(ci===0){ erasing=false; ri=(ri+1)%roles.length; }
-    }
-    typingId = setTimeout(typeLoop, erasing? 45 : 70);
-  }
-  typeLoop();
+            <article class="card-proj" data-cat="software">
+              <h4>Transport DB System in C</h4>
+              <p class="muted">Routes, timetables, bookings and queries via C file‑based CRUD for buses and trains.</p>
+              <div class="tags"><span class="tag">C</span><span class="tag">CLI</span></div>
+              <span class="meta">2023 • UoK</span>
+            </article>
 
-  /* ========== CANVAS CONSTELLATION (<= ~200 lines) ========== */
-  const canvas = $('#stars');
-  const ctx = canvas.getContext('2d');
-  let W=0, H=0, particles=[], rafId;
-  function resize(){
-    const pr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = (W = canvas.clientWidth) * pr;
-    canvas.height = (H = canvas.clientHeight) * pr;
-    ctx.setTransform(pr,0,0,pr,0,0);
-  }
-  function rand(a,b){ return Math.random()*(b-a)+a }
-  function initParticles(){
-    particles = [];
-    const count = (window.innerWidth<600)? 30 : 70;
-    for(let i=0;i<count;i++){
-      particles.push({
-        x: rand(0,W), y: rand(0,H),
-        vx: rand(-0.3,0.3), vy: rand(-0.3,0.3),
-        r: rand(0.6,1.8)
-      });
-    }
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    for(const p of particles){
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0||p.x>W) p.vx*=-1;
-      if(p.y<0||p.y>H) p.vy*=-1;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(167,139,250,.9)'; ctx.fill();
-    }
-    // connect close particles
-    for(let i=0;i<particles.length;i++){
-      for(let j=i+1;j<particles.length;j++){
-        const a=particles[i], b=particles[j];
-        const dx=a.x-b.x, dy=a.y-b.y, d=dx*dx+dy*dy;
-        if(d< (W*H>400000? 100*100 : 70*70) ){
-          ctx.strokeStyle='rgba(56,189,248,.25)';
-          ctx.lineWidth=1; ctx.beginPath();
-          ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+            <article class="card-proj" data-cat="electronics">
+              <h4>12 V DC Power Supply</h4>
+              <p class="muted">Designed, simulated and built a stable 12 V supply suitable for domestic conditions.</p>
+              <div class="tags"><span class="tag">Electronics</span><span class="tag">PCB</span></div>
+              <span class="meta">2023 • SLIIT</span>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CERTIFICATIONS ===================== -->
+  <section id="certs" class="section">
+    <div class="container">
+      <div class="panel reveal">
+        <div class="head">
+          <h3>Licenses & Certifications</h3>
+          <div class="toolbar">
+            <button class="filter active" data-cert="all">All</button>
+            <button class="filter" data-cert="2025">2025</button>
+            <button class="filter" data-cert="2024">2024</button>
+            <button class="filter" data-cert="2023">2023</button>
+          </div>
+        </div>
+        <div class="body">
+          <div class="grid cols-3" id="certGrid">
+            <article class="card-cert" data-year="2025">
+              <h4>Cisco — IT Essentials</h4>
+              <div class="meta">Issued Aug 2025</div>
+            </article>
+            <article class="card-cert" data-year="2025">
+              <h4>OpenCV University — PyTorch Bootcamp</h4>
+              <div class="meta">Issued Aug 2025</div>
+            </article>
+            <article class="card-cert" data-year="2025">
+              <h4>SLIIT — AI/ML Engineer (Stage 2)</h4>
+              <div class="meta">Issued Jul 2025</div>
+            </article>
+            <article class="card-cert" data-year="2024">
+              <h4>MindLuster — Embedded C & Assembly</h4>
+              <div class="meta">Issued Jun 2024</div>
+            </article>
+            <article class="card-cert" data-year="2023">
+              <h4>SLIIT — AI/ML Engineer (Stage 1)</h4>
+              <div class="meta">Issued May 2023</div>
+            </article>
+            <article class="card-cert" data-year="2023">
+              <h4>CIMA — Certificate in Business Accounting</h4>
+              <div class="meta">Issued Mar 2023</div>
+            </article>
+            <article class="card-cert" data-year="2023">
+              <h4>University of Moratuwa — Python for Beginners</h4>
+              <div class="meta">Issued Mar 2023</div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience" class="section">
+    <div class="container">
+      <div class="panel reveal">
+        <div class="head"><h3>Experience</h3></div>
+        <div class="body timeline">
+          <div class="t-item">
+            <h4>Sri Lanka Telecom — R&D Engineering Intern</h4>
+            <div class="meta">Jun 2025 – Present • Colombo (On‑site)</div>
+            <p class="muted small">Engineering research and prototyping with a focus on telecom automation and embedded solutions.</p>
+          </div>
+          <div class="t-item">
+            <h4>Variosystems — Inplant Trainee, EMS Floor</h4>
+            <div class="meta">Jun 2024 – Sep 2024</div>
+            <p class="muted small">Factory automation projects: SMT conveyor automation, AGV stage‑1, flame treatment rig; exposure to SMT & THT processes and test systems.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDUCATION ===================== -->
+  <section id="education" class="section">
+    <div class="container">
+      <div class="panel reveal">
+        <div class="head"><h3>Education</h3></div>
+        <div class="body timeline">
+          <div class="t-item">
+            <h4>SLIIT — BSc Eng (Hons), Electrical & Electronic Engineering</h4>
+            <div class="meta">Oct 2022 – Oct 2026 • Final‑year Undergraduate</div>
+          </div>
+          <div class="t-item">
+            <h4>University of Kelaniya — BSc, Physical Sciences</h4>
+            <div class="meta">Jul 2023 – Jul 2027 • CS, Pure & Applied Mathematics</div>
+          </div>
+          <div class="t-item">
+            <h4>CIMA — Certificate BA (UK) • Dip MA (in progress)</h4>
+            <div class="meta">Mar 2022 – Apr 2024</div>
+          </div>
+          <div class="t-item">
+            <h4>Thurstan College — GCE A/L (Physical Stream)</h4>
+            <div class="meta">Physics B • Chemistry C • Combined Maths C • English A</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="panel reveal">
+        <div class="head"><h3>Contact</h3></div>
+        <div class="body contact-grid">
+          <div>
+            <p class="muted">Open to internships, R&D roles, and collaborations in embedded systems, automation, or edge AI. The form below uses your default mail app.</p>
+            <div class="skills-wrap" style="margin-top:10px">
+              <a class="btn" href="mailto:dwmddevinda@gmail.com?subject=Hello%20Dinupa">✉️ Email</a>
+              <button class="btn" id="copyEmail">Copy Email</button>
+              <a class="btn" href="tel:+94754634737">Call</a>
+              <a class="btn" href="https://www.linkedin.com/in/dinupa-devinda-cv" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+          </div>
+          <form class="form" onsubmit="openMail(event)">
+            <div class="grid cols-2">
+              <label>
+                <span class="small muted">Your name</span>
+                <input required name="name" placeholder="Jane Doe" />
+              </label>
+              <label>
+                <span class="small muted">Your email</span>
+                <input required name="email" type="email" placeholder="jane@example.com" />
+              </label>
+            </div>
+            <label>
+              <span class="small muted">Message</span>
+              <textarea required name="message" placeholder="Hi Dinupa, let's build…"></textarea>
+            </label>
+            <div style="margin-top:12px"><button class="btn primary" type="submit">Send</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="container">
+    <div class="small">© <span id="year"></span> Dinupa Devinda✨</div>
+  </footer>
+
+  <script>
+    // ===================== UTILITIES =====================
+    const $ = (q, root=document) => root.querySelector(q);
+    const $$ = (q, root=document) => Array.from(root.querySelectorAll(q));
+
+    // Sticky nav active link on scroll
+    const sections = $$("section[id]");
+    const navLinks = $$(".navlinks a");
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const id = entry.target.id;
+          navLinks.forEach(a=> a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
         }
-      }
-    }
-    rafId = requestAnimationFrame(draw);
-  }
-  function startCanvas(){
-    if(lowPower) return; // graceful fallback
-    resize(); initParticles(); draw();
-    window.addEventListener('resize', ()=>{ cancelAnimationFrame(rafId); resize(); initParticles(); draw(); });
-  }
-  // Lazy-init when hero in view
-  const heroObs = new IntersectionObserver(es=>{
-    if(es.some(e=>e.isIntersecting)){ startCanvas(); heroObs.disconnect(); }
-  }, {threshold:0.2});
-  heroObs.observe($('#home'));
+      })
+    },{ rootMargin: "-50% 0px -45% 0px", threshold: 0 });
+    sections.forEach(s=> io.observe(s));
 
-  /* ========== COPY EMAIL BUTTON ========== */
-  $('#copyEmail').addEventListener('click', async () => {
-    const email = $('#emailText').textContent.trim();
-    try{
-      await navigator.clipboard.writeText(email);
-      toast('Email copied to clipboard');
-    }catch{
-      toast('Copy failed, select and copy manually');
-    }
-  });
+    // Appear on scroll
+    const io2 = new IntersectionObserver((entries)=>{
+      entries.forEach(e => e.target.classList.toggle('show', e.isIntersecting))
+    },{ threshold: .12 });
+    $$(".reveal").forEach(el=> io2.observe(el));
 
-  /* ========== RINGS: Animate on Intersection ========== */
-  const ringObs = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        const ring = entry.target;
-        const val = +ring.dataset.percent;
-        const bar = ring.querySelector('.ring__bar');
-        const valueEl = ring.querySelector('.ring__value');
-        // Animate stroke offset & number
-        const circumference = 2*Math.PI*50; // r=50
-        let t=0;
-        const dur = prefersReduced? 0 : 900;
-        const start = performance.now();
-        function anim(now){
-          const p = dur? Math.min(1, (now-start)/dur) : 1;
-          const eased = p<0.5? 2*p*p : -1+(4-2*p)*p; // easeInOut
-          const target = val*eased;
-          bar.style.strokeDashoffset = String(circumference * (1 - (target/100)));
-          valueEl.textContent = Math.round(target);
-          if(p<1) requestAnimationFrame(anim);
-        }
-        requestAnimationFrame(anim);
-        ringObs.unobserve(ring);
-      }
+    // Theme toggle
+    const toggle = $("#themeToggle");
+    toggle.addEventListener('click', ()=>{
+      document.body.classList.toggle('light');
     });
-  }, {threshold:0.4});
-  $$('.ring').forEach(r=>ringObs.observe(r));
 
-  /* ========== REVEAL ON SCROLL ========== */
-  const revObs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); revObs.unobserve(e.target); } });
-  },{threshold:0.12});
-  $$('.reveal').forEach(el=>revObs.observe(el));
+    // Footer year
+    $("#year").textContent = new Date().getFullYear();
 
-  /* ========== SKILL TABS FILTERING ========== */
-  const tabBtns = $$('.tabs button');
-  tabBtns.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      tabBtns.forEach(b=>{b.setAttribute('aria-pressed','false'); b.setAttribute('aria-selected','false');});
-      btn.setAttribute('aria-pressed','true'); btn.setAttribute('aria-selected','true');
-      const scope = btn.dataset.scope;
-      $$('.skills-grid .skill').forEach(s=>{
-        s.style.display = scope==='all' || s.dataset.scope.includes(scope) ? '' : 'none';
+    // Projects filter
+    const projFilters = $$("[data-filter]");
+    const projCards = $$("#projectGrid .card-proj");
+    projFilters.forEach(btn=> btn.addEventListener('click', ()=>{
+      projFilters.forEach(b=> b.classList.remove('active'));
+      btn.classList.add('active');
+      const key = btn.dataset.filter;
+      projCards.forEach(card=>{
+        const cats = (card.dataset.cat || '').split(/\s+/);
+        const show = key === 'all' || cats.includes(key);
+        card.style.display = show ? '' : 'none';
       });
-    });
-  });
+    }));
 
-  /* ========== PROJECT FILTERS ========== */
-  const filterBtns = $$('.filters button');
-  const projectCards = $$('#projectGrid .card');
-  filterBtns.forEach(b=>b.addEventListener('click', ()=>{
-    filterBtns.forEach(x=>x.setAttribute('aria-pressed','false'));
-    b.setAttribute('aria-pressed','true');
-    const f = b.dataset.filter;
-    projectCards.forEach(c=>{
-      const cats = c.dataset.category.split(' ');
-      c.style.display = (f==='all' || cats.includes(f))? '' : 'none';
-    });
-  }));
+    // Certifications filter by year
+    const certFilters = $$("[data-cert]");
+    const certCards = $$("#certGrid .card-cert");
+    certFilters.forEach(btn=> btn.addEventListener('click', ()=>{
+      certFilters.forEach(b=> b.classList.remove('active'));
+      btn.classList.add('active');
+      const y = btn.dataset.cert;
+      certCards.forEach(c => c.style.display = (y==='all' || c.dataset.year===y) ? '' : 'none');
+    }));
 
-  /* ========== CASE STUDY MODAL ========== */
-  const modal = $('#caseModal');
-  const closeBtn = $('#caseClose');
-  let lastFocus = null;
-  function openModalFor(card){
-    lastFocus = document.activeElement;
-    const title = card.dataset.title;
-    const summary = card.dataset.summary;
-    const stack = card.dataset.stack;
-    const metrics = card.dataset.metrics;
-    const archKey = card.dataset.arch || 'default';
-
-    $('#caseTitle').textContent = title;
-    $('#caseDesc').textContent = summary + ' Tech stack: ' + stack + '.';
-    const metricsWrap = $('#caseMetrics');
-    metricsWrap.innerHTML = '';
-    metrics.split(';').forEach(m=>{ const s=document.createElement('span'); s.className='chip'; s.textContent = m.trim(); metricsWrap.appendChild(s); });
-
-    // Build architecture SVG
-    const arch = document.createElementNS('http://www.w3.org/2000/svg','svg');
-    arch.setAttribute('viewBox','0 0 640 200'); arch.setAttribute('width','100%'); arch.setAttribute('height','200');
-    const rect = (x,y,w,h,r,color)=>{const el=document.createElementNS('http://www.w3.org/2000/svg','rect'); el.setAttribute('x',x); el.setAttribute('y',y); el.setAttribute('rx',r); el.setAttribute('width',w); el.setAttribute('height',h); el.setAttribute('fill',color); el.setAttribute('stroke','#6b7280'); el.setAttribute('stroke-width','1.5'); return el;};
-    const text = (x,y,t)=>{const el=document.createElementNS('http://www.w3.org/2000/svg','text'); el.setAttribute('x',x); el.setAttribute('y',y); el.setAttribute('fill','currentColor'); el.setAttribute('font-size','13'); el.setAttribute('font-family','system-ui'); el.textContent=t; return el;};
-    const arrow = (x1,y1,x2,y2)=>{const el=document.createElementNS('http://www.w3.org/2000/svg','path'); el.setAttribute('d',`M${x1} ${y1} L${x2} ${y2}`); el.setAttribute('stroke','#38bdf8'); el.setAttribute('stroke-width','2'); el.setAttribute('marker-end','url(#arrow)'); return el;};
-    const defs=document.createElementNS('http://www.w3.org/2000/svg','defs');
-    const marker=document.createElementNS('http://www.w3.org/2000/svg','marker'); marker.setAttribute('id','arrow'); marker.setAttribute('orient','auto'); marker.setAttribute('markerWidth','8'); marker.setAttribute('markerHeight','8'); marker.setAttribute('refX','8'); marker.setAttribute('refY','4');
-    const tip=document.createElementNS('http://www.w3.org/2000/svg','path'); tip.setAttribute('d','M0,0 L8,4 L0,8 z'); tip.setAttribute('fill','#38bdf8'); marker.appendChild(tip); defs.appendChild(marker); arch.appendChild(defs);
-
-    arch.appendChild(rect(30,60,120,60,12,'rgba(163,230,53,.2)')); arch.appendChild(text(44,93,'Sensors'));
-    arch.appendChild(rect(200,60,120,60,12,'rgba(56,189,248,.2)')); arch.appendChild(text(220,93,'Microcontroller'));
-    arch.appendChild(rect(370,60,120,60,12,'rgba(167,139,250,.2)')); arch.appendChild(text(385,93,'Edge Inference'));
-    arch.appendChild(rect(540,60,70,60,12,'rgba(251,191,36,.2)')); arch.appendChild(text(548,93,'Cloud'));
-    arch.appendChild(arrow(150,90,200,90)); arch.appendChild(arrow(320,90,370,90)); arch.appendChild(arrow(490,90,540,90));
-
-    const caseArch = $('#caseArch'); caseArch.innerHTML=''; caseArch.appendChild(arch);
-
-    // Challenges & outcomes (sample bullets)
-    const bullets = $('#caseBullets'); bullets.innerHTML='';
-    [
-      'Architected data flow and fault-tolerant retries; added OTA safety window.',
-      'Profiled bottlenecks; reduced end-to-end latency by 35%.',
-      'Instrumented metrics and alerts; improved uptime to 99.7%.'
-    ].forEach(t=>{ const li=document.createElement('li'); li.textContent=t; bullets.appendChild(li); });
-
-    modal.showModal();
-    // Focus trap
-    const focusables = $$('button, [href], input, textarea, [tabindex]:not([tabindex="-1"])', modal);
-    const first = focusables[0], last = focusables[focusables.length-1];
-    modal.addEventListener('keydown', function trap(e){
-      if(e.key==='Escape'){ closeModal(); }
-      if(e.key==='Tab'){
-        if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
-        else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
-      }
-    });
-    first?.focus();
-  }
-  function closeModal(){
-    modal.close();
-    lastFocus?.focus();
-  }
-  closeBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
-
-  // Attach open events
-  $$('#projectGrid .card [data-open="case"]').forEach(btn=>{
-    btn.addEventListener('click', ()=> openModalFor(btn.closest('.card')));
-  });
-  // Open on card Enter
-  projectCards.forEach(card=>{
-    card.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ openModalFor(card); }});
-  });
-
-  /* ========== TESTIMONIALS CAROUSEL ========== */
-  const slides = $('#slides');
-  const dotsWrap = $('#dots');
-  const tChildren = $$('#slides .testimonial');
-  tChildren.forEach((_,i)=>{ const d=document.createElement('span'); d.className='dot'+(i===0?' active':''); dotsWrap.appendChild(d); });
-  let idx=0, hover=false;
-  $('#carousel').addEventListener('mouseenter',()=>hover=true);
-  $('#carousel').addEventListener('mouseleave',()=>hover=false);
-  function step(){
-    if(!hover && !prefersReduced){
-      idx=(idx+1)%tChildren.length;
-      slides.style.transform = `translateX(-${idx*100}%)`;
-      $$('#dots .dot').forEach((d,i)=> d.classList.toggle('active', i===idx));
+    // Contact form -> mailto
+    function openMail(e){
+      e.preventDefault();
+      const f = e.target;
+      const subject = encodeURIComponent(`Portfolio inquiry from ${f.name.value}`);
+      const body = encodeURIComponent(`${f.message.value}\n\n— ${f.name.value} (${f.email.value})`);
+      window.location.href = `mailto:dwmddevinda@gmail.com?subject=${subject}&body=${body}`;
     }
-    setTimeout(step, 4000);
-  }
-  setTimeout(step, 4000);
 
-  /* ========== CONTACT FORM (mailto fallback) ========== */
-  $('#contactForm').addEventListener('submit', e=>{
-    e.preventDefault();
-    const name = $('#name').value.trim();
-    const email = $('#email').value.trim();
-    const message = $('#message').value.trim();
-    const valid = name && email && message && /\S+@\S+\.\S+/.test(email);
-    if(!valid){ toast('Please fill all fields with a valid email.'); return; }
-    const subject = encodeURIComponent('Portfolio contact from '+name);
-    const body = encodeURIComponent(message + '\n\nFrom: ' + name + ' <'+email+'>');
-    window.location.href = `mailto:you@domain.com?subject=${subject}&body=${body}`;
-  });
-
-  /* ========== DOWNLOAD CV (generated text) ========== */
-  $('#downloadCV').addEventListener('click', ()=>{
-    const lines = [
-      '[Your Name] — Electronics & ML Engineer',
-      'Location: Colombo, Sri Lanka',
-      'Email: you@domain.com',
-      '',
-      'Summary:',
-      'Engineer blending embedded systems, ML, and robust software.',
-      'Experience in STM32/ESP32 firmware, SSD/Mask R-CNN, and microservices.',
-      '',
-      'Skills: STM32, ESP32, KiCad, PyTorch, TensorFlow, OpenCV, C/C++, Python, Git, Docker',
-      '',
-      'Selected Projects:',
-      '- SenseGrid IIoT — MQTT/TLS, OTA, uptime 99.7%',
-      '- CartonBox Detector — 92% acc, 12ms inference on RPi4',
-      '- Mask R-CNN Modernization — TF 2.x, training +30%',
-      '',
-      'Experience:',
-      '- Freelance Electronics & ML Engineer (2023—)',
-      '- Embedded Systems Intern (2022—2023)',
-      '- Software Engineer — Platform (2020—2022)',
-      '',
-      'Education: BSc (Hons) Electrical & Electronic Engineering'
-    ].join('\n');
-    const blob = new Blob([lines], {type:'text/plain'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = 'YourName_CV.txt';
-    document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url), 1000);
-  });
-
-  /* ========== BACK TO TOP ==========
-     Appears after small scroll; smooth by default (CSS scroll-behavior). */
-  const toTop = $('#toTop');
-  toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior: prefersReduced? 'auto':'smooth'}));
-  window.addEventListener('scroll', ()=>{
-    toTop.style.display = window.scrollY>420 ? 'grid' : 'none';
-  });
-
-  /* ========== YEAR ========= */
-  $('#year').textContent = new Date().getFullYear();
-
-})();
-</script>
+    // Copy email button
+    $("#copyEmail").addEventListener('click', async ()=>{
+      try{ await navigator.clipboard.writeText('dwmddevinda@gmail.com');
+        const el = event.currentTarget; el.textContent = 'Copied ✔'; setTimeout(()=> el.textContent='Copy Email', 1400); }
+      catch{ alert('Copy failed. Email: dwmddevinda@gmail.com'); }
+    });
+  </script>
 </body>
 </html>
-
-
