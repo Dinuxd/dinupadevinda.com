@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects | Dinupa Devinda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .nav-brand-link {
+            text-decoration: none;
+        }
+
+        .nav-brand-link:hover .nav-brand {
+            background: var(--cyan);
+            color: #000;
+            box-shadow: 0 0 15px var(--cyan);
+        }
+    </style>
+</head>
+
+<body class="site-wrapper">
+
+    <nav>
+        <div class="container">
+            <a href="https://fiverr.com/s/bd67pYq" target="_blank" class="nav-brand-link">
+                <div class="nav-brand">DDDEVSYSTEMS</div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="experience.html">Experience</a>
+                <a href="projects.html" class="active">Projects</a>
+                <a href="certifications.html">Certifications</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section container">
+        <div class="page-header">
+            <h2>Projects</h2>
+            <p class="muted subtitle">EMBEDDED / SOFTWARE / MECHATRONICS</p>
+        </div>
+
+        <div class="grid-2">
+            <!-- Vehicular Black Box -->
+            <div class="card">
+                <div class="media-container"
+                    style="display: flex; align-items: center; justify-content: center; height: 100px; background: rgba(0, 243, 255, 0.05); border: 1px dashed var(--cyan);">
+                    <span class="tag" style="margin: 0; font-size: 1rem;">PROJECT ONGOING</span>
+                </div>
+                <h4>Vehicular Black Box: Vehicle Violation Detector</h4>
+                <span class="date">Oct 2025 – Present</span>
+                <p class="muted">A tamper-proof vehicular black box system using multi-sensor fusion (IMU, GPS, dual
+                    cameras, audio sensing) to detect traffic violations (speeding, tailgating, harsh braking, driver
+                    distraction).</p>
+                <ul class="cyber-list">
+                    <li>Implemented embedded signal processing and deep-learning-based CV/audio models.</li>
+                    <li>Encrypted onboard storage with secure GSM/cloud data transmission.</li>
+                    <li>Enabled centralized violation analytics and evidence-grade reporting for law enforcement.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">Computer Vision</span><span class="tag">Embedded ML</span><span
+                        class="tag">GSM</span>
+                </div>
+            </div>
+
+            <!-- ServiceLink -->
+            <div class="card purple-accent">
+                <div class="media-container" style="background: var(--bg);">
+                    <video src="data/projects/servicelink.mp4" playsinline controls preload="metadata"></video>
+                </div>
+                <h4>ServiceLink: On-Demand Local Hiring Platform</h4>
+                <span class="date">Oct 2025 – Jan 2026</span>
+                <p class="muted">Full-stack service marketplace platform built to connect customers with service
+                    providers. Enables role-based access, browsing, and bookings.</p>
+                <ul class="cyber-list">
+                    <li>Designed with Spring Boot REST APIs for business logic.</li>
+                    <li>MongoDB NoSQL structure for data storage and React frontend UI.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">MongoDB</span>
+                </div>
+            </div>
+
+            <!-- A7680C GSM Library -->
+            <div class="card">
+                <div class="media-container">
+                    <img src="data/projects/gsm_library.png" class="project-img" alt="GSM Library"
+                        onerror="this.style.display='none'">
+                </div>
+                <h4>A7680C GSM (4G) Library for ESP32</h4>
+                <span class="date">Jun 2025 – Sep 2025</span>
+                <p class="muted">Built a production-ready C++ ESP32 library wrapping the modem’s AT commands for network
+                    attach, CSQ, and session operations.</p>
+                <ul class="cyber-list">
+                    <li>Implemented MQTT over TCP & MQTTS over TLS (port 8883) alongside HTTP GET/POST.</li>
+                    <li>Integrated SMS/Call utilities and SMTP email sending alerts.</li>
+                    <li>Hardened TLS flows with CA-cert provisioning and a web configuration portal (HTML/JS) for
+                        diagnostics.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">ESP32</span><span class="tag">C++</span><span class="tag">AT Commands</span><span
+                        class="tag">TLS</span>
+                </div>
+            </div>
+
+            <!-- Machine Monitoring System -->
+            <div class="card purple-accent">
+                <div class="media-container">
+                    <img src="data/projects/machine_monitoring.jpg" class="project-img" alt="Machine Monitoring"
+                        onerror="this.style.display='none'">
+                </div>
+                <h4>Industrial Machine Monitoring System</h4>
+                <span class="date">Jun 2025 – Sep 2025</span>
+                <p class="muted">End-to-end monitoring solution using custom ESP32 + A7680C modem telemetry pushing to a
+                    ThingsBoard dashboard via MQTTS.</p>
+                <ul class="cyber-list">
+                    <li>Integrated K-type thermocouples (MAX6675), IR temps (4-20mA), and CTs (ACS712).</li>
+                    <li>Debugged sensor discrepancies and built secure Wi-Fi/LTE connections with SIM health checks.
+                    </li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">ThingsBoard</span><span class="tag">Sensors</span><span class="tag">MQTTS</span>
+                </div>
+            </div>
+
+            <!-- ATM Environment Control -->
+            <div class="card">
+                <div class="media-container">
+                    <img src="data/projects/atm_control.jpg" class="project-img" alt="ATM Environment Control"
+                        onerror="this.style.display='none'">
+                </div>
+                <h4>ATM Environment Control & AC Logic</h4>
+                <span class="date">Jun 2025 – Aug 2025</span>
+                <p class="muted">Designed a top-level FSM to manage an ATM room's temperature/humidity sensing and IR
+                    learn-and-replay AC control.</p>
+                <ul class="cyber-list">
+                    <li>Implemented secure MQTT publishing with retained status.</li>
+                    <li>Built web-based config pages for quick site setup.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">FSM Design</span><span class="tag">IR Protocol</span><span
+                        class="tag">ESP32</span>
+                </div>
+            </div>
+
+            <!-- EduPress Store -->
+            <div class="card purple-accent">
+                <div class="media-container" style="background: var(--bg);">
+                    <video src="data/projects/edupress_demo.mp4" playsinline controls preload="metadata"></video>
+                </div>
+                <h4>EduPress Store – Queue-Free Hub</h4>
+                <span class="date">Jul 2025</span>
+                <p class="muted">Full-stack web platform fusing a stationery e-commerce site with a print-on-demand
+                    queue. Students browse, upload PDFs, check live prices, and collect without queuing.</p>
+                <ul class="cyber-list">
+                    <li>Built on XAMPP (Apache, PHP, MySQL) with vanilla JavaScript frontend logic.</li>
+                    <li>Normalised InnoDB schema for inventory and print mixed carts.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JS</span>
+                </div>
+            </div>
+
+            <!-- Music Player App -->
+            <div class="card">
+                <div class="media-container" style="background: var(--bg);">
+                    <video src="data/projects/music_player_demo.mp4" playsinline controls preload="metadata"></video>
+                </div>
+                <h4>Simple Music Streaming Platform</h4>
+                <span class="date">Jul 2025</span>
+                <p class="muted">A local C# WinForms application designed like a private Spotify hub. Drop an MP3 into
+                    the library for seamless playback with RdLC reports and SHA-256 Auth.</p>
+                <ul class="cyber-list">
+                    <li>C# .NET 8 / WinForms with ADO.NET linking to SQL Server 2021 Express.</li>
+                    <li>Real-time DataGridView library search and Playlists mapping.</li>
+                </ul>
+                <a class="btn" href="https://github.com/Dinuxd/MusicPlayerApp" target="_blank"
+                    style="margin: 10px 0; display: inline-block;">GitHub ↗</a>
+                <div class="card-actions">
+                    <span class="tag">C# WinForms</span><span class="tag">SQL Server</span>
+                </div>
+            </div>
+
+            <!-- Automated Aquarium -->
+            <div class="card purple-accent">
+                <div class="media-container" style="background: var(--bg);">
+                    <video src="data/projects/smart_fish_habitat.mp4" playsinline controls preload="metadata"></video>
+                </div>
+                <h4>Smart Fish Habitat Management System</h4>
+                <span class="date">Jan 2025 – Jun 2025</span>
+                <p class="muted">Automated aquaculture system utilizing Raspberry Pi 4 to monitor and control water
+                    conditions.</p>
+                <ul class="cyber-list">
+                    <li>Senses pH/temp, schedules servo feeders, and orchestrates dual-solenoid water changes.</li>
+                    <li>Tested YOLOv11 for fish tracking and TFLite for water clarity/contaminant detection.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">Raspberry Pi</span><span class="tag">YOLOv11</span><span class="tag">Python</span>
+                </div>
+            </div>
+
+            <!-- AGV -->
+            <div class="card">
+                <div class="media-container" style="background: var(--bg);">
+                    <video src="data/projects/agv.mp4" playsinline controls preload="metadata"></video>
+                </div>
+                <h4>Automated Guided Vehicle (AGV) Stage 1</h4>
+                <span class="date">Jun 2024 – Sep 2024</span>
+                <p class="muted">100 kg-capable factory line-following AGV reducing manual transport times on the floor.
+                </p>
+                <ul class="cyber-list">
+                    <li>Arduino Mega, Pololu Dual G2 drivers, 4 24V gearmotors with encoders.</li>
+                    <li>11 IR sensors and ultrasonic collision avoidance systems.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">Robotics</span><span class="tag">Arduino</span><span
+                        class="tag">Mechatronics</span>
+                </div>
+            </div>
+
+            <!-- SMT Conveyor -->
+            <div class="card purple-accent">
+                <div class="media-container">
+                    <img src="data/projects/smt_conveyor.jpg" class="project-img" alt="SMT Conveyor"
+                        onerror="this.style.display='none'">
+                </div>
+                <h4>Automated PCB Conveyor System</h4>
+                <span class="date">Jul 2024 – Sep 2024</span>
+                <p class="muted">Replaced manual PCB transfers between PnP and the reflow oven with a customized
+                    stepper-driven conveyor.</p>
+                <ul class="cyber-list">
+                    <li>Enabled SMEMA 4-pin handshake logic across dual Arduino Unos.</li>
+                    <li>Integrated TB6560 drivers and SICK WTB4 photoelectric sensors.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">SMEMA</span><span class="tag">Stepper Control</span><span
+                        class="tag">Conveyors</span>
+                </div>
+            </div>
+
+            <!-- Flame Treatment -->
+            <div class="card">
+                <div class="media-container" style="background: var(--bg);">
+                    <video src="data/projects/flame_treatment.mp4" playsinline controls preload="metadata"></video>
+                </div>
+                <h4>Pad-Printing Flame Treatment Auto</h4>
+                <span class="date">Aug 2024 – Sep 2024</span>
+                <p class="muted">Mechanical modification to Teca-Print FLG 201 flame machine to improve pad printing ink
+                    adhesion, replacing expensive UV curing.</p>
+                <ul class="cyber-list">
+                    <li>Automated circuit housing motion over linear rails utilizing Arduino and a TB6560 driver.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">Mechanical mods</span><span class="tag">Arduino</span>
+                </div>
+            </div>
+
+            <!-- 2nd Order MFB -->
+            <div class="card purple-accent">
+                <div class="media-container">
+                    <img src="data/projects/bandpass_filter.jpg" class="project-img" alt="2nd Order MFB"
+                        onerror="this.style.display='none'">
+                </div>
+                <h4>2nd-Order MFB Band-Pass Filter</h4>
+                <span class="date">Dec 2024</span>
+                <p class="muted">Single-supply, 2-5 kHz passband filter designed, simulated in Multisim, implemented on
+                    dot-board, and validated via oscilloscope.</p>
+                <div class="card-actions">
+                    <span class="tag">Analog Circuits</span><span class="tag">Multisim</span>
+                </div>
+            </div>
+
+            <!-- Assembly Language Mini Project -->
+            <div class="card">
+                <h4>Assembly Language Mini Project: Real-Time Clock</h4>
+                <span class="date">Apr 2024 – May 2024 | SLIIT</span>
+                <p class="muted">Designed and implemented a real-time clock using a DS1302 timekeeping chip, PIC16F877A
+                    microcontroller, MAX6952 display driver, and four 5x7 Matrix LED displays.</p>
+                <ul class="cyber-list">
+                    <li>Utilized assembly language and Proteus for simulation and 3-wire SPI communication between PIC,
+                        DS1302, and MAX6952.</li>
+                    <li>Displayed accurate time and date information extracted from the timekeeping chip.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">Assembly</span><span class="tag">Proteus</span><span class="tag">PIC16F877A</span>
+                </div>
+            </div>
+
+            <!-- Simple Music Streaming Platform -->
+            <div class="card purple-accent">
+                <h4>Simple Music Streaming Platform Management System</h4>
+                <span class="date">Jan 2024 – Feb 2024 | University of Kelaniya</span>
+                <p class="muted">MiuHub: A Java-based music streaming platform management system built to simplify the
+                    music streaming workflow. Provides artist and listener roles alongside administrative controls.</p>
+                <ul class="cyber-list">
+                    <li>Developed an 8-class OOP architecture (Listeners, Artists, Admins, Packages, Reports) driven by
+                        abstract methodology.</li>
+                    <li>Enabled artists to upload songs and listeners to purchase streaming packages.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">Java</span><span class="tag">OOP</span><span class="tag">IntelliJ</span>
+                </div>
+            </div>
+
+            <!-- 12V DC Power Supply -->
+            <div class="card">
+                <h4>12V DC Power Supply</h4>
+                <span class="date">Oct 2023 – Nov 2023 | SLIIT</span>
+                <p class="muted">Designed and implemented a robust 12V DC power supply for electronic circuits,
+                    achieving stable regulation under specific domestic supply conditions.</p>
+                <div class="card-actions">
+                    <span class="tag">Circuit Design</span><span class="tag">Hardware</span>
+                </div>
+            </div>
+
+            <!-- Public Transport Database -->
+            <div class="card purple-accent">
+                <h4>Public Transport Database Management System</h4>
+                <span class="date">Jul 2023 – Oct 2023 | University of Kelaniya</span>
+                <p class="muted">Created a C language file system managing bus/train routes, timetables, and
+                    point-to-point booking systems using raw file I/O operations.</p>
+                <ul class="cyber-list">
+                    <li>Leveraged native array management and file handling to persist and query transport data
+                        smoothly.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">C</span><span class="tag">File Systems</span><span class="tag">Data
+                        Structures</span>
+                </div>
+            </div>
+
+            <!-- Variable Angle Fan -->
+            <div class="card">
+                <h4>Variable Angle Oscillating Fan</h4>
+                <span class="date">Mar 2023 – Jun 2023 | SLIIT</span>
+                <p class="muted">Developed a custom oscillating fan using an Arduino Uno and positional servo motor that
+                    allows precise manual adjustment of the oscillation angle to eliminate overshooting.</p>
+                <ul class="cyber-list">
+                    <li>3D printed custom servo covers and adapters to integrate the motor safely into the fan chassis.
+                    </li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">Arduino</span><span class="tag">C</span><span class="tag">3D Printing</span>
+                </div>
+            </div>
+
+            <!-- University Boarding Room system -->
+            <div class="card purple-accent">
+                <h4>University Boarding-Room Management System (BRMS) API</h4>
+                <span class="date">Jun 2025 – Jun 2025 | University of Kelaniya</span>
+                <p class="muted">Engineered 5 domain-driven REST services (User, Role, Listing, Booking, Maintenance) as
+                    an end-to-end accommodation backend.</p>
+                <ul class="cyber-list">
+                    <li>Shipped 17 OpenAPI-documented endpoints fully validated with Postman.</li>
+                    <li>Implemented Layered Spring Stack (Controller→Service→Repository) leveraging Spring Data JPA,
+                        Hibernate, and SQL Server 2022 Express integration.</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="tag">Java 21</span><span class="tag">Spring Boot 3.5</span><span class="tag">SQL
+                        Server</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Dinupa Devinda</p>
+        </div>
+    </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+
+</html>

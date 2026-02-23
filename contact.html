@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact | Dinupa Devinda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .nav-brand-link {
+            text-decoration: none;
+        }
+
+        .nav-brand-link:hover .nav-brand {
+            background: var(--cyan);
+            color: #000;
+            box-shadow: 0 0 15px var(--cyan);
+        }
+    </style>
+</head>
+
+<body class="site-wrapper">
+
+    <nav>
+        <div class="container">
+            <a href="https://fiverr.com/s/bd67pYq" target="_blank" class="nav-brand-link">
+                <div class="nav-brand">DDDEVSYSTEMS</div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="experience.html">Experience</a>
+                <a href="projects.html">Projects</a>
+                <a href="certifications.html">Certifications</a>
+                <a href="contact.html" class="active">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section container"
+        style="text-align: center; max-width: 600px; display: flex; flex-direction: column; justify-content: center;">
+        <div class="page-header">
+            <h2>Contact</h2>
+            <p class="muted subtitle">GET IN TOUCH</p>
+        </div>
+
+        <p class="muted" style="font-size: 1.1rem;">I am open to professional roles, R&D positions, and collaborations
+            in embedded systems, AI/ML, deep learning, computer vision, and automation.
+            Whether it's a technical challenge or a new project, feel free to reach out.</p>
+
+        <div class="socials" style="margin-top: 40px; justify-content: center; gap: 20px;">
+            <a href="javascript:void(0)" onclick="window.open('mailto:dwmddevinda@gmail.com')" class="btn">EMAIL ME</a>
+            <a href="https://www.linkedin.com/in/dinupa-devinda-cv" target="_blank" class="btn">LINKEDIN</a>
+            <a href="https://github.com/Dinuxd" target="_blank" class="btn">GITHUB</a>
+        </div>
+
+        <p class="muted"
+            style="margin-top: 30px; font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; letter-spacing: 2px;">
+            <span style="color: var(--cyan);">MOBILE:</span> +94 75 463 4737
+        </p>
+        <p class="muted" style="font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; letter-spacing: 1px;">
+            <span style="color: var(--purple);">LOCATION:</span> Colombo, Sri Lanka
+        </p>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Dinupa Devinda</p>
+        </div>
+    </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+
+</html>

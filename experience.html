@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Experience | Dinupa Devinda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .nav-brand-link {
+            text-decoration: none;
+        }
+
+        .nav-brand-link:hover .nav-brand {
+            background: var(--cyan);
+            color: #000;
+            box-shadow: 0 0 15px var(--cyan);
+        }
+    </style>
+</head>
+
+<body class="site-wrapper">
+
+    <nav>
+        <div class="container">
+            <a href="https://fiverr.com/s/bd67pYq" target="_blank" class="nav-brand-link">
+                <div class="nav-brand">DDDEVSYSTEMS</div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="experience.html" class="active">Experience</a>
+                <a href="projects.html">Projects</a>
+                <a href="certifications.html">Certifications</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section container">
+        <div class="page-header">
+            <h2>Experience</h2>
+            <p class="muted subtitle">PROFESSIONAL TIMELINE & R&D INITIATIVES</p>
+        </div>
+
+        <div class="timeline" style="max-width: 900px; margin: 0 auto;">
+
+            <div class="timeline-item">
+                <h4>Sri Lanka Telecom — Research & Development Engineering Intern</h4>
+                <span class="date">Jun 2025 – Sep 2025 | Digital Lab (Colombo, Western Province)</span>
+
+                <p class="muted">Engineering research and prototyping focusing on telecom automation, embedded
+                    solutions, and secure telemetry systems.</p>
+
+                <ul class="cyber-list">
+                    <li>Developed an embedded C/C++ A7680C 4G modem library (AT-command handling) enabling MQTT/MQTTS,
+                        HTTP/SMTP, SMS/Call features for IoT devices.</li>
+                    <li>Built an Industrial Machine Monitoring prototype (ESP32 and LTE) capturing current and
+                        temperature sensors and streaming 1 Hz telemetry to a secure cloud dashboard with alarms/health
+                        monitoring.</li>
+                    <li>Developed an ATM environment monitoring & AC control solution (temp/humidity sensing and IR
+                        learn-and-replay) with safe control logic and remote status reporting via MQTTS.</li>
+                </ul>
+
+                <div style="margin-top: 15px;">
+                    <span class="tag">Embedded Systems</span>
+                    <span class="tag">Firmware Design</span>
+                    <span class="tag">IoT</span>
+                    <span class="tag">MQTTS</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h4>Variosystems (Pvt) Ltd. — Inplant Trainee</h4>
+                <span class="date">Jun 2024 – Sep 2024 | Electronic Manufacturing Services Floor (Gampaha
+                    District)</span>
+
+                <p class="muted">Factory automation projects focused on improving production floor efficiency and
+                    electronics manufacturing test systems.</p>
+
+                <ul class="cyber-list">
+                    <li>Completed multiple core automation & electronics projects including: an Automated Guided Vehicle
+                        (AGV), SMT conveyor automation, and FLG 201 flame-treatment upgrade.</li>
+                    <li>Gained practical exposure to SMT (Surface Mount Technology) and THT (Through-Hole Technology)
+                        production.</li>
+                    <li>Engaged with internal testing protocols including ICT and functional tests (SPEA 3030/4050),
+                        alongside FactoryLogix and NPI workflows.</li>
+                </ul>
+
+                <div style="margin-top: 15px;">
+                    <span class="tag">Industrial Automation</span>
+                    <span class="tag">SMT Manufacturing</span>
+                    <span class="tag">Mechatronics</span>
+                    <span class="tag">Testing & QA</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Dinupa Devinda</p>
+        </div>
+    </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+
+</html>
