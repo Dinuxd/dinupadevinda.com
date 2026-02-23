@@ -1,632 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dinupa Devinda — Electrical & Electronic Engineering</title>
-  <meta name="description" content="Dinupa Devinda | Electrical & Electronic Engineering undergraduate. Embedded systems, automation, IoT, computer vision. Projects, certifications, experience, contact." />
-  <meta name="theme-color" content="#0f1220" />
+  <title>Dinupa Devinda | Portfolio</title>
+  <meta name="description"
+    content="Dinupa Devinda - Electrical & Electronic Engineering undergraduate. Embedded systems, automation, IoT, computer vision." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <style>
-    /* ========= RESET / SAFETY ========= */
-    *,*::before,*::after{ box-sizing:border-box }
-    html,body{ height:100% }
-    img{ max-width:100%; display:block }
-
-    /* ========= THEME TOKENS ========= */
-    :root{
-      --bg:#0b0e19;
-      --surface:#121526;
-      --text:#e6e8ef;
-      --muted:#a6accd;
-      --line:#232844;
-      --hue:190;
-      --accent:hsl(var(--hue) 100% 60%);
-      --accent-2:hsl(calc(var(--hue) + 25) 100% 60%);
-      --radius-xl:22px;
-      --radius-lg:16px;
-      --shadow-lg:0 18px 60px rgba(0,0,0,.45), 0 3px 12px rgba(0,0,0,.3);
-      --shadow-md:0 10px 30px rgba(0,0,0,.35), 0 3px 10px rgba(0,0,0,.2);
-      --shadow-sm:0 6px 18px rgba(0,0,0,.25);
-      --grid-max:1180px;
-      --speed-fast:180ms;
-    }
-    @keyframes hueCycle { to { filter:hue-rotate(360deg); } }
-
-    body{
-      margin:0;
-      font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background:
-        radial-gradient(1200px 600px at 85% -10%, rgba(0,255,255,.08), transparent 60%),
-        radial-gradient(800px 500px at -10% 20%, rgba(0,180,255,.06), transparent 60%),
-        var(--bg);
-      color:var(--text);
-      overflow-x:hidden;
-    }
-    a{ color:var(--text); text-decoration:none }
-    .muted{ color:var(--muted) }
-    .accent{ color:var(--accent) }
-    .small{ font-size:13px }
-
-    .container{ width:min(100% - 2rem, var(--grid-max)); margin:0 auto; }
-
-    /* ========= NAVBAR ========= */
-    .nav{
-      position:sticky; top:0; z-index:999;
-      backdrop-filter:blur(10px) saturate(120%);
-      background: color-mix(in hsl, var(--surface), transparent 35%);
-      border-bottom:1px solid var(--line);
-    }
-    .nav .container{ display:flex; align-items:center; gap:18px; padding:14px 0; position:relative; }
-    .brand{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px }
-    .brand .logo{
-      inline-size:34px; block-size:34px; border-radius:10px; flex:0 0 auto;
-      background: conic-gradient(from 180deg, var(--accent), var(--accent-2), var(--accent));
-      filter: drop-shadow(0 8px 20px color-mix(in hsl, var(--accent) 40%, transparent));
-      animation: hueCycle 16s linear infinite;
-    }
-    .navlinks{ margin-left:auto; display:flex; gap:8px; flex-wrap:wrap }
-    .navlinks a{
-      padding:8px 14px; border-radius:999px; color:var(--muted);
-      border:1px solid transparent; transition:all var(--speed-fast) ease;
-    }
-    .navlinks a:hover, .navlinks a.active{
-      color:var(--text);
-      border-color: color-mix(in hsl, var(--accent) 55%, transparent);
-      background: linear-gradient(135deg, color-mix(in hsl, var(--accent) 18%, transparent), transparent);
-    }
-    .menu-toggle{
-      display:none;
-      margin-left:8px; border:1px solid var(--line);
-      border-radius:999px; padding:8px 12px; cursor:pointer; color:var(--muted);
-    }
-    .theme-toggle{
-      margin-left:8px; border:1px solid var(--line);
-      border-radius:999px; padding:8px 12px; cursor:pointer; color:var(--muted);
+    /* Add specific style for the brand link to look like a button */
+    .nav-brand-link {
+      text-decoration: none;
     }
 
-    /* ========= HERO ========= */
-    .hero{ position:relative; padding:64px 0 42px; }
-    .hero-grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap:36px; align-items:center; }
-    .card{
-      background: linear-gradient(180deg, color-mix(in hsl, var(--surface) 85%, transparent), color-mix(in hsl, #000 5%, transparent)), rgba(255,255,255,.01);
-      border:1px solid var(--line); border-radius:var(--radius-xl); box-shadow:var(--shadow-lg);
-      min-width:0;
-    }
-    .pad-xl{ padding:34px; }
-    h1{ font-size:clamp(36px, 4.5vw, 54px); margin:0 0 8px; line-height:1.08 }
-    h2{ font-size:clamp(22px, 2.6vw, 32px); margin:0 0 12px }
-    .subtitle{ font-weight:600; font-size:18px; margin-bottom:8px }
-
-    .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px }
-    .btn{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:12px 16px; border-radius:12px; border:1px solid var(--line);
-      color:var(--text);
-      transition: transform var(--speed-fast) ease, border-color var(--speed-fast) ease, background var(--speed-fast) ease;
-      min-width:0;
-    }
-    .btn:hover{ transform:translateY(-1px); border-color: color-mix(in hsl, var(--accent) 45%, transparent); background: linear-gradient(180deg, color-mix(in hsl, var(--accent) 10%, transparent), transparent); }
-    .btn.primary{ border-color:transparent; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0b0e19; font-weight:700; box-shadow:0 10px 26px color-mix(in hsl, var(--accent) 35%, transparent); }
-    .btn.ghost{ color:var(--muted) }
-
-    .socials{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; min-width:0 }
-    .socials .btn{ max-width:100%; min-width:0 }
-
-    .chip{
-      display:inline-block; padding:8px 12px;
-      border:1px dashed color-mix(in hsl, var(--accent) 55%, transparent); border-radius:999px; color:var(--muted);
-      background: linear-gradient(180deg, color-mix(in hsl, var(--accent) 8%, transparent), transparent);
-      max-width:100%; white-space:normal; overflow-wrap:anywhere;
-    }
-
-    /* Hex avatar */
-    .hex-wrap{ display:grid; place-items:center; }
-    .hex{
-      --size:260px; width:var(--size); aspect-ratio:1/1;
-      clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
-      background: radial-gradient(60% 60% at 50% 40%, color-mix(in hsl, var(--accent) 65%, transparent), transparent 65%), linear-gradient(160deg, color-mix(in hsl, var(--surface) 92%, transparent), color-mix(in hsl, #000 8%, transparent));
-      border:1px solid color-mix(in hsl, var(--accent) 55%, var(--line));
-      position:relative; box-shadow:var(--shadow-lg); overflow:hidden; isolation:isolate;
-      min-width:0;
-    }
-    .hex img{ position:absolute; inset:0; width:100%; height:122%; object-fit:cover; }
-    .hex::before{ content:""; position:absolute; inset:0; background: radial-gradient(60% 55% at 50% 35%, rgba(255,255,255,.08), transparent 58%), linear-gradient(160deg, rgba(0,0,0,.08), rgba(0,0,0,.45)); pointer-events:none; }
-    .halo{ position:absolute; inset:-16px; filter: blur(28px); border-radius:40px; background: conic-gradient(var(--accent), var(--accent-2), var(--accent)); opacity:.55; z-index:-1; animation: hueCycle 24s linear infinite; }
-
-    /* ========= SECTIONS / PANELS ========= */
-    section{ scroll-margin-top:90px }
-    .section{ padding:56px 0 }
-    .section h3{ font-size:clamp(22px, 2.2vw, 30px); margin:0 0 16px }
-    .grid{ display:grid; gap:18px }
-    .grid.cols-2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-    .grid.cols-3{ grid-template-columns: repeat(3, minmax(0,1fr)); }
-
-    .panel{
-      border:1px solid var(--line); border-radius:var(--radius-lg);
-      background: linear-gradient(180deg, color-mix(in hsl, var(--surface) 88%, transparent), rgba(255,255,255,.01));
-      box-shadow:var(--shadow-md); overflow:hidden; min-width:0;
-    }
-    .panel .head{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; border-bottom:1px solid var(--line) }
-    .panel .body{ padding:18px }
-
-    /* ========= SKILLS / PROJECTS ========= */
-    .skills-wrap{ display:flex; flex-wrap:wrap; gap:10px }
-    .pill{ padding:8px 12px; border-radius:999px; border:1px solid var(--line); color:var(--muted); background:rgba(255,255,255,.02) }
-    .pill.hot{ border-color: color-mix(in hsl, var(--accent) 40%, var(--line)); background: linear-gradient(180deg, color-mix(in hsl, var(--accent) 10%, transparent), transparent); color:var(--text) }
-
-    .toolbar{ display:flex; gap:10px; flex-wrap:wrap }
-    .toolbar .filter{ padding:8px 12px; border-radius:999px; border:1px solid var(--line); color:var(--muted); cursor:pointer; background:rgba(255,255,255,.02) }
-    .filter.active{ color:var(--text); border-color: color-mix(in hsl, var(--accent) 50%, var(--line)); background: linear-gradient(180deg, color-mix(in hsl, var(--accent) 12%, transparent), transparent) }
-
-    .card-proj, .card-cert{
-      position:relative; display:flex; flex-direction:column; gap:10px; padding:18px;
-      border:1px solid var(--line); border-radius:14px;
-      background: linear-gradient(180deg, color-mix(in hsl, var(--surface) 90%, transparent), rgba(255,255,255,.015));
-      box-shadow:var(--shadow-sm); transition: transform var(--speed-fast) ease, border-color var(--speed-fast) ease;
-      min-width:0;
-    }
-    .card-proj:hover, .card-cert:hover{ transform:translateY(-2px); border-color: color-mix(in hsl, var(--accent) 45%, var(--line)); }
-    .tags{ display:flex; gap:8px; flex-wrap:wrap }
-    .tag{ font-size:12px; padding:4px 8px; border:1px solid var(--line); border-radius:999px; color:var(--muted) }
-    .meta{ color:var(--muted); font-size:13px }
-
-    /* ========= TIMELINE ========= */
-    .timeline{ position:relative; padding-left:24px }
-    .timeline::before{ content:""; position:absolute; left:8px; top:6px; bottom:6px; width:2px; background: linear-gradient(var(--accent), transparent); animation:hueCycle 20s linear infinite }
-    .t-item{ position:relative; padding:10px 0 12px }
-    .t-item::before{ content:""; position:absolute; left:-1px; top:14px; width:10px; height:10px; border-radius:3px; background:var(--accent); box-shadow:0 0 10px color-mix(in hsl, var(--accent) 60%, transparent) }
-
-    /* ========= CONTACT ========= */
-    .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px }
-    @media (max-width:850px){ .contact-grid{ grid-template-columns:1fr } }
-    .form input, .form textarea{
-      width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--line);
-      background:rgba(255,255,255,.02); color:var(--text);
-    }
-    .form textarea{ min-height:140px; resize:vertical }
-
-    /* ========= FOOTER ========= */
-    footer{ padding:28px 0 60px; color:var(--muted); text-align:center }
-
-    /* ========= SCROLL REVEAL ========= */
-    .reveal{ opacity:0; translate:0 16px; transition: opacity .45s ease, translate .45s ease }
-    .reveal.show{ opacity:1; translate:0 0 }
-
-    /* ========= LIGHT THEME ========= */
-    .light{ --bg:#f7f9ff; --surface:#ffffff; --text:#0c1020; --muted:#5a627a; --line:#e6e9f3; }
-
-    /* ========= RESPONSIVE ========= */
-    @media (max-width:950px){ .hero-grid{ grid-template-columns:1fr } .grid.cols-3{ grid-template-columns:1fr 1fr } }
-    @media (max-width:720px){ .grid.cols-2, .grid.cols-3{ grid-template-columns:1fr } }
-
-    /* Mobile nav & small-screen tuning */
-    @media (max-width:860px){
-      .menu-toggle{ display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.02); color:var(--muted); cursor:pointer; }
-      .navlinks{
-        position:absolute; left:12px; right:12px; top:calc(100% + 8px);
-        display:none; flex-direction:column; gap:6px;
-        background: color-mix(in hsl, var(--surface), transparent 15%);
-        border:1px solid var(--line); border-radius:14px; padding:10px; box-shadow:var(--shadow-md);
-      }
-      .nav.open .navlinks{ display:flex }
-      .navlinks a{ padding:10px 12px; border-radius:10px }
-    }
-    @media (max-width:600px){
-      .pad-xl{ padding:22px }
-      .hero{ padding:40px 0 24px }
-      .hero-grid{ gap:14px }
-      .hex{ --size:min(62vw, 180px) }
-      .halo{ display:none }
-      h1{ font-size:clamp(28px, 8vw, 36px) }
-      .subtitle{ font-size:16px }
-      .socials{ gap:8px }
-      .socials .btn{ flex:1 1 48% }
-      .btn{ padding:10px 12px; border-radius:10px }
-      .chip{ padding:7px 10px }
-    }
-    @media (max-width:420px){
-      .brand{ font-size:14px }
-      .navlinks{ left:8px; right:8px }
-      .btn{ padding:9px 10px; font-size:14px }
-      /* trim labels on very small screens to avoid overflow */
-      .socials .btn span{ display:none }
+    .nav-brand-link:hover .nav-brand {
+      background: var(--cyan);
+      color: #000;
+      box-shadow: 0 0 15px var(--cyan);
     }
   </style>
 </head>
-<body>
-  <header class="nav">
+
+<body class="site-wrapper">
+
+  <nav>
     <div class="container">
-      <div class="brand">
-        <span class="logo" aria-hidden="true"></span>
-        <span>Dinupa <b>Devinda</b></span>
+      <a href="https://fiverr.com/s/bd67pYq" target="_blank" class="nav-brand-link">
+        <div class="nav-brand">DDDEVSYSTEMS</div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="experience.html">Experience</a>
+        <a href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="contact.html">Contact</a>
       </div>
-      <nav class="navlinks" aria-label="Primary">
-        <a href="#home" class="active">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#certs">Certifications</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
-      <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌗</button>
     </div>
-  </header>
+  </nav>
 
-  <!-- ========= HERO ========= -->
-  <section id="home" class="hero container">
-    <div class="hero-grid">
-      <div class="card pad-xl reveal">
-        <div class="chip">Electrical & Electronic Engineering Undergraduate</div>
-        <h1>Hello, I'm <span class="accent">Dinupa Devinda</span></h1>
-        <div class="subtitle">Embedded Systems • Automation • Computer Vision</div>
-        <p class="muted">I build practical, low-latency systems that blend electronics, software and ML: from SMT-line conveyors and AGVs to Raspberry-Pi vision and Spring Boot APIs. Currently R&D Engineering Intern at Sri Lanka Telecom.</p>
-        <div class="socials">
-          <a class="btn ghost" href="mailto:dwmddevinda@gmail.com" aria-label="Email">✉️ <span class="muted">dwmddevinda@gmail.com</span></a>
-          <a class="btn ghost" href="tel:+94754634737" aria-label="Call">📞 <span class="muted">+94 75 463 4737</span></a>
-          <a class="btn ghost" href="https://www.linkedin.com/in/dinupa-devinda-cv" target="_blank" rel="noopener">in <span class="muted">LinkedIn</span></a>
-          <a class="btn ghost" href="https://github.com/Dinuxd" target="_blank" rel="noopener">🐙 <span class="muted">GitHub</span></a>
-        </div>
-        <div class="cta-row">
-          <a class="btn primary" href="Dinupa Devinda CV.pdf" download>⬇︎ Download CV</a>
-          <a class="btn" href="#projects">See Projects</a>
-        </div>
+  <section class="hero container">
+    <div class="hero-content">
+      <div class="subtitle">ELECTRICAL & ELECTRONIC ENGINEER | AI/ML DEVELOPER</div>
+      <h1>Dinupa<br>Devinda</h1>
+      <p>Undergraduate skilled in automation, electronics, embedded systems, applied AI, machine learning and deep
+        learning, and computer vision. Passionate about solving technical challenges with additional competencies in
+        computer science.</p>
+      <div class="socials">
+        <a href="javascript:void(0)" onclick="window.open('mailto:dwmddevinda@gmail.com')" class="social-link">Email</a>
+        <a href="tel:+94754634737" class="social-link">Phone</a>
+        <a href="https://www.linkedin.com/in/dinupa-devinda-cv" target="_blank" class="social-link">LinkedIn</a>
       </div>
-
-      <div class="hex-wrap reveal" style="position:relative">
-        <div class="halo" aria-hidden="true"></div>
-        <div class="hex" title="Dinupa Devinda">
-          <img src="avatar.jpg" alt="Dinupa Devinda"/>
-        </div>
+      <br>
+      <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+        <a href="projects.html" class="btn">VIEW WORK</a>
+        <a href="data/CV-%20Dinupa%20Devinda.pdf" target="_blank" class="btn"
+          style="background: transparent; color: var(--purple); border-color: var(--purple);">DOWNLOAD CV</a>
       </div>
+    </div>
+    <div class="avatar-wrapper">
+      <img src="data/avatar/profile_pic.jpg" alt="Dinupa Devinda" class="avatar"
+        onerror="this.src='https://via.placeholder.com/300/0a0e1c/00f3ff?text=D.D'" />
     </div>
   </section>
 
-  <!-- ========= ABOUT ========= -->
-  <section id="about" class="section">
-    <div class="container grid cols-2">
-      <div class="panel reveal">
-        <div class="head"><h3>About</h3></div>
-        <div class="body">
-          <p>Multidisciplinary undergraduate focused on <b>Electrical & Electronics Engineering</b> with a solid foundation in <b>computer science</b> and <b>management accountancy</b> (CIMA Cert BA). I enjoy turning messy real-world constraints into reliable, maintainable systems and documenting them clearly.</p>
-          <p class="muted small">Interested in: embedded Linux, edge ML, mechatronics, industrial automation, and sustainable hardware design.</p>
-        </div>
-      </div>
-      <div class="panel reveal">
-        <div class="head"><h3>At a glance</h3></div>
-        <div class="body">
-          <div class="skills-wrap">
-            <span class="pill hot">Raspberry Pi</span>
-            <span class="pill hot">ESP32 / Arduino</span>
-            <span class="pill">C / C++ / Assembly</span>
-            <span class="pill">Java • Spring Boot</span>
-            <span class="pill">C# • WinForms</span>
-            <span class="pill">Python • OpenCV • TFLite</span>
-            <span class="pill">TensorFlow / PyTorch</span>
-            <span class="pill">Proteus • LTspice • Multisim</span>
-            <span class="pill">MATLAB • Simulink</span>
-            <span class="pill">SMEMA • Motion Control</span>
-            <span class="pill">SQL Server • MySQL</span>
-            <span class="pill">GitHub • Postman</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========= SKILLS ========= -->
-  <section id="skills" class="section">
+  <footer>
     <div class="container">
-      <div class="panel reveal">
-        <div class="head"><h3>Skills</h3></div>
-        <div class="body">
-          <div class="grid cols-3">
-            <div>
-              <h4>Embedded & Electronics</h4>
-              <div class="skills-wrap">
-                <span class="pill hot">Embedded C/C++</span>
-                <span class="pill">ESP32 • Arduino</span>
-                <span class="pill">Raspberry Pi</span>
-                <span class="pill">I²C • SPI • 1-Wire</span>
-                <span class="pill">Sensors • Actuators</span>
-                <span class="pill">SMEMA</span>
-                <span class="pill">PCB/Proto • Soldering</span>
-                <span class="pill">Proteus • LTspice</span>
-              </div>
-            </div>
-            <div>
-              <h4>Software & Data</h4>
-              <div class="skills-wrap">
-                <span class="pill hot">Java • Spring Boot</span>
-                <span class="pill">C# • .NET • WinForms</span>
-                <span class="pill">Python • NumPy • OpenCV</span>
-                <span class="pill">TensorFlow • PyTorch</span>
-                <span class="pill">REST • Postman</span>
-                <span class="pill">SQL Server • MySQL</span>
-              </div>
-            </div>
-            <div>
-              <h4>Tools</h4>
-              <div class="skills-wrap">
-                <span class="pill hot">Git • GitHub</span>
-                <span class="pill">MATLAB • Simulink</span>
-                <span class="pill">AutoCAD • FreeCAD</span>
-                <span class="pill">Multisim</span>
-                <span class="pill">MPLAB X • VS Code • IntelliJ</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <p>&copy; <span id="year"></span> Dinupa Devinda</p>
     </div>
-  </section>
+  </footer>
 
-  <!-- ========= PROJECTS ========= -->
-  <section id="projects" class="section">
-    <div class="container">
-      <div class="panel reveal">
-        <div class="head">
-          <h3>Highlighted Projects</h3>
-          <div class="toolbar" role="tablist" aria-label="Project filters">
-            <button class="filter active" data-filter="all" role="tab">All</button>
-            <button class="filter" data-filter="embedded" role="tab">Embedded</button>
-            <button class="filter" data-filter="software" role="tab">Software</button>
-            <button class="filter" data-filter="electronics" role="tab">Electronics</button>
-          </div>
-        </div>
-        <div class="body">
-          <div class="grid cols-3" id="projectGrid">
-
-            <article class="card-proj" data-cat="embedded">
-              <h4>Automated Aquarium Management</h4>
-              <p class="muted">Raspberry Pi 4 based aquaculture system: pH & temperature control, servo feeder, dual-solenoid water change, and TFLite vision for water clarity.</p>
-              <div class="tags"><span class="tag">Raspberry Pi</span><span class="tag">Python</span><span class="tag">TFLite</span><span class="tag">Sensors</span></div>
-              <span class="meta">Jan 2025 – Jun 2025 • SLIIT</span>
-            </article>
-
-            <article class="card-proj" data-cat="software">
-              <h4>EduPress Store – E-Commerce + Print Queue</h4>
-              <p class="muted">Full-stack platform merging stationery shop and print-on-demand with live pricing and order workflow.</p>
-              <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span><span class="tag">XAMPP</span></div>
-              <span class="meta">2025 • UoK</span>
-              <a class="btn ghost" href="https://github.com/Dinuxd/EduPress-Store-Website" target="_blank" rel="noopener">GitHub ↗</a>
-            </article>
-
-            <article class="card-proj" data-cat="software">
-              <h4>Music Streaming Desktop App</h4>
-              <p class="muted">Neon-styled WinForms player with SQL Server, SHA-256 auth, playlists, and RDLC reports.</p>
-              <div class="tags"><span class="tag">C#</span><span class="tag">.NET 8</span><span class="tag">SQL Server</span></div>
-              <span class="meta">2025 • UoK</span>
-              <a class="btn ghost" href="https://github.com/Dinuxd/MusicPlayerApp" target="_blank" rel="noopener">GitHub ↗</a>
-            </article>
-
-            <article class="card-proj" data-cat="embedded electronics">
-              <h4>SMT Line – PCB Conveyor Automation</h4>
-              <p class="muted">Replaced manual transfer between PnP and reflow oven. SMEMA handshake, stepper motion, SICK sensors.</p>
-              <div class="tags"><span class="tag">Arduino</span><span class="tag">TB6560</span><span class="tag">SMEMA</span></div>
-              <span class="meta">2024 • Variosystems</span>
-            </article>
-
-            <article class="card-proj" data-cat="embedded electronics">
-              <h4>Factory AGV (Stage-1)</h4>
-              <p class="muted">Arduino Mega + Pololu G2 drivers, four 150:1 gear motors and encoders for line-following transport.</p>
-              <div class="tags"><span class="tag">Arduino</span><span class="tag">Motor Control</span><span class="tag">IR/Ultrasonic</span></div>
-              <span class="meta">2024 • Variosystems</span>
-            </article>
-
-            <article class="card-proj" data-cat="electronics">
-              <h4>2nd-Order Multiple-Feedback Band-Pass Filter</h4>
-              <p class="muted">Single-supply, 2–5 kHz passband; designed, simulated (Multisim), and built on dot-board; oscilloscope-validated.</p>
-              <div class="tags"><span class="tag">Analog</span><span class="tag">Multisim</span><span class="tag">Soldering</span></div>
-              <span class="meta">2024 • SLIIT</span>
-            </article>
-
-            <article class="card-proj" data-cat="software">
-              <h4>Boarding-Room Management API</h4>
-              <p class="muted">Java 21 + Spring Boot 3; 5 services, 17 endpoints; JPA/Hibernate with SQL Server; Postman-validated.</p>
-              <div class="tags"><span class="tag">Spring Boot</span><span class="tag">SQL Server</span><span class="tag">REST</span></div>
-              <span class="meta">2025</span>
-            </article>
-
-            <article class="card-proj" data-cat="embedded electronics">
-              <h4>Pad-Printing Flame Treatment Automation</h4>
-              <p class="muted">Linear motion rig under Teca-Print FLG 201; Arduino + TB6560; speed control via potentiometer.</p>
-              <div class="tags"><span class="tag">Stepper</span><span class="tag">Arduino</span></div>
-              <span class="meta">2024 • Variosystems</span>
-            </article>
-
-            <article class="card-proj" data-cat="software">
-              <h4>Transport DB System in C</h4>
-              <p class="muted">Routes, timetables, bookings and queries via C file-based CRUD for buses and trains.</p>
-              <div class="tags"><span class="tag">C</span><span class="tag">CLI</span></div>
-              <span class="meta">2023 • UoK</span>
-            </article>
-
-            <article class="card-proj" data-cat="electronics">
-              <h4>12 V DC Power Supply</h4>
-              <p class="muted">Designed, simulated and built a stable 12 V supply suitable for domestic conditions.</p>
-              <div class="tags"><span class="tag">Electronics</span><span class="tag">PCB</span></div>
-              <span class="meta">2023 • SLIIT</span>
-            </article>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========= CERTIFICATIONS ========= -->
-  <section id="certs" class="section">
-    <div class="container">
-      <div class="panel reveal">
-        <div class="head">
-          <h3>Licenses & Certifications</h3>
-          <div class="toolbar">
-            <button class="filter active" data-cert="all">All</button>
-            <button class="filter" data-cert="2025">2025</button>
-            <button class="filter" data-cert="2024">2024</button>
-            <button class="filter" data-cert="2023">2023</button>
-          </div>
-        </div>
-        <div class="body">
-          <div class="grid cols-3" id="certGrid">
-            <article class="card-cert" data-year="2025"><h4>Cisco — IT Essentials</h4><div class="meta">Issued Aug 2025</div></article>
-            <article class="card-cert" data-year="2025"><h4>OpenCV University — PyTorch Bootcamp</h4><div class="meta">Issued Aug 2025</div></article>
-            <article class="card-cert" data-year="2025"><h4>SLIIT — AI/ML Engineer (Stage 2)</h4><div class="meta">Issued Jul 2025</div></article>
-            <article class="card-cert" data-year="2024"><h4>MindLuster — Embedded C & Assembly</h4><div class="meta">Issued Jun 2024</div></article>
-            <article class="card-cert" data-year="2023"><h4>SLIIT — AI/ML Engineer (Stage 1)</h4><div class="meta">Issued May 2023</div></article>
-            <article class="card-cert" data-year="2023"><h4>CIMA — Certificate in Business Accounting</h4><div class="meta">Issued Mar 2023</div></article>
-            <article class="card-cert" data-year="2023"><h4>University of Moratuwa — Python for Beginners</h4><div class="meta">Issued Mar 2023</div></article>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========= EXPERIENCE ========= -->
-  <section id="experience" class="section">
-    <div class="container">
-      <div class="panel reveal">
-        <div class="head"><h3>Experience</h3></div>
-        <div class="body timeline">
-          <div class="t-item">
-            <h4>Sri Lanka Telecom — R&D Engineering Intern</h4>
-            <div class="meta">Jun 2025 – Present • Colombo (On-site)</div>
-            <p class="muted small">Engineering research and prototyping with a focus on telecom automation and embedded solutions.</p>
-          </div>
-          <div class="t-item">
-            <h4>Variosystems — Inplant Trainee, EMS Floor</h4>
-            <div class="meta">Jun 2024 – Sep 2024</div>
-            <p class="muted small">Factory automation projects: SMT conveyor automation, AGV stage-1, flame treatment rig; exposure to SMT & THT processes and test systems.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========= EDUCATION ========= -->
-  <section id="education" class="section">
-    <div class="container">
-      <div class="panel reveal">
-        <div class="head"><h3>Education</h3></div>
-        <div class="body timeline">
-          <div class="t-item"><h4>SLIIT — BSc Eng (Hons), Electrical & Electronic Engineering</h4><div class="meta">Oct 2022 – Oct 2026 • Final-year Undergraduate</div></div>
-          <div class="t-item"><h4>University of Kelaniya — BSc, Physical Sciences</h4><div class="meta">Jul 2023 – Jul 2027 • CS, Pure & Applied Mathematics</div></div>
-          <div class="t-item"><h4>CIMA — Certificate BA (UK) • Dip MA (in progress)</h4><div class="meta">Mar 2022 – Apr 2024</div></div>
-          <div class="t-item"><h4>Thurstan College — GCE A/L (Physical Stream)</h4><div class="meta">Physics B • Chemistry C • Combined Maths C • English A</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========= CONTACT ========= -->
-  <section id="contact" class="section">
-    <div class="container">
-      <div class="panel reveal">
-        <div class="head"><h3>Contact</h3></div>
-        <div class="body contact-grid">
-          <div>
-            <p class="muted">Open to internships, R&D roles, and collaborations in embedded systems, automation, or edge AI. The form below uses your default mail app.</p>
-            <div class="skills-wrap" style="margin-top:10px">
-              <a class="btn" href="mailto:dwmddevinda@gmail.com?subject=Hello%20Dinupa">✉️ Email</a>
-              <button class="btn" id="copyEmail">Copy Email</button>
-              <a class="btn" href="tel:+94754634737">Call</a>
-              <a class="btn" href="https://www.linkedin.com/in/dinupa-devinda-cv" target="_blank" rel="noopener">LinkedIn</a>
-            </div>
-          </div>
-          <form class="form" onsubmit="openMail(event)">
-            <div class="grid cols-2">
-              <label><span class="small muted">Your name</span><input required name="name" placeholder="Jane Doe" /></label>
-              <label><span class="small muted">Your email</span><input required name="email" type="email" placeholder="jane@example.com" /></label>
-            </div>
-            <label><span class="small muted">Message</span><textarea required name="message" placeholder="Hi Dinupa, let's build…"></textarea></label>
-            <div style="margin-top:12px"><button class="btn primary" type="submit">Send</button></div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="container"><div class="small">© <span id="year"></span> Dinupa Devinda✨</div></footer>
-
-  <script>
-    const $ = (q, root=document) => root.querySelector(q);
-    const $$ = (q, root=document) => Array.from(root.querySelectorAll(q));
-
-    // Mobile menu
-    const navRoot = document.querySelector("header.nav");
-    const menuToggle = $("#menuToggle");
-    const navLinks = $$(".navlinks a");
-    if(menuToggle){
-      menuToggle.addEventListener('click', ()=> navRoot.classList.toggle('open'));
-      navLinks.forEach(a=> a.addEventListener('click', ()=> navRoot.classList.remove('open')));
-    }
-
-    // Active link on scroll
-    const sections = $$("section[id]");
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          const id = entry.target.id;
-          navLinks.forEach(a=> a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
-        }
-      })
-    },{ rootMargin:"-50% 0px -45% 0px", threshold:0 });
-    sections.forEach(s=> io.observe(s));
-
-    // Reveal on scroll
-    const io2 = new IntersectionObserver((entries)=>{
-      entries.forEach(e => e.target.classList.toggle('show', e.isIntersecting))
-    },{ threshold:.12 });
-    $$(".reveal").forEach(el=> io2.observe(el));
-
-    // Theme toggle
-    $("#themeToggle").addEventListener('click', ()=>{ document.body.classList.toggle('light'); });
-
-    // Footer year
-    $("#year").textContent = new Date().getFullYear();
-
-    // Project filters
-    const projFilters = $$("[data-filter]");
-    const projCards = $$("#projectGrid .card-proj");
-    projFilters.forEach(btn=> btn.addEventListener('click', ()=>{
-      projFilters.forEach(b=> b.classList.remove('active'));
-      btn.classList.add('active');
-      const key = btn.dataset.filter;
-      projCards.forEach(card=>{
-        const cats = (card.dataset.cat || '').split(/\s+/);
-        card.style.display = (key==='all' || cats.includes(key)) ? '' : 'none';
-      });
-    }));
-
-    // Cert filters
-    const certFilters = $$("[data-cert]");
-    const certCards = $$("#certGrid .card-cert");
-    certFilters.forEach(btn=> btn.addEventListener('click', ()=>{
-      certFilters.forEach(b=> b.classList.remove('active'));
-      btn.classList.add('active');
-      const y = btn.dataset.cert;
-      certCards.forEach(c => c.style.display = (y==='all' || c.dataset.year===y) ? '' : 'none');
-    }));
-
-    // Contact mailto
-    function openMail(e){
-      e.preventDefault();
-      const f = e.target;
-      const subject = encodeURIComponent(`Portfolio inquiry from ${f.name.value}`);
-      const body = encodeURIComponent(`${f.message.value}\n\n— ${f.name.value} (${f.email.value})`);
-      window.location.href = `mailto:dwmddevinda@gmail.com?subject=${subject}&body=${body}`;
-    }
-
-    // Copy email
-    $("#copyEmail").addEventListener('click', async (event)=>{
-      try{
-        await navigator.clipboard.writeText('dwmddevinda@gmail.com');
-        const el = event.currentTarget; el.textContent = 'Copied ✔'; setTimeout(()=> el.textContent='Copy Email', 1400);
-      }catch{ alert('Copy failed. Email: dwmddevinda@gmail.com'); }
-    });
-  </script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
+
 </html>
