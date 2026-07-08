@@ -39,7 +39,7 @@ export const education = [
   {
     title: "BSc Physical Sciences - Computer Science, Pure Mathematics, and Applied Mathematics",
     institution: "University of Kelaniya",
-    period: "2023 - 2027",
+    period: "2022-2026",
     detail: "Computer science and double mathematics background supporting programming, algorithms, modelling, and machine learning foundations."
   },
   {

@@ -3,7 +3,7 @@ export const siteUrl = "https://www.dinupadevinda.com";
 export const profile = {
   name: "Dinupa Devinda",
   brand: "DD Dev Systems",
-  role: "Machine Learning and Engineering",
+  role: "Machine Learning Focused Engineer",
   location: "Colombo, Sri Lanka",
   email: "dwmddevinda@gmail.com",
   phone: "+94 75 463 4737",
