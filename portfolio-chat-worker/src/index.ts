@@ -17,8 +17,56 @@ type GeminiStep = {
   content?: unknown;
 };
 
+type PortfolioData = {
+  profile?: {
+    role?: string;
+    headline?: string;
+    summary?: string;
+    contact?: Record<string, string>;
+  };
+  strengths?: string[];
+  education?: Array<{
+    degree?: string;
+    institution?: string;
+    period?: string;
+    notes?: string;
+    subjectCombination?: string;
+  }>;
+  experience?: Array<{
+    role?: string;
+    organization?: string;
+    period?: string;
+    summary?: string;
+  }>;
+  projects?: Array<{
+    title?: string;
+    type?: string;
+    summary?: string;
+    areas?: string[];
+    stack?: string[];
+    link?: string;
+  }>;
+  certifications?: Array<{
+    title?: string;
+    issuer?: string;
+    issued?: string;
+    credentialUrl?: string;
+  }>;
+  portfolioAssistant?: {
+    shortAnswer?: string;
+    knowledgeFile?: string;
+    technologies?: string[];
+    honestyNote?: string;
+  };
+};
+
+type FallbackAnswer = {
+  answer: string;
+  sources: string[];
+};
+
 const DEFAULT_CONTEXT_URL = "https://www.dinupadevinda.com/portfolio-chat.json";
-const DEFAULT_MODEL = "gemini-3.5-flash";
+const DEFAULT_MODEL = "gemini-3.1-flash-lite";
 const GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/interactions";
 
 const allowedOrigins = new Set([
@@ -79,19 +127,36 @@ export default {
     try {
       const context = await loadPortfolioContext(env.PORTFOLIO_CONTEXT_URL);
       const prompt = buildPrompt(context, question);
-      const answer = await askGemini(prompt, env);
+      let answer = "";
+
+      try {
+        answer = await askGemini(prompt, env);
+      } catch (error) {
+        console.warn("Gemini unavailable; using fallback answer", normalizeError(error));
+        const fallback = buildFallbackAnswer(context, question);
+
+        return jsonResponse(
+          {
+            answer: fallback.answer,
+            sources: fallback.sources
+          },
+          200,
+          origin
+        );
+      }
 
       return jsonResponse(
         {
           answer:
-            answer ||
-            "The portfolio does not include enough information to answer that clearly.",
+            answer || buildFallbackAnswer(context, question).answer,
           sources: inferSources(question, answer)
         },
         200,
         origin
       );
-    } catch {
+    } catch (error) {
+      console.error("Chat request failed", normalizeError(error));
+
       return jsonResponse(
         {
           error: "Chat service is temporarily unavailable"
@@ -170,6 +235,198 @@ function buildPrompt(context: string, question: string): string {
   ].join("\n");
 }
 
+function buildFallbackAnswer(context: string, question: string): FallbackAnswer {
+  const data = parsePortfolioData(context);
+  const lowerQuestion = question.toLowerCase();
+
+  if (/^(hi|hello|hey|yo)\b/.test(lowerQuestion)) {
+    return {
+      answer:
+        "Hi, I can answer questions about Dinupa's projects, education, experience, skills, certifications, and contact details.",
+      sources: ["Portfolio"]
+    };
+  }
+
+  if (/(chatbot|rag|gemini|cloudflare|worker|assistant|how.*created|how.*built)/.test(lowerQuestion)) {
+    const assistant = data.portfolioAssistant;
+    const technologies = assistant?.technologies?.slice(0, 5).join(", ");
+
+    return {
+      answer: [
+        assistant?.shortAnswer ||
+          "This portfolio assistant uses a static portfolio knowledge file and a serverless backend.",
+        assistant?.knowledgeFile ? `Knowledge file: ${assistant.knowledgeFile}.` : "",
+        technologies ? `Technologies: ${technologies}.` : "",
+        assistant?.honestyNote || ""
+      ]
+        .filter(Boolean)
+        .join("\n"),
+      sources: ["Portfolio Assistant"]
+    };
+  }
+
+  if (/(contact|email|linkedin|github|cv|reach|phone)/.test(lowerQuestion)) {
+    const contact = data.profile?.contact || {};
+
+    return {
+      answer: [
+        "The main contact links are:",
+        contact.email ? `- Email: ${contact.email}` : "",
+        contact.linkedin ? `- LinkedIn: ${contact.linkedin}` : "",
+        contact.github ? `- GitHub: ${contact.github}` : "",
+        contact.cv ? `- CV: ${contact.cv}` : ""
+      ]
+        .filter(Boolean)
+        .join("\n"),
+      sources: ["Contact"]
+    };
+  }
+
+  if (/(education|degree|sliit|kelaniya|cima|study|studied|background)/.test(lowerQuestion)) {
+    return {
+      answer: formatListAnswer(
+        "Dinupa's education background includes:",
+        data.education?.map((item) =>
+          `${item.degree || "Degree"} at ${item.institution || "institution"}${
+            item.period ? ` (${item.period})` : ""
+          }${item.subjectCombination ? `. ${item.subjectCombination}` : ""}`
+        )
+      ),
+      sources: ["Education"]
+    };
+  }
+
+  if (/(experience|intern|trainee|slt|variosystems|r&d|manufacturing|work)/.test(lowerQuestion)) {
+    return {
+      answer: formatListAnswer(
+        "Dinupa's experience includes:",
+        data.experience?.map((item) =>
+          `${item.role || "Role"} at ${item.organization || "organization"}${
+            item.period ? ` (${item.period})` : ""
+          }. ${item.summary || ""}`.trim()
+        )
+      ),
+      sources: ["Experience"]
+    };
+  }
+
+  if (/(certificate|certification|pytorch|opencv|cisco|cima|credential)/.test(lowerQuestion)) {
+    return {
+      answer: formatListAnswer(
+        "Relevant certifications include:",
+        data.certifications
+          ?.slice(0, 6)
+          .map((item) => `${item.title || "Certification"} - ${item.issuer || "issuer"}${item.issued ? ` (${item.issued})` : ""}`)
+      ),
+      sources: ["Certifications"]
+    };
+  }
+
+  if (/(vision|computer vision|yolo|opencv|image|camera)/.test(lowerQuestion)) {
+    return {
+      answer: formatProjectAnswer(
+        "Yes. The strongest computer vision related projects are:",
+        filterProjects(data.projects, ["vision", "yolo", "opencv", "camera", "image"])
+      ),
+      sources: ["Projects"]
+    };
+  }
+
+  if (/(audio|horn|sound|cnn|log-mel|crash)/.test(lowerQuestion)) {
+    return {
+      answer: formatProjectAnswer(
+        "Audio ML appears in these projects:",
+        filterProjects(data.projects, ["audio", "horn", "sound", "log-mel", "crash"])
+      ),
+      sources: ["Projects"]
+    };
+  }
+
+  if (/(imu|sensor|driving|lane|aggressive|fusion)/.test(lowerQuestion)) {
+    return {
+      answer: formatProjectAnswer(
+        "Sensor and IMU related projects include:",
+        filterProjects(data.projects, ["imu", "sensor", "driving", "lane", "fusion"])
+      ),
+      sources: ["Projects"]
+    };
+  }
+
+  if (/(project|ml|machine learning|ai|strongest|best|portfolio|github)/.test(lowerQuestion)) {
+    return {
+      answer: formatProjectAnswer(
+        "Some of Dinupa's main ML and engineering projects are:",
+        data.projects?.slice(0, 6)
+      ),
+      sources: ["Projects"]
+    };
+  }
+
+  if (/(skill|stack|technology|tools|python|tensorflow|pytorch)/.test(lowerQuestion)) {
+    return {
+      answer: formatListAnswer("Main strengths listed in the portfolio:", data.strengths),
+      sources: ["Portfolio"]
+    };
+  }
+
+  return {
+    answer:
+      "The portfolio does not include enough information to answer that clearly. You can ask about Dinupa's projects, education, experience, skills, certifications, or contact details.",
+    sources: ["Portfolio"]
+  };
+}
+
+function parsePortfolioData(context: string): PortfolioData {
+  try {
+    return JSON.parse(context) as PortfolioData;
+  } catch {
+    return {};
+  }
+}
+
+function formatListAnswer(intro: string, items?: string[]): string {
+  const validItems = (items || []).filter(Boolean);
+
+  if (validItems.length === 0) {
+    return "The portfolio does not include enough information to answer that clearly.";
+  }
+
+  return [intro, ...validItems.map((item) => `- ${item}`)].join("\n");
+}
+
+function filterProjects(projects: PortfolioData["projects"], keywords: string[]) {
+  return projects?.filter((project) => {
+    const text = [
+      project.title,
+      project.type,
+      project.summary,
+      project.areas?.join(" "),
+      project.stack?.join(" ")
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    return keywords.some((keyword) => text.includes(keyword));
+  });
+}
+
+function formatProjectAnswer(intro: string, projects?: PortfolioData["projects"]): string {
+  const selectedProjects = (projects || []).slice(0, 5);
+
+  if (selectedProjects.length === 0) {
+    return "The portfolio does not include enough project information to answer that clearly.";
+  }
+
+  return [
+    intro,
+    ...selectedProjects.map((project) => {
+      const link = project.link ? ` ${project.link}` : "";
+      return `- ${project.title || "Project"}: ${project.summary || project.type || "Project details are listed in the portfolio."}${link}`;
+    })
+  ].join("\n");
+}
+
 async function askGemini(prompt: string, env: Env): Promise<string> {
   const response = await fetch(GEMINI_ENDPOINT, {
     method: "POST",
@@ -184,11 +441,20 @@ async function askGemini(prompt: string, env: Env): Promise<string> {
   });
 
   if (!response.ok) {
-    throw new Error("Gemini request failed");
+    const message = await response.text().catch(() => "");
+    throw new Error(`Gemini request failed with ${response.status}: ${message.slice(0, 500)}`);
   }
 
   const data = await response.json();
   return extractGeminiText(data);
+}
+
+function normalizeError(error: unknown): string {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return String(error);
 }
 
 function extractGeminiText(data: unknown): string {
