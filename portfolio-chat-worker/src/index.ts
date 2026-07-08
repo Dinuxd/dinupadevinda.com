@@ -241,7 +241,7 @@ function inferSources(question: string, answer: string): string[] {
     sources.push("Portfolio Assistant");
   }
 
-  if (/(education|degree|sliit|kelaniya|cima|graduand|study)/.test(text)) {
+  if (/(education|degree|sliit|kelaniya|cima|study)/.test(text)) {
     sources.push("Education");
   }
 

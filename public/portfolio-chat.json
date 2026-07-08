@@ -4,9 +4,9 @@
   "profile": {
     "name": "Dinupa Devinda",
     "location": "Colombo, Sri Lanka",
-    "role": "Machine Learning Focused Engineering Graduand",
+    "role": "Machine Learning and Engineering",
     "headline": "Machine Learning | AI/ML Developer | R&D Engineer",
-    "summary": "Machine learning focused engineering graduand with a background in engineering, computer science, and mathematics. Experienced in building ML workflows from data preparation and model development to evaluation and deployment-focused implementation. Interested in intelligent, data-driven solutions for engineering and technology problems.",
+    "summary": "Machine learning focused background in engineering, computer science, and mathematics. Experienced in building ML workflows from data preparation and model development to evaluation and deployment-focused implementation. Interested in intelligent, data-driven solutions for engineering and technology problems.",
     "contact": {
       "email": "dwmddevinda@gmail.com",
       "linkedin": "https://www.linkedin.com/in/dinupadevinda/",
@@ -27,14 +27,12 @@
       "degree": "BSc Eng (Hons), Electrical and Electronics Engineering",
       "institution": "SLIIT",
       "period": "Oct 2022 to Oct 2026",
-      "status": "Graduand",
       "notes": "Engineering background with work across automation, embedded systems, electronics, machine learning, computer vision, and sensor-based projects."
     },
     {
       "degree": "BSc Physical Sciences",
       "institution": "University of Kelaniya Sri Lanka",
       "period": "Jul 2023 to Jul 2027",
-      "status": "Graduand",
       "subjectCombination": "Computer Science, Pure Mathematics, and Applied Mathematics",
       "notes": "Computer science and double mathematics background supporting programming, algorithms, modelling, and machine learning foundations."
     },
@@ -295,7 +293,7 @@
     "Answer only from this portfolio context.",
     "If a fact is not included here, say that the portfolio does not include that information.",
     "Questions about this chatbot, RAG, Gemini, Cloudflare Workers, or how the assistant works should be answered from the portfolioAssistant section.",
-    "Do not claim the BSc degrees are officially completed beyond the listed graduand status.",
+    "Use only the listed education periods; do not add graduation-status claims that are not in this context.",
     "Do not claim production deployment, safety certification, employment, awards, or metrics that are not listed.",
     "Describe the chatbot as simple RAG-style/context-injection RAG, not advanced vector database RAG.",
     "For recruiter questions, be concise and point to GitHub, LinkedIn, CV, or project pages when useful."

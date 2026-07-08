@@ -9,7 +9,7 @@ import { profile, skills } from "@/content/profile";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Dinupa Devinda, a machine learning focused engineering graduand with embedded systems, software, and R&D project experience.",
+    "About Dinupa Devinda, with machine learning, embedded systems, software, and R&D project experience.",
   alternates: {
     canonical: "/about/"
   }
@@ -43,7 +43,7 @@ export default function AboutPage() {
         <div>
           <SectionHeading
             eyebrow="About me"
-            title="Engineering graduand focused on machine learning."
+            title="Machine learning and engineering projects."
             description={profile.summary}
           />
           <div className="mt-8 space-y-5 text-base leading-7 text-slate-300">
@@ -82,7 +82,7 @@ export default function AboutPage() {
         <SectionHeading
           eyebrow="Education"
           title="Education"
-          description="Graduand in engineering and physical sciences."
+          description="Engineering and physical sciences background."
         />
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {education.map((item) => (

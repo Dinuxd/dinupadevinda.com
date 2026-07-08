@@ -33,13 +33,13 @@ export const education = [
   {
     title: "BSc Eng (Hons), Electrical and Electronic Engineering",
     institution: "SLIIT",
-    period: "Graduand",
+    period: "2022 - 2026",
     detail: "Engineering background with work across automation, embedded systems, machine learning, computer vision, and sensor-based projects."
   },
   {
     title: "BSc Physical Sciences - Computer Science, Pure Mathematics, and Applied Mathematics",
     institution: "University of Kelaniya",
-    period: "Graduand",
+    period: "2023 - 2027",
     detail: "Computer science and double mathematics background supporting programming, algorithms, modelling, and machine learning foundations."
   },
   {

@@ -94,7 +94,7 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="Education"
           title="Education"
-          description="Graduand in engineering and physical sciences."
+          description="Engineering and physical sciences background."
         />
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {education.slice(0, 2).map((item) => (

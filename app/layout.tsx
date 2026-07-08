@@ -8,18 +8,18 @@ import { profile, siteUrl } from "@/content/profile";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Dinupa Devinda | Machine Learning Focused Engineering Graduand",
+    default: "Dinupa Devinda | Machine Learning | AI/ML Developer | R&D Engineer",
     template: "%s | Dinupa Devinda"
   },
   description:
-    "Portfolio of Dinupa Devinda, a machine learning focused engineering graduand with projects across machine learning, embedded systems, R&D, and software.",
+    "Portfolio of Dinupa Devinda, with projects across machine learning, embedded systems, R&D, and software.",
   alternates: {
     canonical: "/"
   },
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: "Dinupa Devinda | Machine Learning Focused Engineering Graduand",
+    title: "Dinupa Devinda | Machine Learning | AI/ML Developer | R&D Engineer",
     description:
       "Machine learning, embedded systems, R&D, automation, and software projects by Dinupa Devinda.",
     siteName: "Dinupa Devinda Portfolio",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dinupa Devinda | Machine Learning Focused Engineering Graduand",
+    title: "Dinupa Devinda | Machine Learning | AI/ML Developer | R&D Engineer",
     description:
       "Machine learning, embedded systems, R&D, automation, and software projects.",
     images: ["/data/avatar/profile_pic.jpg"]

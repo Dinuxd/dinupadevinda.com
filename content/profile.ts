@@ -3,13 +3,13 @@ export const siteUrl = "https://www.dinupadevinda.com";
 export const profile = {
   name: "Dinupa Devinda",
   brand: "DD Dev Systems",
-  role: "Machine Learning Focused Engineering Graduand",
+  role: "Machine Learning and Engineering",
   location: "Colombo, Sri Lanka",
   email: "dwmddevinda@gmail.com",
   phone: "+94 75 463 4737",
   headline: "Machine Learning | AI/ML Developer | R&D Engineer",
   summary:
-    "Machine learning focused engineering graduand with a background in engineering, computer science, and mathematics. Experienced in building ML workflows from data preparation and model development to evaluation and deployment-focused implementation. Interested in intelligent, data-driven solutions for engineering and technology problems.",
+    "Machine learning focused background in engineering, computer science, and mathematics. Experienced in building ML workflows from data preparation and model development to evaluation and deployment-focused implementation. Interested in intelligent, data-driven solutions for engineering and technology problems.",
   links: {
     github: "https://github.com/Dinuxd",
     linkedin: "https://www.linkedin.com/in/dinupadevinda/",
