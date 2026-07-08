@@ -1,0 +1,8 @@
+name = "portfolio-chat-worker"
+main = "src/index.ts"
+compatibility_date = "2026-07-08"
+workers_dev = true
+
+[vars]
+PORTFOLIO_CONTEXT_URL = "https://www.dinupadevinda.com/portfolio-chat.json"
+GEMINI_MODEL = "gemini-3.5-flash"

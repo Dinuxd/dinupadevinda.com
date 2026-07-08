@@ -1,0 +1,303 @@
+{
+  "updated": "2026-07-08",
+  "sourceSummary": "Portfolio site, CV/LinkedIn information provided by Dinupa Devinda, public GitHub repositories, and public LinkedIn project links.",
+  "profile": {
+    "name": "Dinupa Devinda",
+    "location": "Colombo, Sri Lanka",
+    "role": "Machine Learning Focused Engineering Graduand",
+    "headline": "Applied Machine Learning | Computer Vision | Engineering Systems",
+    "summary": "Machine learning focused engineering graduand with a background in engineering, computer science, and mathematics. Experienced in building ML workflows from data preparation and model development to evaluation and deployment-focused implementation. Interested in intelligent, data-driven solutions for engineering and technology problems.",
+    "contact": {
+      "email": "dwmddevinda@gmail.com",
+      "linkedin": "https://www.linkedin.com/in/dinupadevinda/",
+      "github": "https://github.com/Dinuxd",
+      "kaggle": "https://www.kaggle.com/dinupadevinda",
+      "cv": "https://www.dinupadevinda.com/data/CV-%20Dinupa%20Devinda.pdf"
+    }
+  },
+  "strengths": [
+    "Machine learning workflow development, model evaluation, and deployment experiments",
+    "Computer vision, audio classification, IMU/sensor data, and applied ML projects",
+    "Engineering systems involving embedded devices, sensors, telemetry, dashboards, and APIs",
+    "Python, TensorFlow/Keras, PyTorch, scikit-learn, XGBoost, OpenCV, TFLite, ONNX, React, Spring Boot, Go, C/C++, Java, and SQL",
+    "Basic LLM application integration through a portfolio chatbot using Gemini, Cloudflare Workers, CORS, secret handling, and context-grounded prompting"
+  ],
+  "education": [
+    {
+      "degree": "BSc Eng (Hons), Electrical and Electronics Engineering",
+      "institution": "SLIIT",
+      "period": "Oct 2022 to Oct 2026",
+      "status": "Graduand",
+      "notes": "Engineering background with work across automation, embedded systems, electronics, machine learning, computer vision, and sensor-based projects."
+    },
+    {
+      "degree": "BSc Physical Sciences",
+      "institution": "University of Kelaniya Sri Lanka",
+      "period": "Jul 2023 to Jul 2027",
+      "status": "Graduand",
+      "subjectCombination": "Computer Science, Pure Mathematics, and Applied Mathematics",
+      "notes": "Computer science and double mathematics background supporting programming, algorithms, modelling, and machine learning foundations."
+    },
+    {
+      "degree": "CIMA, Chartered Global Management Accountancy",
+      "institution": "CIMA",
+      "period": "Mar 2022 to Apr 2024",
+      "status": "Certificate in Business Accounting completed; reading for Dip MA (Operational Level)",
+      "notes": "Business, economics, management accounting, and finance foundation."
+    },
+    {
+      "degree": "GCE Advanced Level, Physical Stream",
+      "institution": "Thurstan College",
+      "period": "Mar 2013 to Feb 2022",
+      "status": "Completed school education",
+      "activities": "Chess player; U17, U15, and U13 school chess team member."
+    }
+  ],
+  "experience": [
+    {
+      "role": "Research and Development Engineering Intern",
+      "organization": "Sri Lanka Telecom - Digital Lab",
+      "employmentType": "Internship",
+      "period": "Jun 2025 to Sep 2025",
+      "duration": "4 months",
+      "location": "Colombo, Western Province, Sri Lanka",
+      "workMode": "On-site",
+      "summary": "Developed C/C++ firmware for ESP32 edge devices with A7680C 4G modem AT-command handling, MQTT/MQTTS, HTTP, SMTP, SMS, and call support. Built telemetry pipelines using MQTT/HTTP and JSON payloads. Worked with ThingsBoard dashboards, web portals, MQTT Explorer, HiveMQ, Grafana exposure, and basic GitHub Actions/CI practice.",
+      "skills": ["Embedded systems", "Firmware design", "C/C++", "ESP32", "A7680C", "MQTT/MQTTS", "HTTP", "IoT telemetry"]
+    },
+    {
+      "role": "Research and Development Inplant Trainee",
+      "organization": "Variosystems",
+      "employmentType": "Internship",
+      "period": "Jun 2024 to Sep 2024",
+      "duration": "4 months",
+      "location": "Gampaha District, Western Province, Sri Lanka",
+      "workMode": "On-site",
+      "summary": "Built C/C++ automation and embedded-control projects in an electronics manufacturing environment, including an Automated Guided Vehicle, flame-treatment automation upgrade, and automated PCB conveyor system. Gained exposure to SMT/THT manufacturing, ICT and functional testing, SPEA 3030/4050 test systems, FactoryLogix workflows, production data flow, and NPI processes.",
+      "skills": ["Embedded control", "C/C++", "Automation", "Electronics manufacturing", "Testing systems", "Factory workflows"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Vehicular Black Box: Vehicle Violation Detector",
+      "type": "Final-year integrated ML and embedded system",
+      "summary": "Raspberry Pi based vehicle black-box prototype combining camera, audio, IMU, GPS/GSM inputs, violation and driving-event modules, evidence upload, backend services, and a React dashboard.",
+      "areas": ["Computer vision", "Audio ML", "Sensor fusion", "Embedded systems", "Backend", "Full stack"],
+      "stack": ["Raspberry Pi 4B", "Python", "TFLite", "ONNX", "NCNN", "Go", "PostgreSQL", "React", "TypeScript"],
+      "link": "https://github.com/Dinuxd/vehicular-black-box-violation-detector",
+      "limitations": "Prototype with validation notes and limitations documented. Do not describe it as a production-ready safety system."
+    },
+    {
+      "title": "Road Sign Detection with YOLO and ONNX",
+      "type": "Computer vision prototype",
+      "summary": "Two-stage road-sign recognition pipeline. YOLO localizes candidate signs and an ONNX classifier separates speed limits, traffic lights, no-honking signs, and other signs for Raspberry Pi style deployment.",
+      "areas": ["Computer vision", "Edge deployment"],
+      "stack": ["YOLO", "ONNX Runtime", "NCNN", "OpenCV", "Python", "Raspberry Pi"],
+      "metrics": ["9,062 image test set", "NCNN/Raspberry Pi deployment work"],
+      "link": "https://github.com/Dinuxd/road-sign-detection-yolo-onnx"
+    },
+    {
+      "title": "Vehicle Horn Detection with Audio CNN",
+      "type": "Audio ML prototype",
+      "summary": "Vehicle horn detector using 1-second microphone windows, log-mel features, CNN training, and TensorFlow Lite export for lightweight inference.",
+      "areas": ["Audio ML", "Signal processing", "Edge deployment"],
+      "stack": ["TensorFlow", "Keras", "TFLite", "librosa", "SpecAugment", "Python"],
+      "link": "https://github.com/Dinuxd/vehicle-horn-detection-audio-cnn",
+      "limitations": "Internal metrics are strong; field validation is the next step."
+    },
+    {
+      "title": "Crash Detection with Audio and IMU Sensor Fusion",
+      "type": "FYP module",
+      "summary": "Crash detection module combining audio and IMU signals. It packages separate model outputs into fusion labels for the vehicular black-box prototype.",
+      "areas": ["Audio ML", "IMU data", "Sensor fusion"],
+      "stack": ["PyTorch", "TensorFlow/Keras", "CNN-GRU", "log-mel", "Raspberry Pi", "Python"],
+      "link": "https://github.com/Dinuxd/crash-detection-audio-imu-fusion"
+    },
+    {
+      "title": "Lane Change Detection from IMU Data",
+      "type": "Published dataset and ML model",
+      "summary": "Recall-focused lane-change detector using BMI160 accelerometer and gyroscope windows, motion features, and XGBoost on a public BYD driving-events dataset.",
+      "areas": ["Sensor data", "Applied ML", "Dataset work"],
+      "stack": ["XGBoost", "scikit-learn", "Python", "BMI160 IMU", "Zenodo", "Kaggle"],
+      "metrics": ["3.5-second IMU windows", "Recall 0.9809", "ROC AUC 0.9497"],
+      "link": "https://github.com/Dinuxd/lane-change-detection-imu"
+    },
+    {
+      "title": "Aggressive Driving Detection from IMU Signals",
+      "type": "ML prototype",
+      "summary": "Sensor-based model for classifying normal versus aggressive driving behavior using yaw-rate and acceleration windows, model comparison, and Optuna-tuned XGBoost.",
+      "areas": ["Sensor data", "Applied ML"],
+      "stack": ["XGBoost", "Optuna", "scikit-learn", "Python", "IMU windows"],
+      "metrics": ["2-second IMU windows", "ROC AUC 0.862"],
+      "link": "https://github.com/Dinuxd/aggressive-driving-detection-imu"
+    },
+    {
+      "title": "A7680C 4G Modem Firmware for ESP32",
+      "type": "SLT R&D embedded/IoT work",
+      "summary": "C/C++ firmware for ESP32 edge devices using the A7680C LTE modem, with AT-command handling, MQTT/MQTTS, HTTP, SMTP, SMS, and call support.",
+      "areas": ["Embedded systems", "IoT", "Cellular telemetry"],
+      "stack": ["C/C++", "ESP32", "A7680C", "MQTT/MQTTS", "HTTP", "SMTP"],
+      "link": "https://github.com/Dinuxd/MQTTS_SLT"
+    },
+    {
+      "title": "BRMS Boarding Room Management API",
+      "type": "Backend project",
+      "summary": "Java Spring Boot REST API for boarding-room management workflows with Spring Data JPA, SQL Server configuration, environment-based settings, and H2-backed testing.",
+      "areas": ["Backend", "REST APIs"],
+      "stack": ["Java", "Spring Boot", "REST APIs", "Spring Data JPA", "SQL Server", "H2"],
+      "link": "https://github.com/Dinuxd/brms-spring-boot-api"
+    },
+    {
+      "title": "ServiceLink: Local Hiring Platform",
+      "type": "Full-stack marketplace prototype",
+      "summary": "Role-based service marketplace with Spring Boot APIs, React pages, JWT authentication, service listings, bookings, categories, and messaging.",
+      "areas": ["Full stack", "Backend"],
+      "stack": ["Spring Boot", "React", "MongoDB", "MySQL", "JWT"],
+      "link": "https://github.com/Dinuxd/Servicelink"
+    },
+    {
+      "title": "Smart Fish Habitat Management System",
+      "type": "Raspberry Pi automation and vision project",
+      "summary": "Automated aquarium system for water-quality monitoring, scheduled feeding, water changing, filtration, aeration, and heating. The project also tested YOLOv11 fish detection and TensorFlow Lite vision work for water-quality assessment.",
+      "areas": ["Embedded systems", "Computer vision", "Automation"],
+      "stack": ["Raspberry Pi 4", "Python", "DS18B20", "PH-4502C", "TensorFlow Lite", "YOLOv11"],
+      "link": "https://www.linkedin.com/posts/dinupadevinda_im-happy-to-share-this-advanced-automated-ugcPost-7344258111374794753-unXK/"
+    }
+  ],
+  "portfolioAssistant": {
+    "name": "Portfolio chatbot",
+    "status": "Implemented for this portfolio",
+    "shortAnswer": "This chatbot is a simple RAG-style portfolio assistant. It is better described as single-file context RAG or context-injection RAG, not vector database RAG.",
+    "architecture": [
+      "The portfolio remains a static Next.js export suitable for GitHub Pages.",
+      "A floating React chat widget sends visitor questions to a Cloudflare Worker /chat endpoint.",
+      "The Cloudflare Worker loads the public knowledge file public/portfolio-chat.json from the portfolio site.",
+      "The Worker sends the portfolio context and visitor question to Gemini.",
+      "The Gemini API key is stored only as a Cloudflare Worker secret, not in browser code.",
+      "The Worker validates message length, handles CORS, and returns concise answers with source labels."
+    ],
+    "knowledgeFile": "public/portfolio-chat.json",
+    "localContextUrl": "http://localhost:3000/portfolio-chat.json",
+    "productionContextUrl": "https://www.dinupadevinda.com/portfolio-chat.json",
+    "technologies": ["Next.js", "React", "Cloudflare Workers", "Gemini API", "TypeScript", "CORS", "serverless backend"],
+    "whatItDemonstrates": [
+      "LLM API integration",
+      "Static frontend plus serverless backend architecture",
+      "Secure API key handling through Worker secrets",
+      "Prompt grounding using a compact portfolio knowledge file",
+      "Basic RAG-style thinking without embeddings or a vector database"
+    ],
+    "honestyNote": "It should not be described as an advanced enterprise RAG system, a vector database system, or proof of production LLM platform experience. It is a practical portfolio assistant showing basic RAG-style implementation and LLM integration."
+  },
+  "certifications": [
+    {
+      "title": "AI/ML Engineer - Stage 2",
+      "issuer": "SLIIT",
+      "issued": "Jul 2025",
+      "credentialId": "b8egsjtckg",
+      "credentialUrl": "https://code.sliit.org/certificates/b8egsjtckg",
+      "skills": ["Supervised learning", "Regression models", "AI/ML fundamentals"]
+    },
+    {
+      "title": "AI/ML Engineer - Stage 1",
+      "issuer": "SLIIT",
+      "issued": "May 2023",
+      "credentialId": "bz6qczocre",
+      "credentialUrl": "https://drive.google.com/file/d/1gPbBV0GXgW7Kq5dNdOuhEG08eenRgZNq/view"
+    },
+    {
+      "title": "PyTorch Bootcamp",
+      "issuer": "OpenCV University",
+      "issued": "Aug 2025",
+      "credentialId": "87518a7fb87d470c8264c21bd2739b3d",
+      "credentialUrl": "https://courses.opencv.org/certificates/87518a7fb87d470c8264c21bd2739b3d",
+      "skills": ["Multi-Layer Perceptrons", "Convolutional Neural Networks", "Feature extraction", "Transfer learning", "YOLO"]
+    },
+    {
+      "title": "Python for Beginners",
+      "issuer": "University of Moratuwa",
+      "issued": "Mar 2023",
+      "credentialId": "nL4Y4FUoCM",
+      "credentialUrl": "https://drive.google.com/file/d/1bfgMeKeO37fvejzvHCRKnUOJcolf73d6/view",
+      "skills": ["Python programming"]
+    },
+    {
+      "title": "Microcontroller Programming Embedded C and Assembly Language",
+      "issuer": "MindLuster",
+      "issued": "Jun 2024",
+      "credentialId": "18177708736",
+      "credentialUrl": "https://drive.google.com/file/d/1Qi4NgwflOHmfGKGxMxaOhH7HKHSVmi-F/view",
+      "skills": ["Assembly language", "Embedded C", "Microcontroller programming"]
+    },
+    {
+      "title": "IT Essentials",
+      "issuer": "Cisco",
+      "issued": "Aug 2025",
+      "credentialUrl": "https://www.credly.com/badges/b639445f-3c22-4a27-b29a-1527403adfc2/linked_in_profile",
+      "skills": ["IT fundamentals", "Computer hardware", "Networking basics"]
+    },
+    {
+      "title": "Certificate in Business Accounting",
+      "issuer": "CIMA",
+      "issued": "Mar 2023",
+      "credentialId": "1-7HVC048",
+      "skills": ["Management", "Economics", "Business accounting", "Finance fundamentals"]
+    }
+  ],
+  "honorsAndAwards": [
+    {
+      "title": "J'puraXtreme 2.0",
+      "issuer": "University of Sri Jayewardenepura",
+      "issued": "Oct 2025",
+      "summary": "Successfully participated in the annual competitive programming challenge organized by the IEEE Computer Society Student Branch Chapter of the University of Sri Jayewardenepura."
+    },
+    {
+      "title": "OctWave 2.0",
+      "issuer": "University of Moratuwa",
+      "issued": "Oct 2025",
+      "summary": "Successfully participated in the annual AI and ML competitive challenge organized by the IEEE IAS Student Branch Chapter of the University of Moratuwa."
+    },
+    {
+      "title": "Algothon: CODEFEST 2024",
+      "issuer": "Sri Lanka Institute of Information Technology",
+      "issued": "Jan 2025",
+      "summary": "Finalist at Algothon, CODEFEST 2024. Represented the SLIIT Electrical and Electronic Engineering Department in a fast-paced algorithmic programming competition with multiple timed rounds."
+    },
+    {
+      "title": "1st Runner Up: Colombo District Youth Chess Championship U15",
+      "issuer": "Chess Federation of Sri Lanka",
+      "issued": "Oct 2017"
+    },
+    {
+      "title": "International Rated Chess Player",
+      "issuer": "Thurstan College Chess Club and International Chess Federation",
+      "issued": "Jan 2016",
+      "associatedWith": "Thurstan College"
+    },
+    {
+      "title": "2nd Place: Sri Lanka Youth Rapid Championship Colombo District U14",
+      "issuer": "Chess Federation of Sri Lanka",
+      "issued": "Jun 2015"
+    },
+    {
+      "title": "2nd Place: Junior Nationals Colombo District Chess Championship U14",
+      "issuer": "Chess Federation of Sri Lanka",
+      "issued": "May 2015"
+    },
+    {
+      "title": "3 Star Level Performance: Sri Lanka Inter School Chess Team Festival B Division",
+      "issuer": "Sri Lanka School Chess Association",
+      "issued": "Nov 2013",
+      "associatedWith": "Thurstan College"
+    }
+  ],
+  "answeringRules": [
+    "Answer only from this portfolio context.",
+    "If a fact is not included here, say that the portfolio does not include that information.",
+    "Questions about this chatbot, RAG, Gemini, Cloudflare Workers, or how the assistant works should be answered from the portfolioAssistant section.",
+    "Do not claim the BSc degrees are officially completed beyond the listed graduand status.",
+    "Do not claim production deployment, safety certification, employment, awards, or metrics that are not listed.",
+    "Describe the chatbot as simple RAG-style/context-injection RAG, not advanced vector database RAG.",
+    "For recruiter questions, be concise and point to GitHub, LinkedIn, CV, or project pages when useful."
+  ]
+}

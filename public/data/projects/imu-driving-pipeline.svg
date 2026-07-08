@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">IMU driving event pipeline</title>
+  <desc id="desc">BMI160 IMU data is segmented into windows, converted into engineered features, and classified with XGBoost.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08111f"/>
+      <stop offset="0.58" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#062e1e"/>
+    </linearGradient>
+    <style>
+      text{font-family:Arial,sans-serif}
+      .title{font-size:34px;font-weight:800;fill:#f8fafc}
+      .sub{font-size:19px;font-weight:600;fill:#a8b3c4}
+      .step{font-size:20px;font-weight:800;fill:#f8fafc}
+      .note{font-size:15px;font-weight:600;fill:#94a3b8}
+      .tech{font-size:15px;font-weight:800;fill:#86efac}
+      .card{fill:#111827;stroke:#22c55e;stroke-width:2}
+      .arrow{stroke:#22c55e;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;fill:none}
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <path d="M0 630c180-80 340 65 560 0s370-160 640-58v188H0z" fill="#22c55e" opacity=".04"/>
+  <text x="82" y="86" class="title">IMU Driving Events</text>
+  <text x="82" y="122" class="sub">Sensor windows and feature engineering for driving-event classification</text>
+
+  <rect x="78" y="220" width="205" height="282" rx="22" class="card"/>
+  <rect x="132" y="263" width="96" height="74" rx="14" fill="#22c55e" opacity=".15" stroke="#86efac" stroke-width="4"/>
+  <circle cx="180" cy="300" r="17" fill="#86efac" opacity=".65"/>
+  <path d="M112 370h28l17-40 28 76 24-54h58" stroke="#86efac" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <text x="112" y="410" class="step">BMI160 data</text>
+  <text x="112" y="438" class="note">accel + gyro signals</text>
+
+  <path d="M310 362h78" class="arrow"/>
+  <path d="M370 342l28 20-28 20" class="arrow"/>
+
+  <rect x="420" y="220" width="205" height="282" rx="22" class="card"/>
+  <g fill="none" stroke="#67e8f9" stroke-width="4">
+    <rect x="462" y="268" width="50" height="92" rx="8"/>
+    <rect x="526" y="268" width="50" height="92" rx="8"/>
+  </g>
+  <path d="M454 314h130" stroke="#67e8f9" stroke-width="4" opacity=".45"/>
+  <text x="458" y="410" class="step">Sliding windows</text>
+  <text x="458" y="438" class="note">resample and segment</text>
+
+  <path d="M650 362h78" class="arrow"/>
+  <path d="M710 342l28 20-28 20" class="arrow"/>
+
+  <rect x="760" y="220" width="205" height="282" rx="22" class="card"/>
+  <g fill="#22c55e" opacity=".17" stroke="#86efac" stroke-width="3">
+    <rect x="810" y="278" width="34" height="78" rx="6"/>
+    <rect x="856" y="298" width="34" height="58" rx="6"/>
+    <rect x="902" y="260" width="34" height="96" rx="6"/>
+  </g>
+  <text x="800" y="410" class="step">Features</text>
+  <text x="800" y="438" class="note">jerk, magnitude, roll, pitch</text>
+
+  <path d="M985 362h72" class="arrow"/>
+  <path d="M1037 342l28 20-28 20" class="arrow"/>
+
+  <rect x="880" y="565" width="260" height="108" rx="22" fill="#07111f" stroke="#22d3ee" stroke-width="2"/>
+  <text x="910" y="609" class="step">XGBoost output</text>
+  <text x="910" y="637" class="note">lane-change / aggressive events</text>
+  <path d="M1040 502c0 48-20 60-50 63" class="arrow" opacity=".75"/>
+
+  <rect x="80" y="550" width="460" height="132" rx="22" fill="#07111f" stroke="#334155"/>
+  <text x="112" y="609" class="step">Dataset proof</text>
+  <text x="112" y="637" class="note">BYD / BMI160 data published and documented</text>
+  <text x="112" y="662" class="tech">Zenodo | Kaggle</text>
+</svg>

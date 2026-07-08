@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Vehicle horn detection pipeline</title>
+  <desc id="desc">Microphone audio is converted into a log-mel spectrogram, classified by a CNN, and deployed with TensorFlow Lite.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08111f"/>
+      <stop offset="0.55" stop-color="#101827"/>
+      <stop offset="1" stop-color="#0a2538"/>
+    </linearGradient>
+    <linearGradient id="mel" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#1d4ed8"/>
+      <stop offset="0.5" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+    <style>
+      text{font-family:Arial,sans-serif}
+      .title{font-size:34px;font-weight:800;fill:#f8fafc}
+      .sub{font-size:19px;font-weight:600;fill:#a8b3c4}
+      .step{font-size:20px;font-weight:800;fill:#f8fafc}
+      .note{font-size:15px;font-weight:600;fill:#94a3b8}
+      .tech{font-size:15px;font-weight:800;fill:#67e8f9}
+      .card{fill:#111827;stroke:#1d9aaa;stroke-width:2}
+      .arrow{stroke:#22d3ee;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;fill:none}
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <path d="M0 620c180-75 335 65 530 0s360-160 670-70v210H0z" fill="#f59e0b" opacity=".04"/>
+  <text x="82" y="86" class="title">Vehicle Horn Detection</text>
+  <text x="82" y="122" class="sub">Audio classification path used for live Raspberry Pi inference</text>
+
+  <rect x="78" y="220" width="205" height="282" rx="22" class="card"/>
+  <circle cx="180" cy="291" r="45" fill="#22d3ee" opacity=".1" stroke="#22d3ee" stroke-width="4"/>
+  <path d="M138 360c18-34 36 34 54 0s36 34 54 0" stroke="#86efac" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M156 291c25-34 25 34 50 0" stroke="#67e8f9" stroke-width="6" fill="none"/>
+  <text x="112" y="410" class="step">Audio window</text>
+  <text x="112" y="438" class="note">1 second microphone clip</text>
+
+  <path d="M310 362h78" class="arrow"/>
+  <path d="M370 342l28 20-28 20" class="arrow"/>
+
+  <rect x="420" y="220" width="240" height="282" rx="22" class="card"/>
+  <rect x="460" y="264" width="160" height="112" rx="12" fill="url(#mel)" opacity=".9"/>
+  <g opacity=".34" fill="#020617">
+    <rect x="476" y="278" width="14" height="84"/>
+    <rect x="508" y="292" width="14" height="70"/>
+    <rect x="540" y="268" width="14" height="94"/>
+    <rect x="572" y="308" width="14" height="54"/>
+    <rect x="604" y="282" width="10" height="80"/>
+  </g>
+  <text x="462" y="410" class="step">Log-mel features</text>
+  <text x="462" y="438" class="note">128 mel bands with normalization</text>
+
+  <path d="M690 362h78" class="arrow"/>
+  <path d="M750 342l28 20-28 20" class="arrow"/>
+
+  <rect x="800" y="220" width="240" height="282" rx="22" class="card"/>
+  <g fill="#22d3ee" opacity=".16" stroke="#67e8f9" stroke-width="3">
+    <rect x="844" y="266" width="42" height="42" rx="8"/>
+    <rect x="904" y="266" width="42" height="42" rx="8"/>
+    <rect x="964" y="266" width="42" height="42" rx="8"/>
+    <rect x="874" y="330" width="42" height="42" rx="8"/>
+    <rect x="934" y="330" width="42" height="42" rx="8"/>
+  </g>
+  <text x="844" y="410" class="step">CNN classifier</text>
+  <text x="844" y="438" class="note">horn probability output</text>
+
+  <rect x="350" y="560" width="500" height="122" rx="20" fill="#07111f" stroke="#22c55e" stroke-width="2"/>
+  <text x="380" y="613" class="step">Deployment</text>
+  <text x="380" y="641" class="note">TensorFlow Lite model for live inference</text>
+  <text x="380" y="666" class="tech">Keras | TFLite | librosa</text>
+</svg>

@@ -1,0 +1,15 @@
+.next/
+out/
+node_modules/
+portfolio-chat-worker/node_modules/
+.env*
+!.env.example
+pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.tsbuildinfo
+.logs/
+.tmp/
+portfolio-chat-worker/.dev.vars
+portfolio-chat-worker/.wrangler/

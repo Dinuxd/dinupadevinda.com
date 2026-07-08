@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Crash detection fusion pipeline</title>
+  <desc id="desc">Audio and IMU branches are processed separately and fused into crash event labels.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1120"/>
+      <stop offset="0.58" stop-color="#111827"/>
+      <stop offset="1" stop-color="#22111a"/>
+    </linearGradient>
+    <style>
+      text{font-family:Arial,sans-serif}
+      .title{font-size:34px;font-weight:800;fill:#f8fafc}
+      .sub{font-size:19px;font-weight:600;fill:#a8b3c4}
+      .step{font-size:20px;font-weight:800;fill:#f8fafc}
+      .note{font-size:15px;font-weight:600;fill:#94a3b8}
+      .tech{font-size:15px;font-weight:800;fill:#86efac}
+      .audio{fill:#111827;stroke:#22d3ee;stroke-width:2}
+      .imu{fill:#111827;stroke:#22c55e;stroke-width:2}
+      .fuse{fill:#111827;stroke:#f59e0b;stroke-width:2}
+      .arrowA{stroke:#22d3ee;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .arrowI{stroke:#22c55e;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;fill:none}
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <path d="M0 640c210-95 375 55 575-15s360-150 625-55v190H0z" fill="#22d3ee" opacity=".035"/>
+  <text x="82" y="86" class="title">Crash Detection Fusion</text>
+  <text x="82" y="122" class="sub">Separate audio and IMU models combined with readable fusion logic</text>
+
+  <rect x="92" y="205" width="260" height="160" rx="22" class="audio"/>
+  <path d="M132 275c24-32 48 32 72 0s48 32 72 0" stroke="#67e8f9" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <text x="132" y="318" class="step">Audio branch</text>
+  <text x="132" y="346" class="note">log-mel window</text>
+
+  <rect x="92" y="455" width="260" height="160" rx="22" class="imu"/>
+  <path d="M132 535h30l18-44 30 82 26-55h58" stroke="#86efac" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <text x="132" y="578" class="step">IMU branch</text>
+  <text x="132" y="606" class="note">accel, gyro, speed</text>
+
+  <path d="M378 285h88" class="arrowA"/>
+  <path d="M446 265l28 20-28 20" class="arrowA"/>
+  <path d="M378 535h88" class="arrowI"/>
+  <path d="M446 515l28 20-28 20" class="arrowI"/>
+
+  <rect x="500" y="205" width="260" height="160" rx="22" class="audio"/>
+  <text x="544" y="268" class="step">PyTorch CNN</text>
+  <text x="544" y="296" class="note">audio crash score</text>
+  <text x="544" y="326" class="tech">2-second audio</text>
+
+  <rect x="500" y="455" width="260" height="160" rx="22" class="imu"/>
+  <text x="535" y="518" class="step">Keras CNN-GRU</text>
+  <text x="535" y="546" class="note">time-series score</text>
+  <text x="535" y="576" class="tech">windowed IMU</text>
+
+  <path d="M790 285c65 0 72 98 132 118" class="arrowA"/>
+  <path d="M790 535c65 0 72-98 132-118" class="arrowI"/>
+
+  <rect x="920" y="320" width="230" height="180" rx="24" class="fuse"/>
+  <circle cx="965" cy="378" r="20" fill="#f59e0b" opacity=".25" stroke="#fbbf24" stroke-width="4"/>
+  <path d="M1010 376h88M1010 420h88" stroke="#fbbf24" stroke-width="5" stroke-linecap="round" opacity=".75"/>
+  <text x="956" y="454" class="step">Fusion rules</text>
+  <text x="956" y="482" class="note">confirmed / possible crash</text>
+
+  <rect x="382" y="650" width="438" height="54" rx="16" fill="#07111f" stroke="#334155"/>
+  <text x="420" y="684" class="tech">Raspberry Pi deployment package</text>
+</svg>
