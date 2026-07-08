@@ -7,7 +7,7 @@ export const profile = {
   location: "Colombo, Sri Lanka",
   email: "dwmddevinda@gmail.com",
   phone: "+94 75 463 4737",
-  headline: "Applied Machine Learning | Computer Vision | Engineering Systems",
+  headline: "Machine Learning | AI/ML Developer | R&D Engineer",
   summary:
     "Machine learning focused engineering graduand with a background in engineering, computer science, and mathematics. Experienced in building ML workflows from data preparation and model development to evaluation and deployment-focused implementation. Interested in intelligent, data-driven solutions for engineering and technology problems.",
   links: {
