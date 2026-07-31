@@ -59,9 +59,11 @@ export function looksLikePromptInjection(question: string): boolean {
   return [
     /ignore (all |any |the )?(previous|prior|above) (instructions|rules|prompt)/i,
     /reveal (the )?(system|developer|hidden) (prompt|message|instructions)/i,
+    /(show|print|return|expose).{0,30}(system|developer|hidden) (prompt|message|instructions)/i,
     /(show|print|return|expose).{0,30}(api key|secret|token|credential)/i,
     /(jailbreak|developer mode|bypass (the )?(rules|safety|guardrails))/i,
     /act as (an? )?(unrestricted|different|new) (assistant|ai|model)/i,
+    /change (your|the) (role|identity|instructions)/i,
     /repeat.{0,20}(system prompt|instructions above|hidden prompt)/i
   ].some((pattern) => pattern.test(question));
 }

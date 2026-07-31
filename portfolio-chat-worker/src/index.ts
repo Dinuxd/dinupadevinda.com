@@ -139,7 +139,7 @@ async function handleChat(
     const citedChunks = generated.citedSourceIds
       .map((id) => retrieval.chunks.find((chunk) => chunk.id === id))
       .filter((chunk): chunk is RankedChunk => Boolean(chunk));
-    const displayChunks = citedChunks.filter(isDisplaySource);
+    const displayChunks = uniqueDisplaySources(citedChunks);
     const citationValid = !generated.grounded || citedChunks.length > 0;
     const grounded = generated.grounded && citationValid;
     const response: ChatResponse = {
@@ -161,12 +161,11 @@ async function handleChat(
     return jsonResponse(response, 200, origin);
   } catch (error) {
     logError("generation_failed", requestId, error, { retrievalMode: retrieval.mode });
-    const fallbackChunks = retrieval.chunks.slice(0, 3);
-    const displayChunks = fallbackChunks.filter(isDisplaySource);
+    const fallbackChunks = uniqueDisplaySources(retrieval.chunks).slice(0, 3);
     const response: ChatResponse = {
       answer: buildExtractiveFallback(fallbackChunks),
       grounded: true,
-      sources: displayChunks.map(toChatSource),
+      sources: fallbackChunks.map(toChatSource),
       retrievalMode: retrieval.mode
     };
     return jsonResponse(response, 200, origin);
@@ -337,6 +336,27 @@ function toChatSource(chunk: RankedChunk): ChatSource {
 
 function isDisplaySource(chunk: RankedChunk): boolean {
   return chunk.id !== "answering-rules";
+}
+
+function uniqueDisplaySources(chunks: RankedChunk[]): RankedChunk[] {
+  const seen = new Set<string>();
+  const output: RankedChunk[] = [];
+
+  for (const chunk of chunks) {
+    if (!isDisplaySource(chunk)) {
+      continue;
+    }
+
+    const key = `${chunk.title.toLowerCase()}|${chunk.url || ""}`;
+    if (seen.has(key)) {
+      continue;
+    }
+
+    seen.add(key);
+    output.push(chunk);
+  }
+
+  return output;
 }
 
 function jsonResponse(

@@ -1,6 +1,6 @@
 # Worker Retrieval Evaluation
 
-Generated: 2026-07-31T11:46:24.338Z
+Generated: 2026-07-31T12:03:44.969Z
 Score: 20/20
 
 This offline check evaluates the lexical half of the live hybrid retriever. Vectorize and Gemini are tested after deployment.
