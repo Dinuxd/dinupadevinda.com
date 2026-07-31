@@ -398,15 +398,5 @@
       "issued": "Nov 2013",
       "associatedWith": "Thurstan College"
     }
-  ],
-  "answeringRules": [
-    "Answer only from this portfolio context.",
-    "If a fact is not included here, say that the portfolio does not include that information.",
-    "Questions about this chatbot, RAG, Gemini, Cloudflare Workers, or how the assistant works should be answered from the portfolioAssistant section.",
-    "Use only the listed education periods; do not add graduation-status claims that are not in this context.",
-    "Do not claim production deployment, safety certification, employment, awards, or metrics that are not listed.",
-    "Do not infer salary expectations, availability dates, visa status, private contact details, or other personal facts that are not listed.",
-    "Describe the chatbot status accurately: the Worker code implements hybrid Vectorize and keyword retrieval, while deployment and index status must be confirmed through the Worker health and chat responses.",
-    "For career-related questions, be concise and point to GitHub, LinkedIn, CV, or project pages when useful."
   ]
 }
