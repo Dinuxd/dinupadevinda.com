@@ -6,7 +6,7 @@ import { projects } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Machine learning, embedded systems, backend, and full-stack projects by Dinupa Devinda.",
+    "Machine learning, AI assistant, embedded systems, backend, and full-stack projects by Dinupa Devinda.",
   alternates: {
     canonical: "/projects/"
   }
@@ -18,7 +18,7 @@ export default function ProjectsPage() {
       <SectionHeading
         eyebrow="Projects"
         title="Projects"
-        description="Machine learning, embedded systems, software, and engineering work."
+        description="Machine learning, AI assistant, embedded systems, software, and engineering work."
       />
       <ProjectGrid projects={projects} />
     </section>

@@ -43,6 +43,18 @@ export async function syncProjectAssets({ root = process.cwd(), log = true } = {
     sourceDir: path.join(root, "data", "projects"),
     targetDir: path.join(root, "public", "data", "projects")
   });
+  const certificationResult = await syncMediaDirectory({
+    sourceDir: path.join(root, "data", "certifications"),
+    targetDir: path.join(root, "public", "data", "certifications")
+  });
+  const honorResult = await syncMediaDirectory({
+    sourceDir: path.join(root, "data", "honors"),
+    targetDir: path.join(root, "public", "data", "honors")
+  });
+  const avatarResult = await syncMediaDirectory({
+    sourceDir: path.join(root, "data", "avatar"),
+    targetDir: path.join(root, "public", "data", "avatar")
+  });
 
   if (log) {
     console.log(
@@ -51,11 +63,23 @@ export async function syncProjectAssets({ root = process.cwd(), log = true } = {
     console.log(
       `Synced ${projectResult.copied} changed project asset${projectResult.copied === 1 ? "" : "s"} from data/projects; pruned ${projectResult.pruned} stale copied project asset${projectResult.pruned === 1 ? "" : "s"}.`
     );
+    console.log(
+      `Synced ${certificationResult.copied} changed certification asset${certificationResult.copied === 1 ? "" : "s"} from data/certifications; pruned ${certificationResult.pruned} stale copied certification asset${certificationResult.pruned === 1 ? "" : "s"}.`
+    );
+    console.log(
+      `Synced ${honorResult.copied} changed honor asset${honorResult.copied === 1 ? "" : "s"} from data/honors; pruned ${honorResult.pruned} stale copied honor asset${honorResult.pruned === 1 ? "" : "s"}.`
+    );
+    console.log(
+      `Synced ${avatarResult.copied} changed avatar asset${avatarResult.copied === 1 ? "" : "s"} from data/avatar; pruned ${avatarResult.pruned} stale copied avatar asset${avatarResult.pruned === 1 ? "" : "s"}.`
+    );
   }
 
   return {
     data: dataResult,
-    projects: projectResult
+    projects: projectResult,
+    certifications: certificationResult,
+    honors: honorResult,
+    avatar: avatarResult
   };
 }
 

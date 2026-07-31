@@ -12,10 +12,10 @@ const navItems = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-graphite-950/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-cyan-300/10 bg-graphite-950/72 shadow-[0_18px_50px_rgba(0,10,32,0.26)] backdrop-blur-2xl">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-md border border-signal-cyan/40 bg-signal-cyan/10 text-sm font-black text-signal-cyan">
+        <Link href="/" className="group flex items-center gap-3">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-cyan-300/30 bg-cyan-300/10 text-sm font-black text-cyan-200 shadow-glow transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-teal-300/60 group-hover:text-white group-hover:shadow-glow-lg">
             DD
           </span>
           <span>
@@ -34,7 +34,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded px-3 py-2 text-sm font-semibold text-slate-300 transition hover:bg-white/[0.05] hover:text-white"
+              className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-300 transition-all duration-300 hover:-translate-y-0.5 hover:bg-cyan-300/10 hover:text-cyan-100"
             >
               {item.label}
             </Link>
@@ -46,7 +46,7 @@ export function SiteHeader() {
             href={profile.links.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-md border border-white/10 p-2 text-slate-300 transition hover:border-signal-cyan hover:text-signal-cyan"
+            className="rounded-lg border border-cyan-300/15 bg-cyan-300/5 p-2 text-slate-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/40 hover:text-cyan-100 hover:shadow-glow"
             aria-label="GitHub profile"
           >
             <Github aria-hidden="true" className="h-4 w-4" />
@@ -55,7 +55,7 @@ export function SiteHeader() {
             href={profile.links.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-md border border-white/10 p-2 text-slate-300 transition hover:border-signal-cyan hover:text-signal-cyan"
+            className="rounded-lg border border-cyan-300/15 bg-cyan-300/5 p-2 text-slate-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/40 hover:text-cyan-100 hover:shadow-glow"
             aria-label="LinkedIn profile"
           >
             <Linkedin aria-hidden="true" className="h-4 w-4" />

@@ -10,22 +10,24 @@ const config: Config = {
     extend: {
       colors: {
         graphite: {
-          950: "#070a0f",
-          900: "#0b1017",
-          850: "#101722",
-          800: "#151f2d"
+          950: "#020817",
+          900: "#071324",
+          850: "#0c2038",
+          800: "#123054"
         },
         signal: {
-          cyan: "#45d7ff",
-          green: "#58e6a8",
-          amber: "#f5c451"
+          cyan: "#4dd8ff",
+          green: "#2dd4bf",
+          amber: "#7dd3fc"
         }
       },
       fontFamily: {
         sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"]
       },
       boxShadow: {
-        panel: "0 18px 60px rgba(0, 0, 0, 0.28)"
+        panel: "0 26px 80px rgba(0, 11, 32, 0.34)",
+        glow: "0 0 32px rgba(77,216,255,0.14)",
+        "glow-lg": "0 18px 70px rgba(45,212,191,0.16)"
       }
     }
   },

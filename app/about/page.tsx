@@ -25,7 +25,7 @@ export default function AboutPage() {
             alt="Portrait of Dinupa Devinda"
             width={620}
             height={760}
-            className="rounded-md border border-white/10 object-cover"
+            className="media-depth aspect-[4/5] w-full rounded-md border border-cyan-300/12 object-cover object-[50%_38%]"
           />
           <div className="mt-5 flex flex-wrap gap-3">
             <ButtonLink href={profile.links.github} icon={Github} external>
@@ -63,11 +63,11 @@ export default function AboutPage() {
 
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {skills.map((group) => (
-              <div key={group.group} className="rounded-md border border-white/10 bg-white/[0.035] p-5">
+              <div key={group.group} className="glass rounded-md p-5">
                 <h3 className="text-lg font-semibold text-white">{group.group}</h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {group.items.map((item) => (
-                    <span key={item} className="rounded border border-white/10 px-2.5 py-1 text-xs text-slate-300">
+                    <span key={item} className="rounded border border-cyan-300/12 bg-cyan-300/5 px-2.5 py-1 text-xs text-slate-300">
                       {item}
                     </span>
                   ))}
@@ -86,7 +86,7 @@ export default function AboutPage() {
         />
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {education.map((item) => (
-            <article key={item.title} className="rounded-md border border-white/10 bg-white/[0.035] p-5">
+            <article key={item.title} className="glass rounded-md p-5">
               <p className="text-sm font-semibold text-signal-green">{item.period}</p>
               <h3 className="mt-3 text-lg font-semibold text-white">{item.title}</h3>
               <p className="mt-1 text-sm font-semibold text-signal-cyan">{item.institution}</p>

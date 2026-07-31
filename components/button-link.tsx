@@ -20,16 +20,16 @@ export function ButtonLink({
   className = ""
 }: ButtonLinkProps) {
   const classes = [
-    "inline-flex h-11 items-center justify-center gap-2 rounded-md border px-4 text-sm font-semibold transition",
-    "focus:outline-none focus:ring-2 focus:ring-signal-cyan focus:ring-offset-2 focus:ring-offset-graphite-950",
+    "inline-flex h-11 items-center justify-center gap-2 rounded-xl border px-5 text-sm font-semibold transition-all duration-300",
+    "focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-graphite-950",
     variant === "primary"
-      ? "border-signal-cyan bg-signal-cyan text-graphite-950 hover:bg-white"
+      ? "border-cyan-300/45 bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-400 text-white shadow-lg shadow-cyan-500/18 hover:-translate-y-0.5 hover:from-blue-500 hover:via-cyan-400 hover:to-teal-300 hover:shadow-cyan-400/24"
       : "",
     variant === "secondary"
-      ? "border-white/15 bg-white/[0.04] text-white hover:border-signal-green hover:text-signal-green"
+      ? "border-cyan-300/15 bg-cyan-950/25 backdrop-blur-sm text-slate-200 hover:-translate-y-0.5 hover:border-cyan-300/42 hover:bg-cyan-900/20 hover:text-white"
       : "",
     variant === "ghost"
-      ? "border-transparent bg-transparent text-slate-200 hover:text-signal-cyan"
+      ? "border-transparent bg-transparent text-slate-200 hover:-translate-y-0.5 hover:text-cyan-200"
       : "",
     className
   ]

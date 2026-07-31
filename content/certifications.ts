@@ -22,6 +22,86 @@ export const certifications = [
     credentialUrl: "https://courses.opencv.org/certificates/87518a7fb87d470c8264c21bd2739b3d"
   },
   {
+    title: "Hands-On AI: Introduction to Retrieval-Augmented Generation (RAG)",
+    issuer: "LinkedIn Learning",
+    date: "Issued Jul 2026",
+    detail: "Retrieval-Augmented Generation (RAG), AI",
+    image: "/data/certifications/linkedin-rag-introduction.pdf",
+    credentialUrl: "/data/certifications/linkedin-rag-introduction.pdf"
+  },
+  {
+    title: "Machine Learning with Python Professional Certificate",
+    issuer: "LinkedIn Learning / Anaconda",
+    date: "Issued Jul 2026",
+    detail: "Machine learning, Python, AI",
+    image: "/data/certifications/linkedin-machine-learning-python-professional-certificate-anaconda.pdf",
+    credentialUrl: "/data/certifications/linkedin-machine-learning-python-professional-certificate-anaconda.pdf"
+  },
+  {
+    title: "Machine Learning with Python: Foundations",
+    issuer: "LinkedIn Learning",
+    date: "Issued Jul 2026",
+    detail: "Machine learning, Python, AI",
+    image: "/data/certifications/linkedin-machine-learning-python-foundations.pdf",
+    credentialUrl: "/data/certifications/linkedin-machine-learning-python-foundations.pdf"
+  },
+  {
+    title: "Artificial Intelligence Foundations: Machine Learning",
+    issuer: "LinkedIn Learning",
+    date: "Issued Jul 2026",
+    detail: "Machine learning, AI foundations",
+    image: "/data/certifications/linkedin-ai-foundations-machine-learning.pdf",
+    credentialUrl: "/data/certifications/linkedin-ai-foundations-machine-learning.pdf"
+  },
+  {
+    title: "Machine Learning with Python: Decision Trees",
+    issuer: "LinkedIn Learning",
+    date: "Issued Jul 2026",
+    detail: "Machine learning, Python, decision trees",
+    image: "/data/certifications/linkedin-machine-learning-python-decision-trees.pdf",
+    credentialUrl: "/data/certifications/linkedin-machine-learning-python-decision-trees.pdf"
+  },
+  {
+    title: "Machine Learning with Python: Logistic Regression",
+    issuer: "LinkedIn Learning",
+    date: "Issued Jul 2026",
+    detail: "Machine learning, Python, logistic regression",
+    image: "/data/certifications/linkedin-machine-learning-python-logistic-regression.pdf",
+    credentialUrl: "/data/certifications/linkedin-machine-learning-python-logistic-regression.pdf"
+  },
+  {
+    title: "Machine Learning with Python: k-Means Clustering",
+    issuer: "LinkedIn Learning",
+    date: "Issued Jul 2026",
+    detail: "k-means clustering, machine learning, Python",
+    image: "/data/certifications/linkedin-machine-learning-python-k-means-clustering.pdf",
+    credentialUrl: "/data/certifications/linkedin-machine-learning-python-k-means-clustering.pdf"
+  },
+  {
+    title: "Complete Guide to Generative AI for Data Analysis and Data Science",
+    issuer: "LinkedIn Learning",
+    date: "Issued Jul 2026",
+    detail: "Generative AI, AI for data analysis, AI for data science",
+    image: "/data/certifications/linkedin-generative-ai-data-analysis-data-science.pdf",
+    credentialUrl: "/data/certifications/linkedin-generative-ai-data-analysis-data-science.pdf"
+  },
+  {
+    title: "Processing Text with Python Essential Training",
+    issuer: "LinkedIn Learning",
+    date: "Issued Jul 2026",
+    detail: "Unstructured data, Python, text mining",
+    image: "/data/certifications/linkedin-processing-text-python-essential-training.pdf",
+    credentialUrl: "/data/certifications/linkedin-processing-text-python-essential-training.pdf"
+  },
+  {
+    title: "Processing Text with Python Essential Training - NASBA CPE",
+    issuer: "LinkedIn Learning / NASBA",
+    date: "Issued Jul 2026",
+    detail: "Information Technology field of study, 1.80 CPE credits",
+    image: "/data/certifications/linkedin-processing-text-python-essential-training-nasba.pdf",
+    credentialUrl: "/data/certifications/linkedin-processing-text-python-essential-training-nasba.pdf"
+  },
+  {
     title: "Python for Beginners",
     issuer: "University of Moratuwa",
     date: "Issued Mar 2023",
@@ -51,6 +131,14 @@ export const certifications = [
 ];
 
 export const honors = [
+  {
+    title: "MoraXtreme 10.0",
+    issuer: "IEEE Student Branch of the University of Moratuwa",
+    date: "Oct 2025",
+    detail:
+      "Participated in Sri Lanka's 12-hour algorithmic hackathon organized by the University of Moratuwa in collaboration with the IEEE Computer Society Student Branch Chapter.",
+    image: "/data/honors/mora.png"
+  },
   {
     title: "J'puraXtreme 2.0",
     issuer: "University of Sri Jayewardenepura",

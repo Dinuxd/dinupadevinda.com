@@ -1,0 +1,44 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "portfolio-chat-worker",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-22",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "vars": {
+    "PORTFOLIO_CONTEXT_URL": "https://www.dinupadevinda.com/portfolio-chat.json",
+    "GEMINI_MODEL": "gemini-3.6-flash",
+    "GEMINI_EMBEDDING_MODEL": "gemini-embedding-2",
+    "RAG_EMBEDDING_DIMENSIONS": "768"
+  },
+  "secrets": {
+    "required": ["GEMINI_API_KEY", "RAG_ADMIN_TOKEN"]
+  },
+  "vectorize": [
+    {
+      "binding": "VECTORIZE",
+      "index_name": "portfolio-rag-index"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "CHAT_RATE_LIMITER",
+      "namespace_id": "1001",
+      "simple": {
+        "limit": 60,
+        "period": 60
+      }
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.05
+    }
+  }
+}

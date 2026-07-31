@@ -12,11 +12,11 @@ export default function HomePage() {
   return (
     <>
       <section className="mx-auto grid max-w-7xl gap-10 px-4 pb-16 pt-14 sm:px-6 md:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:pt-20">
-        <div className="flex flex-col justify-center">
+        <div className="hero-fade flex flex-col justify-center">
           <p className="text-sm font-bold uppercase tracking-[0.28em] text-signal-green">
             {profile.role}
           </p>
-          <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
+          <h1 className="gradient-name mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
             {profile.name}
           </h1>
           <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-200">{profile.headline}</p>
@@ -49,19 +49,19 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="technical-panel p-4">
+        <div className="hero-fade hero-fade-d2 technical-panel p-4">
           <div className="grid gap-4 sm:grid-cols-[0.78fr_1fr] md:grid-cols-1 xl:grid-cols-[0.78fr_1fr]">
-            <div className="overflow-hidden rounded-md border border-white/10 bg-graphite-900">
+            <div className="media-depth overflow-hidden rounded-md border border-cyan-300/12 bg-graphite-900">
               <Image
                 src="/data/avatar/profile_pic.jpg"
                 alt="Dinupa Devinda"
                 width={520}
                 height={640}
                 priority
-                className="aspect-[4/5] w-full object-cover"
+                className="h-full min-h-[340px] w-full object-cover object-[50%_38%]"
               />
             </div>
-            <div className="rounded-md border border-white/10 bg-graphite-950/70 p-4">
+            <div className="soft-panel rounded-md p-4">
               <div className="grid gap-3">
                 {profile.heroStats.map((metric) => (
                   <MetricCard key={metric.label} metric={metric} />
@@ -72,16 +72,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-white/[0.025] py-12">
+      <section className="flow-band py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="About me"
             title="Machine learning with an engineering base."
-            description="I like building useful projects with models, software, data, and systems that solve clear problems."
+            description="Projects across ML, software, data, and engineering systems."
           />
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {profile.capabilities.map((capability) => (
-              <div key={capability.title} className="rounded-md border border-white/10 bg-graphite-950/60 p-5">
+              <div key={capability.title} className="glass rounded-md p-5">
                 <h3 className="text-lg font-semibold text-white">{capability.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-400">{capability.detail}</p>
               </div>
@@ -98,7 +98,7 @@ export default function HomePage() {
         />
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {education.slice(0, 2).map((item) => (
-            <article key={item.title} className="rounded-md border border-white/10 bg-white/[0.035] p-5">
+            <article key={item.title} className="glass rounded-md p-5">
               <p className="text-sm font-semibold text-signal-green">{item.period}</p>
               <h3 className="mt-3 text-xl font-semibold text-white">{item.title}</h3>
               <p className="mt-1 text-sm font-semibold text-signal-cyan">{item.institution}</p>
@@ -112,12 +112,12 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="Projects"
           title="Selected work"
-          description="A few projects that best show my ML and engineering work. More projects are on the Projects page."
+          description="Selected projects first, with the full list on the Projects page."
         />
         <ProjectGrid projects={featuredProjects} />
       </section>
 
-      <section className="border-t border-white/10 bg-white/[0.025] py-12">
+      <section className="flow-band py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-between gap-5">
             <div>

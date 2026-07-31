@@ -1,4 +1,5 @@
 export type ProjectDomain =
+  | "AI Systems"
   | "Edge AI"
   | "Computer Vision"
   | "Audio ML"
@@ -29,6 +30,10 @@ export type Project = {
   role: string;
   status: string;
   summary: string;
+  detailPoints?: Array<{
+    label: string;
+    text: string;
+  }>;
   domains: ProjectDomain[];
   stack: string[];
   metrics: ProjectMetric[];
@@ -37,11 +42,60 @@ export type Project = {
   media?: ProjectMedia;
   limitations?: string;
   presentation?: "compact";
+  layout?: "wide";
   priority: number;
   featured?: boolean;
 };
 
 const projectEntries: Project[] = [
+  {
+    slug: "ai-portfolio-assistant-rag",
+    title: "AI Portfolio Assistant with RAG and Vector Search",
+    role: "RAG and vector search",
+    status: "Portfolio chatbot",
+    summary:
+      "Portfolio chatbot that answers questions using Gemini, Cloudflare Workers, Vectorize, keyword retrieval, and clickable source links. A local Python and Chroma workflow is included for learning and testing RAG concepts.",
+    domains: ["AI Systems", "Backend", "Full Stack", "Software"],
+    stack: [
+      "Gemini API",
+      "Cloudflare Workers",
+      "Cloudflare Vectorize",
+      "Python",
+      "Chroma",
+      "sentence-transformers",
+      "Next.js",
+      "TypeScript",
+      "Evaluation harness"
+    ],
+    metrics: [
+      {
+        label: "Search",
+        value: "Hybrid search",
+        detail: "Vector search plus keyword matching."
+      },
+      {
+        label: "Backend",
+        value: "Cloudflare Worker",
+        detail: "API key stays server-side."
+      },
+      {
+        label: "Tests",
+        value: "20 eval questions",
+        detail: "Checks retrieval and unsupported claims."
+      }
+    ],
+    repoUrl: "https://github.com/Dinuxd/dinupadevinda.com",
+    media: {
+      type: "image",
+      src: "/data/projects/ai-portfolio-assistant-rag.svg",
+      alt: "AI portfolio assistant architecture showing chat widget, Worker API, embeddings, Vectorize, keyword search, rank fusion, Gemini answer, and source links",
+      fit: "contain"
+    },
+    limitations:
+      "Personal portfolio assistant used to practice retrieval, evaluation, and serverless AI integration.",
+    priority: 0,
+    featured: true
+  },
   {
     slug: "vehicular-black-box",
     title: "Vehicular Black Box: Vehicle Violation Detector",

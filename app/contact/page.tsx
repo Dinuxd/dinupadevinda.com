@@ -24,7 +24,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <section className="section-pad mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <section className="section-pad contact-page mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <SectionHeading
         eyebrow="Contact"
         title="Open to ML engineering, R&D, and project work"
@@ -47,19 +47,31 @@ export default function ContactPage() {
         </ButtonLink>
       </div>
 
-      <div className="mt-10 rounded-md border border-white/10 bg-white/[0.035] p-6 text-center">
+      <div className="glass mt-10 rounded-md p-6 text-center">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-signal-green">
           Location
         </p>
         <p className="mt-2 text-xl font-semibold text-white">{profile.location}</p>
         <p className="mt-4 text-sm leading-6 text-slate-400">
-          Email: {profile.email}
+          Email:{" "}
+          <a
+            href={profile.links.email}
+            className="relative z-10 font-medium text-slate-300 underline decoration-cyan-300/30 underline-offset-4 transition hover:text-signal-cyan"
+          >
+            {profile.email}
+          </a>
           <br />
-          Mobile: {profile.phone}
+          Mobile:{" "}
+          <a
+            href={profile.links.phone}
+            className="relative z-10 font-medium text-slate-300 underline decoration-cyan-300/30 underline-offset-4 transition hover:text-signal-cyan"
+          >
+            {profile.phone}
+          </a>
         </p>
       </div>
 
-      <div className="mt-6 rounded-md border border-white/10 bg-white/[0.02] p-5">
+      <div className="contact-links-panel soft-panel mt-6 rounded-md p-5">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
           Other links
         </p>
@@ -70,7 +82,8 @@ export default function ContactPage() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded border border-white/10 px-2.5 py-1 text-xs text-slate-400 transition hover:border-signal-cyan hover:text-signal-cyan"
+              className="contact-other-link relative z-10 inline-flex min-h-8 items-center justify-center rounded border border-cyan-300/25 bg-cyan-300/8 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:border-signal-cyan hover:bg-signal-cyan/10 hover:text-signal-cyan focus:outline-none focus:ring-2 focus:ring-signal-cyan/70 focus:ring-offset-2 focus:ring-offset-graphite-950"
+              aria-label={`Open ${item.label}`}
             >
               {item.label}
             </a>

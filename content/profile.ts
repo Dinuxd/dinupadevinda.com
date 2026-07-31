@@ -9,7 +9,7 @@ export const profile = {
   phone: "+94 75 463 4737",
   headline: "Machine Learning | AI/ML Developer | R&D Engineer",
   summary:
-    "Machine learning focused background in engineering, computer science, and mathematics. Experienced in building ML workflows from data preparation and model development to evaluation and deployment-focused implementation. Interested in intelligent, data-driven solutions for engineering and technology problems.",
+    "Machine learning focused engineer with a background in engineering, computer science, and mathematics. Experienced in data preparation, model development, evaluation, and model deployment. Interested in AI/ML work connected to real engineering and technology problems.",
   links: {
     github: "https://github.com/Dinuxd",
     linkedin: "https://www.linkedin.com/in/dinupadevinda/",
@@ -54,26 +54,27 @@ export const profile = {
 
 export const skills = [
   {
-    group: "Applied ML",
+    group: "ML and AI",
     items: [
       "TensorFlow/Keras",
       "PyTorch",
       "scikit-learn",
       "XGBoost",
-      "LightGBM",
       "Optuna",
-      "SpecAugment"
+      "RAG",
+      "Embeddings",
+      "Model evaluation"
     ]
   },
   {
-    group: "Embedded and deployment",
+    group: "Model deployment",
     items: [
       "Raspberry Pi",
       "TensorFlow Lite",
       "ONNX Runtime",
       "NCNN",
       "OpenCV",
-      "MediaPipe",
+      "log-mel features",
       "real-time inference"
     ]
   },
@@ -82,8 +83,9 @@ export const skills = [
     items: [
       "ESP32",
       "Arduino",
-      "MQTTS",
+      "MQTT/MQTTS",
       "A7680C LTE",
+      "ThingsBoard",
       "sensor integration",
       "Go APIs",
       "PostgreSQL"
@@ -99,7 +101,8 @@ export const skills = [
       "Java",
       "C/C++",
       "C#",
-      "SQL"
+      "SQL",
+      "GitHub Actions"
     ]
   }
 ];

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "ml-projects",
+    "question": "What ML projects has Dinupa done?",
+    "expected_sources": ["ai-portfolio-assistant", "vehicular-black-box", "road-sign-detection", "vehicle-horn-detection"],
+    "must_include": ["Road Sign", "Horn", "Vehicular"]
+  },
+  {
+    "id": "computer-vision",
+    "question": "Does Dinupa have computer vision experience?",
+    "expected_sources": ["road-sign-detection", "smart-fish-habitat", "vehicular-black-box"],
+    "must_include": ["computer vision", "Road Sign"]
+  },
+  {
+    "id": "chatbot-architecture",
+    "question": "How does this chatbot work?",
+    "expected_sources": ["portfolio-assistant"],
+    "must_include": ["Cloudflare Worker", "Gemini", "portfolio"]
+  },
+  {
+    "id": "unsupported-google",
+    "question": "Did Dinupa work at Google?",
+    "expected_sources": ["answering-rules", "experience"],
+    "must_not_include": ["worked at Google", "Google employee"]
+  },
+  {
+    "id": "education",
+    "question": "What is Dinupa's education background?",
+    "expected_sources": ["education", "bsc-eng-hons-electrical-and-electronics-engineering"],
+    "must_include": ["SLIIT", "University of Kelaniya"]
+  },
+  {
+    "id": "contact",
+    "question": "How can I contact Dinupa?",
+    "expected_sources": ["profile"],
+    "must_include": ["dwmddevinda@gmail.com", "LinkedIn", "GitHub"]
+  },
+  {
+    "id": "audio-ml",
+    "question": "What audio ML work is in the portfolio?",
+    "expected_sources": ["vehicle-horn-detection", "crash-detection"],
+    "must_include": ["horn", "audio"]
+  },
+  {
+    "id": "imu-work",
+    "question": "What IMU or sensor projects has Dinupa built?",
+    "expected_sources": ["lane-change-detection", "aggressive-driving", "crash-detection"],
+    "must_include": ["IMU", "sensor"]
+  },
+  {
+    "id": "edge-deployment",
+    "question": "Does Dinupa have edge deployment experience?",
+    "expected_sources": ["road-sign-detection", "vehicle-horn-detection", "vehicular-black-box"],
+    "must_include": ["Raspberry Pi"]
+  },
+  {
+    "id": "slt-experience",
+    "question": "What did Dinupa do at Sri Lanka Telecom?",
+    "expected_sources": ["research-and-development-engineering-intern"],
+    "must_include": ["ESP32", "A7680C", "MQTT"]
+  },
+  {
+    "id": "variosystems-experience",
+    "question": "What did Dinupa do at Variosystems?",
+    "expected_sources": ["research-and-development-inplant-trainee"],
+    "must_include": ["Automated Guided Vehicle", "PCB"]
+  },
+  {
+    "id": "certifications",
+    "question": "What AI or ML certifications does Dinupa have?",
+    "expected_sources": ["ai-ml-engineer-stage-2", "pytorch-bootcamp"],
+    "must_include": ["AI/ML Engineer", "PyTorch"]
+  },
+  {
+    "id": "backend",
+    "question": "What backend projects are listed?",
+    "expected_sources": ["brms-boarding-room-management-api", "servicelink-local-hiring-platform"],
+    "must_include": ["Spring Boot"]
+  },
+  {
+    "id": "fyp-production-claim",
+    "question": "Is the vehicular black box a production-ready safety system?",
+    "expected_sources": ["vehicular-black-box", "answering-rules"],
+    "must_include": ["prototype"],
+    "must_not_include": ["production-ready safety system"]
+  },
+  {
+    "id": "python-skills",
+    "question": "Where does Dinupa use Python?",
+    "expected_sources": ["road-sign-detection", "vehicle-horn-detection", "lane-change-detection"],
+    "must_include": ["Python"]
+  },
+  {
+    "id": "rag-skill-map",
+    "question": "What AI integration skills does the portfolio assistant show?",
+    "expected_sources": ["portfolio-assistant"],
+    "must_include": ["RAG", "embeddings", "evaluation"]
+  },
+  {
+    "id": "fish-vision",
+    "question": "Tell me about the smart fish habitat project.",
+    "expected_sources": ["smart-fish-habitat"],
+    "must_include": ["Raspberry Pi", "YOLOv11", "TensorFlow Lite"]
+  },
+  {
+    "id": "road-sign-stack",
+    "question": "What stack was used for road sign detection?",
+    "expected_sources": ["road-sign-detection"],
+    "must_include": ["YOLO", "ONNX", "NCNN"]
+  },
+  {
+    "id": "business-background",
+    "question": "Does Dinupa have any business or management background?",
+    "expected_sources": ["cima-certificate-in-business-accounting"],
+    "must_include": ["CIMA"]
+  },
+  {
+    "id": "unsupported-salary",
+    "question": "What is Dinupa's expected salary?",
+    "expected_sources": ["answering-rules"],
+    "must_not_include": ["salary is", "expects"]
+  }
+]

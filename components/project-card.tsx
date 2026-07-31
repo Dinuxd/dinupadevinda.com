@@ -6,16 +6,17 @@ import { MetricCard } from "./metric-card";
 
 export function ProjectCard({ project, compact = false }: { project: Project; compact?: boolean }) {
   const showMedia = project.media && project.media.type === "image";
+  const wideClass = project.layout === "wide" ? "lg:col-span-2" : "";
   const articleClass = compact
-    ? "flex flex-col rounded-md border border-white/10 bg-white/[0.035] p-4 shadow-panel"
-    : "flex h-full flex-col rounded-md border border-white/10 bg-white/[0.035] p-4 shadow-panel";
+    ? "flex flex-col glass rounded-2xl p-5"
+    : `flex h-full flex-col glass rounded-2xl p-5 ${wideClass}`;
 
   return (
     <article className={articleClass}>
       {!compact && showMedia ? <MediaFrame media={project.media} priority={project.priority <= 2} /> : null}
       {!compact && project.media?.type === "video" ? (
         <video
-          className="aspect-[16/10] w-full rounded-md border border-white/10 bg-graphite-900 object-cover"
+          className="media-depth aspect-[16/10] w-full rounded-xl border border-cyan-300/12 bg-graphite-900/60 object-cover"
           controls
           playsInline
           preload="none"
@@ -37,10 +38,21 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
         <p className="mt-3 text-sm leading-6 text-slate-300">{project.summary}</p>
       </div>
 
+      {!compact && project.detailPoints ? (
+        <div className="mt-5 grid gap-3 md:grid-cols-2">
+          {project.detailPoints.map((point) => (
+            <div key={`${project.slug}-${point.label}`} className="soft-panel rounded-xl p-4">
+              <h4 className="text-sm font-semibold text-signal-cyan">{point.label}</h4>
+              <p className="mt-2 text-sm leading-6 text-slate-400">{point.text}</p>
+            </div>
+          ))}
+        </div>
+      ) : null}
+
       {compact ? (
         <div className="mt-4 grid gap-2 sm:grid-cols-3">
           {project.metrics.slice(0, 3).map((metric) => (
-            <div key={`${project.slug}-${metric.label}`} className="rounded border border-white/10 bg-white/[0.035] px-3 py-2">
+            <div key={`${project.slug}-${metric.label}`} className="soft-panel rounded-lg px-3 py-2">
               <div className="text-[11px] font-medium uppercase tracking-[0.12em] text-signal-cyan">
                 {metric.label}
               </div>
@@ -60,7 +72,7 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
         {project.domains.map((domain) => (
           <span
             key={`${project.slug}-${domain}`}
-            className="rounded border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs font-medium text-slate-300"
+            className="rounded-lg border border-cyan-300/15 bg-cyan-300/10 px-2.5 py-1 text-xs font-medium text-cyan-200"
           >
             {domain}
           </span>

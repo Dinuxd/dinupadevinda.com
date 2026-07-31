@@ -1,12 +1,12 @@
 {
-  "updated": "2026-07-08",
+  "updated": "2026-07-28",
   "sourceSummary": "Portfolio site, CV/LinkedIn information provided by Dinupa Devinda, public GitHub repositories, and public LinkedIn project links.",
   "profile": {
     "name": "Dinupa Devinda",
     "location": "Colombo, Sri Lanka",
     "role": "Machine Learning Focused Engineer",
     "headline": "Machine Learning | AI/ML Developer | R&D Engineer",
-    "summary": "Machine learning focused background in engineering, computer science, and mathematics. Experienced in building ML workflows from data preparation and model development to evaluation and deployment-focused implementation. Interested in intelligent, data-driven solutions for engineering and technology problems.",
+    "summary": "Machine learning focused engineer with a background in engineering, computer science, and mathematics. Experienced in data preparation, model development, evaluation, and model deployment. Interested in AI/ML work connected to real engineering and technology problems.",
     "contact": {
       "email": "dwmddevinda@gmail.com",
       "linkedin": "https://www.linkedin.com/in/dinupadevinda/",
@@ -16,11 +16,12 @@
     }
   },
   "strengths": [
-    "Machine learning workflow development, model evaluation, and deployment experiments",
+    "Machine learning model development, evaluation, and deployment experiments",
     "Computer vision, audio classification, IMU/sensor data, and applied ML projects",
     "Engineering systems involving embedded devices, sensors, telemetry, dashboards, and APIs",
     "Python, TensorFlow/Keras, PyTorch, scikit-learn, XGBoost, OpenCV, TFLite, ONNX, React, Spring Boot, Go, C/C++, Java, and SQL",
-    "Basic LLM application integration through a portfolio chatbot using Gemini, Cloudflare Workers, CORS, secret handling, and context-grounded prompting"
+    "LLM application integration through a portfolio chatbot using Gemini, Cloudflare Workers, CORS, secret handling, and source-based prompting",
+    "RAG implementation covering chunking, Gemini embeddings, Cloudflare Vectorize, keyword retrieval, reciprocal-rank fusion, source validation, and evaluation"
   ],
   "education": [
     {
@@ -76,6 +77,16 @@
     }
   ],
   "projects": [
+    {
+      "title": "AI Portfolio Assistant with RAG and Vector Search",
+      "type": "Portfolio chatbot and retrieval system",
+      "summary": "Portfolio chatbot built with a Cloudflare Worker, Gemini, Cloudflare Vectorize, keyword retrieval, reciprocal-rank fusion, and clickable portfolio sources. The project also includes a local Python and Chroma RAG setup for learning and offline experiments.",
+      "areas": ["LLM integration", "RAG", "Embeddings", "Vector search", "Evaluation", "Serverless backend", "AI systems"],
+      "stack": ["Gemini API", "Cloudflare Workers", "Cloudflare Vectorize", "Python", "Chroma", "sentence-transformers", "Next.js", "TypeScript", "Evaluation harness"],
+      "metrics": ["Hybrid vector and keyword retrieval", "Structured source validation", "20-question retrieval evaluation set"],
+      "link": "https://github.com/Dinuxd/dinupadevinda.com",
+      "limitations": "Personal portfolio chatbot used to practice retrieval, evaluation, and serverless AI integration."
+    },
     {
       "title": "Vehicular Black Box: Vehicle Violation Detector",
       "type": "Final-year integrated ML and embedded system",
@@ -164,28 +175,41 @@
   ],
   "portfolioAssistant": {
     "name": "Portfolio chatbot",
-    "status": "Implemented for this portfolio",
-    "shortAnswer": "This chatbot is a simple RAG-style portfolio assistant. It is better described as single-file context RAG or context-injection RAG, not vector database RAG.",
+    "status": "Portfolio chatbot using RAG and source links",
+    "shortAnswer": "This portfolio assistant uses a Cloudflare Worker, Gemini Embedding 2, Cloudflare Vectorize, keyword retrieval, reciprocal-rank fusion, and validated source links. The repository also includes a local Python and Chroma RAG lab with evaluation tests.",
     "architecture": [
       "The portfolio remains a static Next.js export suitable for GitHub Pages.",
       "A floating React chat widget sends visitor questions to a Cloudflare Worker /chat endpoint.",
       "The Cloudflare Worker loads the public knowledge file public/portfolio-chat.json from the portfolio site.",
-      "The Worker sends the portfolio context and visitor question to Gemini.",
+      "The Worker builds typed chunks from public/portfolio-chat.json and embeds documents with Gemini Embedding 2 task formatting.",
+      "For each question, the Worker combines Vectorize semantic search with local keyword ranking through reciprocal-rank fusion.",
+      "Only the highest-ranked evidence chunks are sent to Gemini.",
+      "Gemini returns structured JSON containing an answer, a grounded flag, and cited source IDs; the Worker validates those IDs before returning source links.",
       "The Gemini API key is stored only as a Cloudflare Worker secret, not in browser code.",
-      "The Worker validates message length, handles CORS, and returns concise answers with source labels."
+      "The Worker applies request-size limits, CORS, rate limiting, prompt-injection checks, secure admin-token comparison, and structured logs.",
+      "A local Python RAG workflow covers chunking, embeddings, Chroma vector search, source retrieval, and evaluation tests.",
+      "A secured /admin/reindex endpoint rebuilds the Vectorize namespace when the portfolio knowledge changes."
     ],
     "knowledgeFile": "public/portfolio-chat.json",
     "localContextUrl": "http://localhost:3000/portfolio-chat.json",
     "productionContextUrl": "https://www.dinupadevinda.com/portfolio-chat.json",
-    "technologies": ["Next.js", "React", "Cloudflare Workers", "Gemini API", "TypeScript", "CORS", "serverless backend"],
+    "technologies": ["Next.js", "React", "Cloudflare Workers", "Gemini API", "TypeScript", "Python", "Chroma", "sentence-transformers", "CORS", "serverless backend"],
     "whatItDemonstrates": [
       "LLM API integration",
       "Static frontend plus serverless backend architecture",
       "Secure API key handling through Worker secrets",
-      "Prompt grounding using a compact portfolio knowledge file",
-      "Basic RAG-style thinking without embeddings or a vector database"
+      "Hybrid retrieval using Gemini embeddings, Vectorize, lexical ranking, and reciprocal-rank fusion",
+      "Local embedding-based RAG with Chroma",
+      "Structured outputs with validated source IDs",
+      "Evaluation harness for retrieval coverage, supported answers, and unsupported-claim refusal",
+      "API security through rate limiting, request caps, CORS, secret handling, and prompt-injection checks"
     ],
-    "honestyNote": "It should not be described as an advanced enterprise RAG system, a vector database system, or proof of production LLM platform experience. It is a practical portfolio assistant showing basic RAG-style implementation and LLM integration."
+    "skillsVisualized": {
+      "implementedNow": ["Prompting", "Gemini structured outputs", "Gemini Embedding 2", "Cloudflare Vectorize", "lexical retrieval", "reciprocal-rank fusion", "source validation", "Cloudflare Worker backend", "CORS", "rate limiting", "prompt-injection checks", "secret handling", "structured observability"],
+      "implementedLocally": ["Chunking", "embeddings", "Chroma vector database", "semantic retrieval", "source-linked answers", "evaluation harness"],
+      "deploymentNext": ["Deploy the updated Worker", "run the secured Vectorize reindex", "verify hybrid mode through /health and /chat", "run live evaluation questions"],
+      "futureSeparateLabs": ["Agent loops", "tool calling", "MCP", "LangChain", "LangGraph", "MLOps", "Docker", "local Kubernetes", "fine-tuning", "LoRA", "distillation"]
+    }
   },
   "certifications": [
     {
@@ -210,6 +234,86 @@
       "credentialId": "87518a7fb87d470c8264c21bd2739b3d",
       "credentialUrl": "https://courses.opencv.org/certificates/87518a7fb87d470c8264c21bd2739b3d",
       "skills": ["Multi-Layer Perceptrons", "Convolutional Neural Networks", "Feature extraction", "Transfer learning", "YOLO"]
+    },
+    {
+      "title": "Hands-On AI: Introduction to Retrieval-Augmented Generation (RAG)",
+      "issuer": "LinkedIn Learning",
+      "issued": "Jul 2026",
+      "credentialId": "25f3ac217468d44b9a662f3c5ef50482541b52ad37b11edb782e6c40bc6d67ae",
+      "credentialUrl": "https://www.dinupadevinda.com/data/certifications/linkedin-rag-introduction.pdf",
+      "skills": ["Retrieval-Augmented Generation (RAG)", "Artificial Intelligence"]
+    },
+    {
+      "title": "Machine Learning with Python Professional Certificate",
+      "issuer": "LinkedIn Learning / Anaconda",
+      "issued": "Jul 2026",
+      "credentialId": "8058253f6edafc5a5b9498ff4761ee85ce864b2e914163e0cf4e7cbe7adbce4a",
+      "credentialUrl": "https://www.dinupadevinda.com/data/certifications/linkedin-machine-learning-python-professional-certificate-anaconda.pdf",
+      "skills": ["Machine Learning", "Python", "Artificial Intelligence"]
+    },
+    {
+      "title": "Machine Learning with Python: Foundations",
+      "issuer": "LinkedIn Learning",
+      "issued": "Jul 2026",
+      "credentialId": "a2c58a0f8d4c41085351db3316a32493bbf9e2f54e101868f44ee3e6e4ec5e79",
+      "credentialUrl": "https://www.dinupadevinda.com/data/certifications/linkedin-machine-learning-python-foundations.pdf",
+      "skills": ["Machine Learning", "Python", "Artificial Intelligence"]
+    },
+    {
+      "title": "Artificial Intelligence Foundations: Machine Learning",
+      "issuer": "LinkedIn Learning",
+      "issued": "Jul 2026",
+      "credentialId": "7a6301c9573fac7a0b58634a5a251532b0a098083703af58523e407d5b61818f",
+      "credentialUrl": "https://www.dinupadevinda.com/data/certifications/linkedin-ai-foundations-machine-learning.pdf",
+      "skills": ["Machine Learning", "Artificial Intelligence", "AI foundations"]
+    },
+    {
+      "title": "Machine Learning with Python: Decision Trees",
+      "issuer": "LinkedIn Learning",
+      "issued": "Jul 2026",
+      "credentialId": "3c2248b2da316fb4f895496a8c1ffad3c41474bc88087aa5963740ab43a8e578",
+      "credentialUrl": "https://www.dinupadevinda.com/data/certifications/linkedin-machine-learning-python-decision-trees.pdf",
+      "skills": ["Machine Learning", "Python", "Decision Trees"]
+    },
+    {
+      "title": "Machine Learning with Python: Logistic Regression",
+      "issuer": "LinkedIn Learning",
+      "issued": "Jul 2026",
+      "credentialId": "bfe2be7938e8872c8a878c24a0a87d75741bcfbf9aa8f9a4c7b6e8ef9ba14701",
+      "credentialUrl": "https://www.dinupadevinda.com/data/certifications/linkedin-machine-learning-python-logistic-regression.pdf",
+      "skills": ["Machine Learning", "Python", "Logistic Regression"]
+    },
+    {
+      "title": "Machine Learning with Python: k-Means Clustering",
+      "issuer": "LinkedIn Learning",
+      "issued": "Jul 2026",
+      "credentialId": "067b178e7b34319b267ba95716df450fe57a2ad9bab3b04804088703de9cebf9",
+      "credentialUrl": "https://www.dinupadevinda.com/data/certifications/linkedin-machine-learning-python-k-means-clustering.pdf",
+      "skills": ["k-means clustering", "Machine Learning", "Python"]
+    },
+    {
+      "title": "Complete Guide to Generative AI for Data Analysis and Data Science",
+      "issuer": "LinkedIn Learning",
+      "issued": "Jul 2026",
+      "credentialId": "1d49171ea7ac5196a9df4232b40554c96f48d04d672cd895e53d67049179d25f",
+      "credentialUrl": "https://www.dinupadevinda.com/data/certifications/linkedin-generative-ai-data-analysis-data-science.pdf",
+      "skills": ["Generative AI", "AI for Data Analysis", "AI for Data Science"]
+    },
+    {
+      "title": "Processing Text with Python Essential Training",
+      "issuer": "LinkedIn Learning",
+      "issued": "Jul 2026",
+      "credentialId": "de504097df5b0770b84caf503e2f3464076f0b74538ad7ad80ce5ce77bdd180d",
+      "credentialUrl": "https://www.dinupadevinda.com/data/certifications/linkedin-processing-text-python-essential-training.pdf",
+      "skills": ["Unstructured Data", "Python", "Text Mining"]
+    },
+    {
+      "title": "Processing Text with Python Essential Training - NASBA CPE",
+      "issuer": "LinkedIn Learning / NASBA",
+      "issued": "Jul 2026",
+      "credentialId": "9cf4ab50e85aa2b8c67f261f0593b9740d334b83f8d23306b9acc3e10163d2d0",
+      "credentialUrl": "https://www.dinupadevinda.com/data/certifications/linkedin-processing-text-python-essential-training-nasba.pdf",
+      "skills": ["Information Technology", "Unstructured Data", "Python", "Text Mining", "1.80 CPE credits"]
     },
     {
       "title": "Python for Beginners",
@@ -243,6 +347,12 @@
     }
   ],
   "honorsAndAwards": [
+    {
+      "title": "MoraXtreme 10.0",
+      "issuer": "IEEE Student Branch of the University of Moratuwa",
+      "issued": "Oct 2025",
+      "summary": "Successfully participated in MoraXtreme 10.0, Sri Lanka's 12-hour algorithmic hackathon organized by the University of Moratuwa in collaboration with the IEEE Computer Society Student Branch Chapter."
+    },
     {
       "title": "J'puraXtreme 2.0",
       "issuer": "University of Sri Jayewardenepura",
@@ -295,7 +405,8 @@
     "Questions about this chatbot, RAG, Gemini, Cloudflare Workers, or how the assistant works should be answered from the portfolioAssistant section.",
     "Use only the listed education periods; do not add graduation-status claims that are not in this context.",
     "Do not claim production deployment, safety certification, employment, awards, or metrics that are not listed.",
-    "Describe the chatbot as simple RAG-style/context-injection RAG, not advanced vector database RAG.",
-    "For recruiter questions, be concise and point to GitHub, LinkedIn, CV, or project pages when useful."
+    "Do not infer salary expectations, availability dates, visa status, private contact details, or other personal facts that are not listed.",
+    "Describe the chatbot status accurately: the Worker code implements hybrid Vectorize and keyword retrieval, while deployment and index status must be confirmed through the Worker health and chat responses.",
+    "For career-related questions, be concise and point to GitHub, LinkedIn, CV, or project pages when useful."
   ]
 }

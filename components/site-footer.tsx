@@ -4,7 +4,7 @@ import { profile } from "@/content/profile";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-graphite-950">
+    <footer className="section-glow border-t border-cyan-300/10 bg-graphite-950/82 backdrop-blur-xl">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_auto] lg:px-8">
         <div>
           <div className="text-sm font-semibold uppercase tracking-[0.2em] text-white">
@@ -16,11 +16,11 @@ export function SiteFooter() {
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <Link className="text-sm font-semibold text-slate-300 hover:text-signal-cyan" href="/projects/">
+          <Link className="text-sm font-semibold text-slate-300 transition-colors duration-300 hover:text-cyan-200" href="/projects/">
             Projects
           </Link>
           <a
-            className="inline-flex items-center gap-1 text-sm font-semibold text-slate-300 hover:text-signal-cyan"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-slate-300 transition-colors duration-300 hover:text-cyan-200"
             href={profile.links.github}
             target="_blank"
             rel="noopener noreferrer"
@@ -29,7 +29,7 @@ export function SiteFooter() {
             GitHub
           </a>
           <a
-            className="inline-flex items-center gap-1 text-sm font-semibold text-slate-300 hover:text-signal-cyan"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-slate-300 transition-colors duration-300 hover:text-cyan-200"
             href={profile.links.linkedin}
             target="_blank"
             rel="noopener noreferrer"
@@ -38,7 +38,7 @@ export function SiteFooter() {
             LinkedIn
           </a>
           <a
-            className="inline-flex items-center gap-1 text-sm font-semibold text-slate-300 hover:text-signal-cyan"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-slate-300 transition-colors duration-300 hover:text-cyan-200"
             href={profile.links.emailCompose}
             target="_blank"
             rel="noopener noreferrer"
