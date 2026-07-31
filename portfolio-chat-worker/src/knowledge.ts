@@ -56,7 +56,7 @@ export function buildRagChunks(context: string): RagChunk[] {
   for (const item of data.education || []) {
     const title = stringValue(item.degree) || "Education";
     chunks.push({
-      id: `education-${slugify(title)}`,
+      id: makeChunkId("education", title),
       title,
       source: title,
       category: "Education",
@@ -78,7 +78,7 @@ export function buildRagChunks(context: string): RagChunk[] {
     const organization = stringValue(item.organization);
     const title = organization ? `${role} at ${organization}` : role;
     chunks.push({
-      id: `experience-${slugify(title)}`,
+      id: makeChunkId("experience", title),
       title,
       source: title,
       category: "Experience",
@@ -100,7 +100,7 @@ export function buildRagChunks(context: string): RagChunk[] {
   for (const item of data.projects || []) {
     const title = stringValue(item.title) || "Project";
     chunks.push({
-      id: `project-${slugify(title)}`,
+      id: makeChunkId("project", title),
       title,
       source: title,
       category: "Projects",
@@ -121,7 +121,7 @@ export function buildRagChunks(context: string): RagChunk[] {
   for (const item of data.certifications || []) {
     const title = stringValue(item.title) || "Certification";
     chunks.push({
-      id: `certification-${slugify(title)}`,
+      id: makeChunkId("certification", title),
       title,
       source: title,
       category: "Certifications",
@@ -181,7 +181,7 @@ export function buildRagChunks(context: string): RagChunk[] {
   for (const item of data.honorsAndAwards || []) {
     const title = stringValue(item.title) || "Honor or award";
     chunks.push({
-      id: `honor-${slugify(title)}`,
+      id: makeChunkId("honor", title),
       title,
       source: title,
       category: "Honors",
@@ -291,7 +291,21 @@ function slugify(value: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")
-    .slice(0, 80);
+    .slice(0, 42);
+}
+
+function makeChunkId(prefix: string, title: string): string {
+  const slug = slugify(title) || "item";
+  return `${prefix}-${slug}-${shortHash(title)}`;
+}
+
+function shortHash(value: string): string {
+  let hash = 5381;
+  for (let index = 0; index < value.length; index += 1) {
+    hash = (hash * 33) ^ value.charCodeAt(index);
+  }
+
+  return (hash >>> 0).toString(36).slice(0, 6);
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
