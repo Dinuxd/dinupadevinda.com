@@ -140,10 +140,10 @@ export function buildRagChunks(context: string): RagChunk[] {
   if (data.portfolioAssistant) {
     chunks.push({
       id: "portfolio-assistant",
-      title: "AI Portfolio Assistant architecture",
+      title: "AI Portfolio Assistant with RAG and Vector Search",
       source: "AI Portfolio Assistant",
       category: "AI Systems",
-      url: "/ai-systems-lab/",
+      url: "/projects/",
       text: recordToText(data.portfolioAssistant, [
         "name",
         "status",
@@ -161,10 +161,10 @@ export function buildRagChunks(context: string): RagChunk[] {
   if (data.aiSystemsLab) {
     chunks.push({
       id: "ai-systems-lab",
-      title: "AI Systems Lab",
-      source: "AI Systems Lab",
+      title: "Local RAG learning notes",
+      source: "Portfolio RAG implementation",
       category: "AI Systems",
-      url: "/ai-systems-lab/",
+      url: "/projects/",
       text: recordToText(data.aiSystemsLab, [
         "status",
         "path",
@@ -196,7 +196,7 @@ export function buildRagChunks(context: string): RagChunk[] {
       title: "Answering rules and claim limits",
       source: "Portfolio claim limits",
       category: "AI Systems",
-      url: "/ai-systems-lab/",
+      url: "/projects/",
       text: `Rules:\n${formatList(data.answeringRules)}`
     });
   }

@@ -303,7 +303,7 @@ export function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex max-w-[calc(100vw-2rem)] flex-col items-end gap-3 sm:bottom-6 sm:right-6">
+    <div className="portfolio-chat-root flex max-w-[calc(100vw-2rem)] flex-col items-end gap-3">
       {isOpen ? (
         <section
           id="portfolio-chat-panel"

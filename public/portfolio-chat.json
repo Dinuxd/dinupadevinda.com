@@ -207,7 +207,7 @@
     "skillsVisualized": {
       "implementedNow": ["Prompting", "Gemini structured outputs", "Gemini Embedding 2", "Cloudflare Vectorize", "lexical retrieval", "reciprocal-rank fusion", "source validation", "Cloudflare Worker backend", "CORS", "rate limiting", "prompt-injection checks", "secret handling", "structured observability"],
       "implementedLocally": ["Chunking", "embeddings", "Chroma vector database", "semantic retrieval", "source-linked answers", "evaluation harness"],
-      "deploymentNext": ["Deploy the updated Worker", "run the secured Vectorize reindex", "verify hybrid mode through /health and /chat", "run live evaluation questions"],
+      "liveMaintenance": ["Worker deployment through Wrangler", "secured Vectorize reindex after portfolio content changes", "health checks through /health", "live test questions through /chat"],
       "futureSeparateLabs": ["Agent loops", "tool calling", "MCP", "LangChain", "LangGraph", "MLOps", "Docker", "local Kubernetes", "fine-tuning", "LoRA", "distillation"]
     }
   },
