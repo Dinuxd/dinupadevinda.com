@@ -54,7 +54,7 @@ const projectEntries: Project[] = [
     role: "RAG and vector search",
     status: "Portfolio chatbot",
     summary:
-      "Portfolio chatbot that answers questions using Gemini, Cloudflare Workers, Vectorize, keyword retrieval, and clickable source links. A local Python and Chroma workflow is included for learning and testing RAG concepts.",
+      "Portfolio chatbot that answers questions using Gemini, Cloudflare Workers, Vectorize, keyword retrieval, and clickable source links. A Dockerized local Python and Chroma workflow is included for learning and testing RAG concepts.",
     domains: ["AI Systems", "Backend", "Full Stack", "Software"],
     stack: [
       "Gemini API",
@@ -63,6 +63,7 @@ const projectEntries: Project[] = [
       "Python",
       "Chroma",
       "sentence-transformers",
+      "Docker",
       "Next.js",
       "TypeScript",
       "Evaluation harness"
@@ -82,6 +83,11 @@ const projectEntries: Project[] = [
         label: "Tests",
         value: "20 eval questions",
         detail: "Checks retrieval and unsupported claims."
+      },
+      {
+        label: "Local lab",
+        value: "Dockerized RAG",
+        detail: "Reproducible Python, Chroma, and evaluation workflow."
       }
     ],
     repoUrl: "https://github.com/Dinuxd/dinupadevinda.com",

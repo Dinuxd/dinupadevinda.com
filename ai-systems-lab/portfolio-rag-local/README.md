@@ -51,6 +51,60 @@ GEMINI_API_KEY=your_key_here
 
 The API key is only for local learning. Do not commit `.env`.
 
+## Docker Setup
+
+Docker is optional. It is included to make the local RAG lab reproducible without manually managing Python packages on each machine.
+
+The live portfolio chatbot does not run in Docker. Production uses GitHub Pages, Cloudflare Workers, Cloudflare Vectorize, and Gemini. Docker is for local chunking, embeddings, Chroma indexing, retrieval tests, and evaluation.
+
+Create `.env` if you want LLM answers:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Then add your Gemini key. Retrieval-only commands work without a key.
+
+Build the image:
+
+```powershell
+docker compose build
+```
+
+Run the full local indexing pipeline:
+
+```powershell
+docker compose run --rm rag-lab python chunk.py
+docker compose run --rm rag-lab python embed.py
+docker compose run --rm rag-lab python index.py
+```
+
+Ask a retrieval-only question:
+
+```powershell
+docker compose run --rm rag-lab python ask.py "What ML projects has Dinupa done?" --retrieval-only
+```
+
+Ask with Gemini generation:
+
+```powershell
+docker compose run --rm rag-lab python ask.py "How does this chatbot work?"
+```
+
+Run evaluation:
+
+```powershell
+docker compose run --rm rag-lab python eval/run_eval.py
+docker compose run --rm rag-lab python eval/run_eval.py --with-llm
+```
+
+The Compose file keeps generated data outside the image:
+
+- `artifacts/` stores chunks and embeddings.
+- `chroma_db/` stores the local Chroma vector database.
+- `eval/report.md` stores the evaluation report.
+- `model-cache` stores downloaded embedding model files so later runs are faster.
+
 ## Run The RAG Pipeline
 
 1. Split the portfolio knowledge into chunks:

@@ -1,0 +1,19 @@
+services:
+  rag-lab:
+    build:
+      context: .
+    image: dinupa-portfolio-rag-lab:local
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.5-flash}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
+      HF_HOME: /cache/huggingface
+    volumes:
+      - ./data:/app/data:ro
+      - ./artifacts:/app/artifacts
+      - ./chroma_db:/app/chroma_db
+      - ./eval:/app/eval
+      - model-cache:/cache
+
+volumes:
+  model-cache:

@@ -66,11 +66,11 @@ Dinupa built C/C++ automation and embedded-control projects in an electronics ma
 
 Type: Portfolio AI assistant and retrieval system
 
-Summary: Portfolio chatbot using a Cloudflare Worker, Gemini embeddings, Cloudflare Vectorize, keyword retrieval, reciprocal-rank fusion, structured grounded answers, and validated source links. This folder provides a separate Python and Chroma implementation for learning and offline comparison.
+Summary: Portfolio chatbot using a Cloudflare Worker, Gemini embeddings, Cloudflare Vectorize, keyword retrieval, reciprocal-rank fusion, structured grounded answers, and validated source links. This folder provides a separate Dockerized Python and Chroma implementation for learning, retrieval testing, and offline comparison.
 
 Areas: LLM integration, RAG, embeddings, vector search, evaluation, serverless backend, AI systems.
 
-Stack: Gemini API, Cloudflare Workers, Cloudflare Vectorize, Python, Chroma, sentence-transformers, Next.js, TypeScript, evaluation harness.
+Stack: Gemini API, Cloudflare Workers, Cloudflare Vectorize, Python, Chroma, sentence-transformers, Docker, Next.js, TypeScript, evaluation harness.
 
 What it demonstrates: Prompting, hybrid retrieval, embeddings, vector search, rank fusion, structured outputs, source validation, evaluation, CORS, rate limiting, prompt-injection checks, and secure secret handling.
 
@@ -274,7 +274,7 @@ Issued: Mar 2023
 
 ## Portfolio Assistant
 
-The portfolio assistant is a portfolio-scale hybrid RAG chatbot. Its Worker combines Gemini question embeddings and Cloudflare Vectorize with keyword retrieval, then fuses both rankings before asking Gemini to answer from the selected evidence. This folder contains the local Python and Chroma version used for learning and comparison.
+The portfolio assistant is a portfolio-scale hybrid RAG chatbot. Its Worker combines Gemini question embeddings and Cloudflare Vectorize with keyword retrieval, then fuses both rankings before asking Gemini to answer from the selected evidence. This folder contains the Dockerized local Python and Chroma version used for learning, reproducible setup, and comparison.
 
 Architecture:
 
@@ -289,7 +289,7 @@ Architecture:
 - The Gemini API key is stored only as a Cloudflare Worker secret, not in browser code.
 - The Worker applies request limits, CORS, rate limiting, prompt-injection checks, secure reindex authentication, and structured logs.
 
-The local AI Systems Lab upgrades this learning path by adding chunking, local embeddings, Chroma vector search, retrieved sources, and an evaluation harness.
+The local AI Systems Lab upgrades this learning path by adding Docker, chunking, local embeddings, Chroma vector search, retrieved sources, and an evaluation harness.
 
 Skills shown through the assistant:
 
@@ -301,10 +301,11 @@ Skills shown through the assistant:
 - Python RAG learning code.
 - Embeddings with sentence-transformers.
 - Chroma vector database retrieval.
+- Docker setup for reproducible local runs.
 - Evaluation harness for reliability.
 - Cloudflare Vectorize as the public vector database.
 
-Future extension labs can cover agent loops, tool calling, MCP, LangChain, LangGraph, MLOps, Docker, local Kubernetes, fine-tuning, LoRA, and distillation. These should be built as separate small demos instead of being claimed as current chatbot features.
+Future extension labs can cover agent loops, tool calling, MCP, LangChain, LangGraph, MLOps, local Kubernetes, fine-tuning, LoRA, and distillation. These should be built as separate small demos instead of being claimed as current chatbot features.
 
 ## Answering Rules
 

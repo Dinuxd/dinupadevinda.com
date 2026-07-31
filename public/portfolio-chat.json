@@ -80,9 +80,9 @@
     {
       "title": "AI Portfolio Assistant with RAG and Vector Search",
       "type": "Portfolio chatbot and retrieval system",
-      "summary": "Portfolio chatbot built with a Cloudflare Worker, Gemini, Cloudflare Vectorize, keyword retrieval, reciprocal-rank fusion, and clickable portfolio sources. The project also includes a local Python and Chroma RAG setup for learning and offline experiments.",
+      "summary": "Portfolio chatbot built with a Cloudflare Worker, Gemini, Cloudflare Vectorize, keyword retrieval, reciprocal-rank fusion, and clickable portfolio sources. The project also includes a Dockerized local Python and Chroma RAG setup for learning, retrieval testing, and offline experiments.",
       "areas": ["LLM integration", "RAG", "Embeddings", "Vector search", "Evaluation", "Serverless backend", "AI systems"],
-      "stack": ["Gemini API", "Cloudflare Workers", "Cloudflare Vectorize", "Python", "Chroma", "sentence-transformers", "Next.js", "TypeScript", "Evaluation harness"],
+      "stack": ["Gemini API", "Cloudflare Workers", "Cloudflare Vectorize", "Python", "Chroma", "sentence-transformers", "Docker", "Next.js", "TypeScript", "Evaluation harness"],
       "metrics": ["Hybrid vector and keyword retrieval", "Structured source validation", "20-question retrieval evaluation set"],
       "link": "https://github.com/Dinuxd/dinupadevinda.com",
       "limitations": "Personal portfolio chatbot used to practice retrieval, evaluation, and serverless AI integration."
@@ -176,7 +176,7 @@
   "portfolioAssistant": {
     "name": "Portfolio chatbot",
     "status": "Portfolio chatbot using RAG and source links",
-    "shortAnswer": "This portfolio assistant uses a Cloudflare Worker, Gemini Embedding 2, Cloudflare Vectorize, keyword retrieval, reciprocal-rank fusion, and validated source links. The repository also includes a local Python and Chroma RAG lab with evaluation tests.",
+    "shortAnswer": "This portfolio assistant uses a Cloudflare Worker, Gemini Embedding 2, Cloudflare Vectorize, keyword retrieval, reciprocal-rank fusion, and validated source links. The repository also includes a Dockerized local Python and Chroma RAG lab with evaluation tests.",
     "architecture": [
       "The portfolio remains a static Next.js export suitable for GitHub Pages.",
       "A floating React chat widget sends visitor questions to a Cloudflare Worker /chat endpoint.",
@@ -187,28 +187,28 @@
       "Gemini returns structured JSON containing an answer, a grounded flag, and cited source IDs; the Worker validates those IDs before returning source links.",
       "The Gemini API key is stored only as a Cloudflare Worker secret, not in browser code.",
       "The Worker applies request-size limits, CORS, rate limiting, prompt-injection checks, secure admin-token comparison, and structured logs.",
-      "A local Python RAG workflow covers chunking, embeddings, Chroma vector search, source retrieval, and evaluation tests.",
+      "A Dockerized local Python RAG workflow covers chunking, embeddings, Chroma vector search, source retrieval, and evaluation tests.",
       "A secured /admin/reindex endpoint rebuilds the Vectorize namespace when the portfolio knowledge changes."
     ],
     "knowledgeFile": "public/portfolio-chat.json",
     "localContextUrl": "http://localhost:3000/portfolio-chat.json",
     "productionContextUrl": "https://www.dinupadevinda.com/portfolio-chat.json",
-    "technologies": ["Next.js", "React", "Cloudflare Workers", "Gemini API", "TypeScript", "Python", "Chroma", "sentence-transformers", "CORS", "serverless backend"],
+    "technologies": ["Next.js", "React", "Cloudflare Workers", "Gemini API", "TypeScript", "Python", "Chroma", "sentence-transformers", "Docker", "CORS", "serverless backend"],
     "whatItDemonstrates": [
       "LLM API integration",
       "Static frontend plus serverless backend architecture",
       "Secure API key handling through Worker secrets",
       "Hybrid retrieval using Gemini embeddings, Vectorize, lexical ranking, and reciprocal-rank fusion",
-      "Local embedding-based RAG with Chroma",
+      "Dockerized local embedding-based RAG with Chroma",
       "Structured outputs with validated source IDs",
       "Evaluation harness for retrieval coverage, supported answers, and unsupported-claim refusal",
       "API security through rate limiting, request caps, CORS, secret handling, and prompt-injection checks"
     ],
     "skillsVisualized": {
       "implementedNow": ["Prompting", "Gemini structured outputs", "Gemini Embedding 2", "Cloudflare Vectorize", "lexical retrieval", "reciprocal-rank fusion", "source validation", "Cloudflare Worker backend", "CORS", "rate limiting", "prompt-injection checks", "secret handling", "structured observability"],
-      "implementedLocally": ["Chunking", "embeddings", "Chroma vector database", "semantic retrieval", "source-linked answers", "evaluation harness"],
+      "implementedLocally": ["Docker", "Chunking", "embeddings", "Chroma vector database", "semantic retrieval", "source-linked answers", "evaluation harness"],
       "liveMaintenance": ["Worker deployment through Wrangler", "secured Vectorize reindex after portfolio content changes", "health checks through /health", "live test questions through /chat"],
-      "futureSeparateLabs": ["Agent loops", "tool calling", "MCP", "LangChain", "LangGraph", "MLOps", "Docker", "local Kubernetes", "fine-tuning", "LoRA", "distillation"]
+      "futureSeparateLabs": ["Agent loops", "tool calling", "MCP", "LangChain", "LangGraph", "MLOps", "local Kubernetes", "fine-tuning", "LoRA", "distillation"]
     }
   },
   "certifications": [

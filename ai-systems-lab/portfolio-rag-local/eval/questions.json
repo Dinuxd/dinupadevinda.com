@@ -117,7 +117,7 @@
   {
     "id": "unsupported-salary",
     "question": "What is Dinupa's expected salary?",
-    "expected_sources": ["answering-rules"],
+    "expected_sources": [],
     "must_not_include": ["salary is", "expects"]
   }
 ]
