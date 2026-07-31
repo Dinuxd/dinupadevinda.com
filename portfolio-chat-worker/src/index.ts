@@ -139,6 +139,7 @@ async function handleChat(
     const citedChunks = generated.citedSourceIds
       .map((id) => retrieval.chunks.find((chunk) => chunk.id === id))
       .filter((chunk): chunk is RankedChunk => Boolean(chunk));
+    const displayChunks = citedChunks.filter(isDisplaySource);
     const citationValid = !generated.grounded || citedChunks.length > 0;
     const grounded = generated.grounded && citationValid;
     const response: ChatResponse = {
@@ -146,7 +147,7 @@ async function handleChat(
         ? generated.answer
         : "I found related portfolio material, but I could not verify a source for the answer. Please open the relevant project or contact Dinupa directly.",
       grounded,
-      sources: grounded ? citedChunks.map(toChatSource) : [],
+      sources: grounded ? displayChunks.map(toChatSource) : [],
       retrievalMode: retrieval.mode
     };
 
@@ -161,10 +162,11 @@ async function handleChat(
   } catch (error) {
     logError("generation_failed", requestId, error, { retrievalMode: retrieval.mode });
     const fallbackChunks = retrieval.chunks.slice(0, 3);
+    const displayChunks = fallbackChunks.filter(isDisplaySource);
     const response: ChatResponse = {
       answer: buildExtractiveFallback(fallbackChunks),
       grounded: true,
-      sources: fallbackChunks.map(toChatSource),
+      sources: displayChunks.map(toChatSource),
       retrievalMode: retrieval.mode
     };
     return jsonResponse(response, 200, origin);
@@ -331,6 +333,10 @@ function toChatSource(chunk: RankedChunk): ChatSource {
     url: chunk.url,
     preview: chunk.text.replace(/\s+/g, " ").trim().slice(0, 180)
   };
+}
+
+function isDisplaySource(chunk: RankedChunk): boolean {
+  return chunk.id !== "answering-rules";
 }
 
 function jsonResponse(

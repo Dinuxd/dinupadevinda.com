@@ -67,7 +67,9 @@ export function looksLikePromptInjection(question: string): boolean {
 }
 
 export function isGreeting(question: string): boolean {
-  return /^(hi|hello|hey|good (morning|afternoon|evening))[!.?\s]*$/i.test(question);
+  return /^(hi|hello|hey|good (morning|afternoon|evening)|what'?s up|sup|how are you|how'?s it going)[!.?\s]*$/i.test(
+    question
+  );
 }
 
 export async function hasValidAdminToken(
