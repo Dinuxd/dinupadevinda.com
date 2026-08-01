@@ -10,7 +10,7 @@
     "GEMINI_MODEL": "gemini-3.6-flash",
     "GEMINI_EMBEDDING_MODEL": "gemini-embedding-2",
     "RAG_EMBEDDING_DIMENSIONS": "768",
-    "TURNSTILE_REQUIRED": "false"
+    "TURNSTILE_REQUIRED": "true"
   },
   "secrets": {
     "required": ["GEMINI_API_KEY", "RAG_ADMIN_TOKEN"]
