@@ -104,7 +104,8 @@ export async function hasValidAdminToken(
 }
 
 export function isTurnstileRequired(env: Env): boolean {
-  return (env as unknown as { TURNSTILE_REQUIRED?: string }).TURNSTILE_REQUIRED === "true";
+  const value = (env as unknown as { TURNSTILE_REQUIRED?: string | boolean }).TURNSTILE_REQUIRED;
+  return value === "true" || value === true;
 }
 
 export async function verifyTurnstileToken(
