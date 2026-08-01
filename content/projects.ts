@@ -93,7 +93,7 @@ const projectEntries: Project[] = [
     repoUrl: "https://github.com/Dinuxd/dinupadevinda.com",
     media: {
       type: "image",
-      src: "/data/projects/ai-portfolio-assistant-rag.svg",
+      src: "/data/projects/ai-portfolio-assistant-rag.svg?v=2",
       alt: "AI portfolio assistant architecture showing the chat widget, Worker API, question embedding, Vectorize search, keyword search, rank fusion, grounded prompt, Gemini answer, source validation, and separate reindex path",
       fit: "contain"
     },
