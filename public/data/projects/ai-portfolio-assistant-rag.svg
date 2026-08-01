@@ -1,115 +1,137 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
   <title id="title">Portfolio chatbot hybrid RAG architecture</title>
-  <desc id="desc">Architecture diagram showing a Next.js chat widget, Cloudflare Worker, portfolio knowledge chunks, Gemini embeddings, Vectorize search, keyword search, rank fusion, Gemini answer generation, and source links.</desc>
+  <desc id="desc">Architecture diagram showing the portfolio assistant flow: a Next.js chat widget calls a Cloudflare Worker, the Worker performs Gemini question embedding, Cloudflare Vectorize search, keyword search over portfolio chunks, rank fusion, grounded prompting, Gemini answer generation, source validation, and returns an answer with links. A separate admin reindex path embeds portfolio chunks into Vectorize.</desc>
   <defs>
     <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0e1a26"/>
+      <stop offset="0" stop-color="#0d1b2a"/>
+      <stop offset="1" stop-color="#071018"/>
+    </linearGradient>
+    <linearGradient id="panelSoft" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1722"/>
       <stop offset="1" stop-color="#071018"/>
     </linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#45d7ff"/>
       <stop offset="1" stop-color="#65f3b2"/>
     </linearGradient>
-    <filter id="shadow" x="-12%" y="-12%" width="124%" height="124%">
+    <filter id="shadow" x="-14%" y="-14%" width="128%" height="128%">
       <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.34"/>
     </filter>
-    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#45d7ff"/>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10z" fill="#45d7ff"/>
     </marker>
-    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#65f3b2"/>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10z" fill="#65f3b2"/>
     </marker>
   </defs>
 
   <rect width="1200" height="760" fill="#070a0f"/>
-  <path d="M0 88H1200M0 184H1200M0 280H1200M0 376H1200M0 472H1200M0 568H1200M0 664H1200M120 0V760M240 0V760M360 0V760M480 0V760M600 0V760M720 0V760M840 0V760M960 0V760M1080 0V760" stroke="#ffffff" stroke-opacity="0.05"/>
+  <path d="M0 90H1200M0 190H1200M0 290H1200M0 390H1200M0 490H1200M0 590H1200M0 690H1200M120 0V760M240 0V760M360 0V760M480 0V760M600 0V760M720 0V760M840 0V760M960 0V760M1080 0V760" stroke="#ffffff" stroke-opacity="0.05"/>
 
-  <text x="64" y="88" fill="#65f3b2" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">PORTFOLIO CHATBOT</text>
-  <text x="64" y="132" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="800">Hybrid RAG workflow</text>
-  <text x="66" y="174" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="21">Embeddings, keyword search, rank fusion, Gemini, source links, and evaluation.</text>
+  <text x="64" y="80" fill="#65f3b2" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="700" letter-spacing="4">PORTFOLIO AI ASSISTANT</text>
+  <text x="64" y="124" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="43" font-weight="800">Hybrid RAG workflow</text>
+  <text x="66" y="164" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="20">Question answering path plus the separate Vectorize reindex path.</text>
+
+  <text x="64" y="218" fill="#45d7ff" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800" letter-spacing="2">VISITOR QUESTION PATH</text>
+  <text x="64" y="476" fill="#65f3b2" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800" letter-spacing="2">ADMIN REINDEX PATH</text>
 
   <g filter="url(#shadow)">
-    <rect x="64" y="244" width="196" height="112" rx="14" fill="url(#panel)" stroke="#45d7ff" stroke-opacity="0.42"/>
-    <text x="92" y="289" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="700">Chat widget</text>
-    <text x="92" y="323" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">Next.js UI</text>
+    <rect x="64" y="246" width="180" height="94" rx="14" fill="url(#panel)" stroke="#45d7ff" stroke-opacity="0.52"/>
+    <text x="88" y="284" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Chat widget</text>
+    <text x="88" y="315" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="16">Next.js UI</text>
   </g>
 
   <g filter="url(#shadow)">
-    <rect x="330" y="244" width="210" height="112" rx="14" fill="url(#panel)" stroke="#45d7ff" stroke-opacity="0.42"/>
-    <text x="358" y="289" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="700">Worker API</text>
-    <text x="358" y="323" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">CORS + secrets</text>
+    <rect x="304" y="246" width="194" height="94" rx="14" fill="url(#panel)" stroke="#45d7ff" stroke-opacity="0.52"/>
+    <text x="328" y="284" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Worker API</text>
+    <text x="328" y="315" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="16">CORS, secrets, limits</text>
   </g>
 
   <g filter="url(#shadow)">
-    <rect x="64" y="482" width="218" height="112" rx="14" fill="#08131b" stroke="#ffffff" stroke-opacity="0.13"/>
-    <text x="92" y="526" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Knowledge file</text>
-    <text x="92" y="560" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">portfolio-chat.json</text>
+    <rect x="560" y="206" width="184" height="88" rx="14" fill="url(#panel)" stroke="#65f3b2" stroke-opacity="0.52"/>
+    <text x="584" y="242" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Question embed</text>
+    <text x="584" y="272" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="16">Gemini vector</text>
   </g>
 
   <g filter="url(#shadow)">
-    <rect x="344" y="482" width="214" height="112" rx="14" fill="#08131b" stroke="#ffffff" stroke-opacity="0.13"/>
-    <text x="372" y="526" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Typed chunks</text>
-    <text x="372" y="560" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">Projects, CV, skills</text>
+    <rect x="806" y="206" width="178" height="88" rx="14" fill="url(#panel)" stroke="#65f3b2" stroke-opacity="0.52"/>
+    <text x="830" y="242" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Vectorize</text>
+    <text x="830" y="272" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="16">Semantic search</text>
   </g>
 
   <g filter="url(#shadow)">
-    <rect x="618" y="216" width="210" height="104" rx="14" fill="url(#panel)" stroke="#65f3b2" stroke-opacity="0.5"/>
-    <text x="646" y="258" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Embedding</text>
-    <text x="646" y="290" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">Question vector</text>
+    <rect x="560" y="338" width="184" height="88" rx="14" fill="url(#panel)" stroke="#45d7ff" stroke-opacity="0.52"/>
+    <text x="584" y="374" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Keyword search</text>
+    <text x="584" y="404" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="16">Exact terms</text>
   </g>
 
   <g filter="url(#shadow)">
-    <rect x="618" y="356" width="210" height="104" rx="14" fill="url(#panel)" stroke="#45d7ff" stroke-opacity="0.45"/>
-    <text x="646" y="398" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Keyword search</text>
-    <text x="646" y="430" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">Exact terms</text>
+    <rect x="806" y="338" width="178" height="88" rx="14" fill="url(#panel)" stroke="#65f3b2" stroke-opacity="0.52"/>
+    <text x="830" y="374" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Rank fusion</text>
+    <text x="830" y="404" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="16">Top evidence</text>
   </g>
 
   <g filter="url(#shadow)">
-    <rect x="896" y="216" width="218" height="104" rx="14" fill="url(#panel)" stroke="#65f3b2" stroke-opacity="0.5"/>
-    <text x="924" y="258" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Vectorize</text>
-    <text x="924" y="290" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">Semantic matches</text>
+    <rect x="560" y="514" width="184" height="88" rx="14" fill="#08131b" stroke="#ffffff" stroke-opacity="0.15"/>
+    <text x="584" y="550" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Grounded prompt</text>
+    <text x="584" y="580" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="16">Rules + evidence</text>
   </g>
 
   <g filter="url(#shadow)">
-    <rect x="896" y="356" width="218" height="104" rx="14" fill="url(#panel)" stroke="#65f3b2" stroke-opacity="0.5"/>
-    <text x="924" y="398" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Rank fusion</text>
-    <text x="924" y="430" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">Top evidence</text>
+    <rect x="806" y="514" width="178" height="88" rx="14" fill="#08131b" stroke="#ffffff" stroke-opacity="0.15"/>
+    <text x="830" y="550" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Gemini answer</text>
+    <text x="830" y="580" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="16">JSON + citations</text>
   </g>
 
   <g filter="url(#shadow)">
-    <rect x="618" y="550" width="210" height="104" rx="14" fill="#08131b" stroke="#ffffff" stroke-opacity="0.13"/>
-    <text x="646" y="592" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Prompt</text>
-    <text x="646" y="624" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">Rules + evidence</text>
+    <rect x="1030" y="514" width="110" height="88" rx="14" fill="#08131b" stroke="#ffffff" stroke-opacity="0.15"/>
+    <text x="1050" y="550" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">Validate</text>
+    <text x="1050" y="580" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="15">Source IDs</text>
   </g>
 
   <g filter="url(#shadow)">
-    <rect x="896" y="550" width="218" height="104" rx="14" fill="#08131b" stroke="#ffffff" stroke-opacity="0.13"/>
-    <text x="924" y="592" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Gemini answer</text>
-    <text x="924" y="624" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="17">Answer + sources</text>
+    <rect x="64" y="504" width="188" height="92" rx="14" fill="url(#panelSoft)" stroke="#ffffff" stroke-opacity="0.15"/>
+    <text x="88" y="541" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Knowledge JSON</text>
+    <text x="88" y="572" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="16">portfolio-chat.json</text>
   </g>
 
-  <path d="M260 300H318" stroke="#45d7ff" stroke-width="4" marker-end="url(#arrow-blue)"/>
-  <path d="M435 356V470" stroke="#45d7ff" stroke-width="4" stroke-dasharray="9 12" marker-end="url(#arrow-blue)"/>
-  <path d="M282 538H332" stroke="#45d7ff" stroke-width="4" marker-end="url(#arrow-blue)"/>
-  <path d="M540 292H606" stroke="#65f3b2" stroke-width="4" marker-end="url(#arrow-green)"/>
-  <path d="M540 326C578 326 580 408 606 408" stroke="#45d7ff" stroke-width="4" fill="none" marker-end="url(#arrow-blue)"/>
-  <path d="M828 268H884" stroke="#65f3b2" stroke-width="4" marker-end="url(#arrow-green)"/>
-  <path d="M558 538C590 538 586 408 606 408" stroke="#45d7ff" stroke-width="4" fill="none" stroke-dasharray="9 12"/>
-  <path d="M828 408H884" stroke="#45d7ff" stroke-width="4" marker-end="url(#arrow-blue)"/>
-  <path d="M1005 320V344" stroke="#65f3b2" stroke-width="4" marker-end="url(#arrow-green)"/>
-  <path d="M896 408C860 408 860 602 840 602" stroke="#65f3b2" stroke-width="4" fill="none" marker-end="url(#arrow-green)"/>
-  <path d="M828 602H884" stroke="#65f3b2" stroke-width="4" marker-end="url(#arrow-green)"/>
+  <g filter="url(#shadow)">
+    <rect x="304" y="504" width="194" height="92" rx="14" fill="url(#panelSoft)" stroke="#ffffff" stroke-opacity="0.15"/>
+    <text x="328" y="541" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Typed chunks</text>
+    <text x="328" y="572" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="16">Projects, skills, CV</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="560" y="642" width="184" height="72" rx="14" fill="url(#panelSoft)" stroke="#65f3b2" stroke-opacity="0.48"/>
+    <text x="584" y="673" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">Chunk embeds</text>
+    <text x="584" y="699" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="15">Reindex only</text>
+  </g>
+
+  <path d="M244 293H292" stroke="#45d7ff" stroke-width="5" marker-end="url(#arrowBlue)"/>
+  <path d="M498 268H548" stroke="#65f3b2" stroke-width="5" marker-end="url(#arrowGreen)"/>
+  <path d="M744 250H794" stroke="#65f3b2" stroke-width="5" marker-end="url(#arrowGreen)"/>
+  <path d="M895 294V326" stroke="#65f3b2" stroke-width="5" marker-end="url(#arrowGreen)"/>
+  <path d="M744 382H794" stroke="#45d7ff" stroke-width="5" marker-end="url(#arrowBlue)"/>
+  <path d="M895 426C895 474 652 468 652 502" stroke="#65f3b2" stroke-width="5" fill="none" marker-end="url(#arrowGreen)"/>
+  <path d="M744 558H794" stroke="#65f3b2" stroke-width="5" marker-end="url(#arrowGreen)"/>
+  <path d="M984 558H1018" stroke="#65f3b2" stroke-width="5" marker-end="url(#arrowGreen)"/>
+  <path d="M1030 546C1080 456 505 456 505 318" stroke="#45d7ff" stroke-width="4" fill="none" stroke-dasharray="8 12" marker-end="url(#arrowBlue)"/>
+
+  <path d="M252 550H292" stroke="#45d7ff" stroke-width="5" marker-end="url(#arrowBlue)"/>
+  <path d="M498 550C532 550 524 382 548 382" stroke="#45d7ff" stroke-width="4" fill="none" stroke-dasharray="8 12" marker-end="url(#arrowBlue)"/>
+  <path d="M498 572C540 572 530 678 548 678" stroke="#65f3b2" stroke-width="4" fill="none" stroke-dasharray="8 12" marker-end="url(#arrowGreen)"/>
+  <path d="M744 678C780 678 772 250 794 250" stroke="#65f3b2" stroke-width="4" fill="none" stroke-dasharray="8 12" marker-end="url(#arrowGreen)"/>
 
   <g>
-    <rect x="64" y="690" width="102" height="34" rx="8" fill="#45d7ff" fill-opacity="0.12" stroke="#45d7ff" stroke-opacity="0.45"/>
-    <text x="84" y="713" fill="#45d7ff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">RAG</text>
-    <rect x="184" y="690" width="132" height="34" rx="8" fill="#45d7ff" fill-opacity="0.12" stroke="#45d7ff" stroke-opacity="0.45"/>
-    <text x="202" y="713" fill="#45d7ff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Embeddings</text>
-    <rect x="334" y="690" width="146" height="34" rx="8" fill="#45d7ff" fill-opacity="0.12" stroke="#45d7ff" stroke-opacity="0.45"/>
-    <text x="352" y="713" fill="#45d7ff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Vector DB</text>
-    <rect x="498" y="690" width="142" height="34" rx="8" fill="#65f3b2" fill-opacity="0.12" stroke="#65f3b2" stroke-opacity="0.45"/>
-    <text x="516" y="713" fill="#65f3b2" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Evaluation</text>
-    <rect x="658" y="690" width="132" height="34" rx="8" fill="#65f3b2" fill-opacity="0.12" stroke="#65f3b2" stroke-opacity="0.45"/>
-    <text x="676" y="713" fill="#65f3b2" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Security</text>
+    <rect x="64" y="700" width="88" height="34" rx="8" fill="#45d7ff" fill-opacity="0.12" stroke="#45d7ff" stroke-opacity="0.45"/>
+    <text x="84" y="723" fill="#45d7ff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">RAG</text>
+    <rect x="170" y="700" width="128" height="34" rx="8" fill="#45d7ff" fill-opacity="0.12" stroke="#45d7ff" stroke-opacity="0.45"/>
+    <text x="188" y="723" fill="#45d7ff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Embeddings</text>
+    <rect x="316" y="700" width="118" height="34" rx="8" fill="#45d7ff" fill-opacity="0.12" stroke="#45d7ff" stroke-opacity="0.45"/>
+    <text x="334" y="723" fill="#45d7ff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Vector DB</text>
+    <rect x="452" y="700" width="92" height="34" rx="8" fill="#65f3b2" fill-opacity="0.12" stroke="#65f3b2" stroke-opacity="0.45"/>
+    <text x="470" y="723" fill="#65f3b2" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Docker</text>
+    <rect x="1018" y="700" width="122" height="34" rx="8" fill="#65f3b2" fill-opacity="0.12" stroke="#65f3b2" stroke-opacity="0.45"/>
+    <text x="1036" y="723" fill="#65f3b2" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">Security</text>
   </g>
 </svg>

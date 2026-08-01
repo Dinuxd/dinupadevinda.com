@@ -94,7 +94,7 @@ const projectEntries: Project[] = [
     media: {
       type: "image",
       src: "/data/projects/ai-portfolio-assistant-rag.svg",
-      alt: "AI portfolio assistant architecture showing chat widget, Worker API, embeddings, Vectorize, keyword search, rank fusion, Gemini answer, and source links",
+      alt: "AI portfolio assistant architecture showing the chat widget, Worker API, question embedding, Vectorize search, keyword search, rank fusion, grounded prompt, Gemini answer, source validation, and separate reindex path",
       fit: "contain"
     },
     limitations:
