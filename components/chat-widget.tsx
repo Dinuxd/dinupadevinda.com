@@ -27,6 +27,32 @@ type ChatResponse = {
 };
 
 const chatApiUrl = process.env.NEXT_PUBLIC_CHAT_API_URL ?? "";
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
+
+type TurnstileWidgetId = string;
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        container: HTMLElement,
+        options: {
+          sitekey: string;
+          size?: "normal" | "compact" | "invisible";
+          execution?: "render" | "execute";
+          action?: string;
+          callback?: (token: string) => void;
+          "error-callback"?: () => void;
+          "expired-callback"?: () => void;
+        }
+      ) => TurnstileWidgetId;
+      execute: (widgetId: TurnstileWidgetId) => void;
+      reset: (widgetId: TurnstileWidgetId) => void;
+    };
+  }
+}
+
+let turnstileScriptPromise: Promise<void> | null = null;
 
 const samplePrompts = [
   "What ML projects has Dinupa done?",
@@ -130,6 +156,12 @@ function renderInlineText(text: string): ReactNode[] {
         </strong>
       );
     } else if (match[3] && match[4]) {
+      if (!isTrustedChatHref(match[4])) {
+        nodes.push(`${match[3]} (${match[4]})`);
+        lastIndex = pattern.lastIndex;
+        continue;
+      }
+
       nodes.push(
         <a
           key={`link-${match.index}`}
@@ -144,17 +176,21 @@ function renderInlineText(text: string): ReactNode[] {
     } else if (match[5]) {
       const { value, suffix } = trimTrailingPunctuation(match[5]);
 
-      nodes.push(
-        <a
-          key={`url-${match.index}`}
-          href={value}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-semibold text-signal-cyan underline decoration-signal-cyan/40 underline-offset-4 hover:text-white"
-        >
-          {value}
-        </a>
-      );
+      if (isTrustedChatHref(value)) {
+        nodes.push(
+          <a
+            key={`url-${match.index}`}
+            href={value}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-signal-cyan underline decoration-signal-cyan/40 underline-offset-4 hover:text-white"
+          >
+            {value}
+          </a>
+        );
+      } else {
+        nodes.push(value);
+      }
 
       if (suffix) {
         nodes.push(suffix);
@@ -190,6 +226,71 @@ function trimTrailingPunctuation(value: string) {
   };
 }
 
+function isTrustedChatHref(href: string) {
+  if (href.startsWith("/")) {
+    return true;
+  }
+
+  if (href.startsWith("mailto:")) {
+    return true;
+  }
+
+  try {
+    const url = new URL(href);
+    return [
+      "www.dinupadevinda.com",
+      "dinupadevinda.com",
+      "github.com",
+      "www.linkedin.com",
+      "linkedin.com",
+      "www.kaggle.com",
+      "kaggle.com",
+      "courses.opencv.org",
+      "www.credly.com",
+      "credly.com",
+      "code.sliit.org",
+      "drive.google.com",
+      "ratings.fide.com"
+    ].includes(url.hostname.toLowerCase());
+  } catch {
+    return false;
+  }
+}
+
+function loadTurnstileScript() {
+  if (typeof window === "undefined") {
+    return Promise.reject(new Error("Turnstile is only available in the browser."));
+  }
+
+  if (window.turnstile) {
+    return Promise.resolve();
+  }
+
+  if (!turnstileScriptPromise) {
+    turnstileScriptPromise = new Promise((resolve, reject) => {
+      const existingScript = document.getElementById("cloudflare-turnstile-script");
+      if (existingScript) {
+        existingScript.addEventListener("load", () => resolve(), { once: true });
+        existingScript.addEventListener("error", () => reject(new Error("Turnstile failed to load.")), {
+          once: true
+        });
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.id = "cloudflare-turnstile-script";
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      script.async = true;
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error("Turnstile failed to load."));
+      document.head.appendChild(script);
+    });
+  }
+
+  return turnstileScriptPromise;
+}
+
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
@@ -197,6 +298,12 @@ export function ChatWidget() {
   const [isLoading, setIsLoading] = useState(false);
   const nextId = useRef(2);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const turnstileContainerRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetId = useRef<TurnstileWidgetId | null>(null);
+  const turnstileTokenResolver = useRef<{
+    resolve: (token: string) => void;
+    reject: (error: Error) => void;
+  } | null>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
@@ -245,12 +352,16 @@ export function ChatWidget() {
     setIsLoading(true);
 
     try {
+      const turnstileToken = await getTurnstileToken();
       const response = await fetch(chatApiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ question: trimmedQuestion })
+        body: JSON.stringify({
+          question: trimmedQuestion,
+          ...(turnstileToken ? { turnstileToken } : {})
+        })
       });
 
       const data = (await response.json().catch(() => ({}))) as ChatResponse;
@@ -302,8 +413,51 @@ export function ChatWidget() {
     }
   }
 
+  async function getTurnstileToken() {
+    if (!turnstileSiteKey) {
+      return undefined;
+    }
+
+    await loadTurnstileScript();
+
+    const turnstile = window.turnstile;
+    const container = turnstileContainerRef.current;
+    if (!turnstile || !container) {
+      throw new Error("Turnstile is not ready.");
+    }
+
+    if (!turnstileWidgetId.current) {
+      turnstileWidgetId.current = turnstile.render(container, {
+        sitekey: turnstileSiteKey,
+        size: "invisible",
+        execution: "execute",
+        action: "portfolio-chat",
+        callback: (token) => {
+          turnstileTokenResolver.current?.resolve(token);
+          turnstileTokenResolver.current = null;
+        },
+        "error-callback": () => {
+          turnstileTokenResolver.current?.reject(new Error("Turnstile verification failed."));
+          turnstileTokenResolver.current = null;
+        },
+        "expired-callback": () => {
+          if (turnstileWidgetId.current) {
+            turnstile.reset(turnstileWidgetId.current);
+          }
+        }
+      });
+    }
+
+    return new Promise<string>((resolve, reject) => {
+      turnstileTokenResolver.current = { resolve, reject };
+      turnstile.reset(turnstileWidgetId.current as TurnstileWidgetId);
+      turnstile.execute(turnstileWidgetId.current as TurnstileWidgetId);
+    });
+  }
+
   return (
     <div className="portfolio-chat-root flex max-w-[calc(100vw-2rem)] flex-col items-end gap-3">
+      {turnstileSiteKey ? <div ref={turnstileContainerRef} className="sr-only" /> : null}
       {isOpen ? (
         <section
           id="portfolio-chat-panel"
@@ -369,7 +523,7 @@ export function ChatWidget() {
                     </p>
                     <div className="mt-2 flex flex-wrap gap-2">
                       {message.sources.map((source) =>
-                        source.url ? (
+                        source.url && isTrustedChatHref(source.url) ? (
                           <a
                             key={source.id}
                             href={source.url}

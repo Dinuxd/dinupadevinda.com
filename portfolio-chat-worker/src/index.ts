@@ -4,10 +4,12 @@ import {
   corsHeaders,
   hasValidAdminToken,
   isGreeting,
+  isTurnstileRequired,
   looksLikePromptInjection,
   readQuestion,
   readStreamWithLimit,
-  allowedOrigins
+  allowedOrigins,
+  verifyTurnstileToken
 } from "./security";
 import {
   VECTOR_NAMESPACE,
@@ -90,6 +92,15 @@ async function handleChat(
   }
 
   const question = questionResult.question;
+
+  if (!(await verifyTurnstileToken(questionResult.turnstileToken, request, env))) {
+    logEvent("turnstile_failed", requestId, { durationMs: Date.now() - startedAt });
+    return jsonResponse(
+      { error: "Verification failed. Please refresh the page and try again." },
+      403,
+      origin
+    );
+  }
 
   if (looksLikePromptInjection(question)) {
     logEvent("prompt_injection_blocked", requestId, { durationMs: Date.now() - startedAt });
@@ -181,6 +192,13 @@ async function handleHealth(
     return jsonResponse({ error: "Method not allowed" }, 405, origin);
   }
 
+  const canSeeDetails =
+    Boolean(env.RAG_ADMIN_TOKEN) && (await hasValidAdminToken(request, env.RAG_ADMIN_TOKEN));
+
+  if (!canSeeDetails) {
+    return jsonResponse({ ok: true }, 200, origin);
+  }
+
   let vectorize:
     | {
         reachable: true;
@@ -206,7 +224,8 @@ async function handleHealth(
       architecture: "hybrid-rag-v2",
       vectorize,
       vectorNamespace: VECTOR_NAMESPACE,
-      embeddingModel: env.GEMINI_EMBEDDING_MODEL || DEFAULT_EMBEDDING_MODEL
+      embeddingModel: env.GEMINI_EMBEDDING_MODEL || DEFAULT_EMBEDDING_MODEL,
+      turnstileRequired: isTurnstileRequired(env)
     },
     200,
     origin
@@ -221,6 +240,17 @@ async function handleReindex(
 ): Promise<Response> {
   if (request.method !== "POST") {
     return jsonResponse({ error: "Method not allowed" }, 405, origin);
+  }
+
+  const clientAddress = request.headers.get("CF-Connecting-IP")?.trim() || "unknown-client";
+  const adminRateLimit = await env.ADMIN_RATE_LIMITER.limit({ key: `admin:${clientAddress}` });
+  if (!adminRateLimit.success) {
+    return jsonResponse(
+      { error: "Too many admin requests. Please wait a minute and try again." },
+      429,
+      origin,
+      { "Retry-After": "60" }
+    );
   }
 
   if (!env.RAG_ADMIN_TOKEN) {

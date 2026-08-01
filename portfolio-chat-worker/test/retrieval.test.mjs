@@ -128,3 +128,22 @@ test("chat input accepts JSON and rejects unsupported content types", async () =
     status: 415
   });
 });
+
+test("chat input accepts an optional Turnstile token", async () => {
+  const result = await readQuestion(
+    new Request("https://example.com/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        question: "What ML work has Dinupa done?",
+        turnstileToken: "turnstile-response-token"
+      })
+    })
+  );
+
+  assert.deepEqual(result, {
+    ok: true,
+    question: "What ML work has Dinupa done?",
+    turnstileToken: "turnstile-response-token"
+  });
+});

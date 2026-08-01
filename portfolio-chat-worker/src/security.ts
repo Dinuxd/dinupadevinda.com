@@ -1,5 +1,10 @@
-const MAX_REQUEST_BYTES = 2048;
+const MAX_REQUEST_BYTES = 8192;
 const MAX_QUESTION_CHARS = 500;
+const MAX_TURNSTILE_TOKEN_CHARS = 4096;
+
+type TurnstileEnv = Env & {
+  TURNSTILE_SECRET_KEY?: string;
+};
 
 export const allowedOrigins = new Set([
   "https://www.dinupadevinda.com",
@@ -11,7 +16,7 @@ export const allowedOrigins = new Set([
 ]);
 
 export type QuestionResult =
-  | { ok: true; question: string }
+  | { ok: true; question: string; turnstileToken?: string }
   | { ok: false; error: string; status: number };
 
 export async function readQuestion(request: Request): Promise<QuestionResult> {
@@ -43,6 +48,10 @@ export async function readQuestion(request: Request): Promise<QuestionResult> {
     isRecord(payload) && typeof payload.question === "string"
       ? normalizeQuestion(payload.question)
       : "";
+  const turnstileToken =
+    isRecord(payload) && typeof payload.turnstileToken === "string"
+      ? payload.turnstileToken.trim()
+      : "";
 
   if (!question) {
     return { ok: false, error: "Question is required", status: 400 };
@@ -52,7 +61,13 @@ export async function readQuestion(request: Request): Promise<QuestionResult> {
     return { ok: false, error: "Question is too long", status: 400 };
   }
 
-  return { ok: true, question };
+  if (turnstileToken.length > MAX_TURNSTILE_TOKEN_CHARS) {
+    return { ok: false, error: "Verification token is too long", status: 400 };
+  }
+
+  return turnstileToken
+    ? { ok: true, question, turnstileToken }
+    : { ok: true, question };
 }
 
 export function looksLikePromptInjection(question: string): boolean {
@@ -88,9 +103,50 @@ export async function hasValidAdminToken(
   return crypto.subtle.timingSafeEqual(providedHash, expectedHash) && Boolean(providedToken);
 }
 
+export function isTurnstileRequired(env: Env): boolean {
+  return (env as unknown as { TURNSTILE_REQUIRED?: string }).TURNSTILE_REQUIRED === "true";
+}
+
+export async function verifyTurnstileToken(
+  token: string | undefined,
+  request: Request,
+  env: Env
+): Promise<boolean> {
+  if (!isTurnstileRequired(env)) {
+    return true;
+  }
+
+  const turnstileEnv = env as TurnstileEnv;
+  if (!token || !turnstileEnv.TURNSTILE_SECRET_KEY) {
+    return false;
+  }
+
+  const form = new FormData();
+  form.append("secret", turnstileEnv.TURNSTILE_SECRET_KEY);
+  form.append("response", token);
+
+  const remoteIp = request.headers.get("CF-Connecting-IP")?.trim();
+  if (remoteIp) {
+    form.append("remoteip", remoteIp);
+  }
+
+  const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    body: form,
+    signal: AbortSignal.timeout(5000)
+  });
+
+  if (!response.ok) {
+    return false;
+  }
+
+  const result = await response.json().catch(() => null);
+  return isRecord(result) && result.success === true;
+}
+
 export function corsHeaders(origin: string | null): HeadersInit {
   const headers: Record<string, string> = {
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400",
     "Cache-Control": "no-store",
