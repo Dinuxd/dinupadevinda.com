@@ -61,14 +61,22 @@ export const skills = [
       "scikit-learn",
       "XGBoost",
       "Optuna",
+      "Transformers",
       "RAG",
       "Embeddings",
+      "Vector search",
       "Model evaluation"
     ]
   },
   {
     group: "Model deployment",
     items: [
+      "FastAPI",
+      "Docker",
+      "AWS EC2",
+      "Amazon S3",
+      "Amazon SageMaker",
+      "Cloudflare Workers",
       "Raspberry Pi",
       "TensorFlow Lite",
       "ONNX Runtime",

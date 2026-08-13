@@ -34,7 +34,7 @@ export const education = [
     title: "BSc Eng (Hons), Electrical and Electronic Engineering",
     institution: "SLIIT",
     period: "2022 - 2026",
-    detail: "Engineering background with work across automation, embedded systems, machine learning, computer vision, and sensor-based projects."
+    detail: "Second Class Upper Division. Engineering background with work across automation, embedded systems, machine learning, computer vision, and sensor-based projects."
   },
   {
     title: "BSc Physical Sciences - Computer Science, Pure Mathematics, and Applied Mathematics",

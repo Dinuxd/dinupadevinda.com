@@ -30,6 +30,14 @@ export const certifications = [
     credentialUrl: "/data/certifications/linkedin-rag-introduction.pdf"
   },
   {
+    title: "AWS Essential Training for Developers",
+    issuer: "LinkedIn Learning",
+    date: "Issued Aug 2026",
+    detail: "AWS fundamentals for developers, cloud services, and deployment concepts",
+    image: "/data/certifications/linkedin-aws-essential-training-for-developers.pdf",
+    credentialUrl: "/data/certifications/linkedin-aws-essential-training-for-developers.pdf"
+  },
+  {
     title: "Machine Learning with Python Professional Certificate",
     issuer: "LinkedIn Learning / Anaconda",
     date: "Issued Jul 2026",

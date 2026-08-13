@@ -19,7 +19,7 @@
     "Machine learning model development, evaluation, and deployment experiments",
     "Computer vision, audio classification, IMU/sensor data, and applied ML projects",
     "Engineering systems involving embedded devices, sensors, telemetry, dashboards, and APIs",
-    "Python, TensorFlow/Keras, PyTorch, scikit-learn, XGBoost, OpenCV, TFLite, ONNX, React, Spring Boot, Go, C/C++, Java, and SQL",
+    "Python, TensorFlow/Keras, PyTorch, scikit-learn, XGBoost, OpenCV, TFLite, ONNX, FastAPI, Docker, AWS EC2, Amazon S3, Amazon SageMaker, Cloudflare Workers, React, Spring Boot, Go, C/C++, Java, and SQL",
     "LLM application integration through a portfolio chatbot using Gemini, Cloudflare Workers, CORS, secret handling, and source-based prompting",
     "RAG implementation covering chunking, Gemini embeddings, Cloudflare Vectorize, keyword retrieval, reciprocal-rank fusion, source validation, and evaluation",
     "Small language model serving with PyTorch, FastAPI, Docker, AWS EC2, Amazon S3, Cloudflare Workers, and SageMaker notebook validation"
@@ -29,6 +29,7 @@
       "degree": "BSc Eng (Hons), Electrical and Electronic Engineering",
       "institution": "SLIIT",
       "period": "Oct 2022 to Oct 2026",
+      "result": "Second Class Upper Division",
       "notes": "Engineering background with work across automation, embedded systems, electronics, machine learning, computer vision, and sensor-based projects."
     },
     {
@@ -254,6 +255,13 @@
       "credentialId": "25f3ac217468d44b9a662f3c5ef50482541b52ad37b11edb782e6c40bc6d67ae",
       "credentialUrl": "https://www.dinupadevinda.com/data/certifications/linkedin-rag-introduction.pdf",
       "skills": ["Retrieval-Augmented Generation (RAG)", "Artificial Intelligence"]
+    },
+    {
+      "title": "AWS Essential Training for Developers",
+      "issuer": "LinkedIn Learning",
+      "issued": "Aug 2026",
+      "credentialUrl": "https://www.dinupadevinda.com/data/certifications/linkedin-aws-essential-training-for-developers.pdf",
+      "skills": ["AWS fundamentals", "Cloud services", "Deployment concepts"]
     },
     {
       "title": "Machine Learning with Python Professional Certificate",
