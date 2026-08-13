@@ -1,8 +1,9 @@
-import { Github, Linkedin } from "lucide-react";
+import { Database, Github, Linkedin } from "lucide-react";
 import type { Project } from "@/content/projects";
 import { ButtonLink } from "./button-link";
 import { MediaFrame } from "./media-frame";
 import { MetricCard } from "./metric-card";
+import { StoryGenerator } from "./story-generator";
 
 export function ProjectCard({ project, compact = false }: { project: Project; compact?: boolean }) {
   const showMedia = project.media && project.media.type === "image";
@@ -87,6 +88,8 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
         ))}
       </div>
 
+      {project.slug === "tinystories-gpt-story-generator" ? <StoryGenerator /> : null}
+
       <div className="mt-auto flex flex-wrap gap-3 pt-6">
         {project.repoUrl ? (
           <ButtonLink href={project.repoUrl} icon={Github} variant="secondary" external>
@@ -96,6 +99,11 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
         {project.linkedinUrl ? (
           <ButtonLink href={project.linkedinUrl} icon={Linkedin} variant="secondary" external>
             LinkedIn
+          </ButtonLink>
+        ) : null}
+        {project.datasetUrl ? (
+          <ButtonLink href={project.datasetUrl} icon={Database} variant="secondary" external>
+            Dataset
           </ButtonLink>
         ) : null}
       </div>

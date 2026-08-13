@@ -1,0 +1,14 @@
+{
+	"name": "tinystories-gpt-proxy",
+	"account_id": "71bf970c3a59367394db6e5b9750c61b",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-08-12",
+	"workers_dev": true,
+	"preview_urls": false,
+	"vars": {
+		"STORY_API_URL": "http://tinystories-api.dinupadevinda.com:8000/generate"
+	},
+	"observability": {
+		"enabled": true
+	},
+}

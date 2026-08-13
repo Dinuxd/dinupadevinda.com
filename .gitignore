@@ -9,7 +9,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 *.tsbuildinfo
+__pycache__/
+*.py[cod]
 .logs/
 .tmp/
 portfolio-chat-worker/.dev.vars
 portfolio-chat-worker/.wrangler/
+ai-systems-lab/portfolio-rag-local/.env
+ai-systems-lab/portfolio-rag-local/.venv/
+ai-systems-lab/portfolio-rag-local/artifacts/
+ai-systems-lab/portfolio-rag-local/chroma_db/

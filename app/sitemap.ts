@@ -11,7 +11,7 @@ const routes = [
   "/certifications/",
   "/contact/"
 ];
-const lastModified = new Date("2026-07-16");
+const lastModified = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({

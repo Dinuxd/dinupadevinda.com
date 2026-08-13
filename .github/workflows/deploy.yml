@@ -34,6 +34,8 @@ jobs:
       - name: Build
         env:
           NEXT_PUBLIC_CHAT_API_URL: ${{ vars.NEXT_PUBLIC_CHAT_API_URL }}
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
+          NEXT_PUBLIC_STORY_API_URL: ${{ vars.NEXT_PUBLIC_STORY_API_URL }}
         run: pnpm build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

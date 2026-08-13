@@ -16,20 +16,23 @@ export function ScrollReveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    let timer: ReturnType<typeof setTimeout> | undefined;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          const timer = setTimeout(() => el.classList.add("revealed"), delay);
+          timer = setTimeout(() => el.classList.add("revealed"), delay);
           observer.unobserve(el);
-          return () => clearTimeout(timer);
         }
       },
       { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      if (timer) clearTimeout(timer);
+      observer.disconnect();
+    };
   }, [delay]);
 
   return (

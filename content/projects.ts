@@ -39,6 +39,7 @@ export type Project = {
   metrics: ProjectMetric[];
   repoUrl?: string;
   linkedinUrl?: string;
+  datasetUrl?: string;
   media?: ProjectMedia;
   limitations?: string;
   presentation?: "compact";
@@ -100,6 +101,72 @@ const projectEntries: Project[] = [
     limitations:
       "Personal portfolio assistant used to practice retrieval, evaluation, and serverless AI integration.",
     priority: 0,
+    featured: true
+  },
+  {
+    slug: "tinystories-gpt-story-generator",
+    title: "TinyStories GPT Story Generator",
+    role: "Small language model demo",
+    status: "Live AWS demo",
+    summary:
+      "A small story generator I built with a GPT-style decoder in PyTorch. It uses a character-level tokenizer, was trained on TinyStories, and is served as a live demo through FastAPI, Docker, AWS EC2, Amazon S3, and a Cloudflare Worker proxy.",
+    detailPoints: [
+      {
+        label: "Dataset",
+        text: "Uses the TinyStories dataset from Hugging Face, with the train and validation text files cited on the project instead of copied into GitHub."
+      },
+      {
+        label: "Model",
+        text: "The model is a decoder-only GPT-style network with token and position embeddings, masked multi-head self-attention, feed-forward layers, layer normalization, and character-level sampling."
+      },
+      {
+        label: "Deployment",
+        text: "The portfolio calls a Cloudflare Worker proxy. The proxy forwards valid requests to a Dockerized FastAPI service on AWS EC2. The inference checkpoint stays outside GitHub and is stored in Amazon S3."
+      },
+      {
+        label: "SageMaker check",
+        text: "The S3 checkpoint was also validated in an Amazon SageMaker notebook by loading the artifact, running the PyTorch inference script, and saving a short validation report back to S3."
+      },
+      {
+        label: "Controls",
+        text: "The test panel lets visitors change the prompt, temperature, top-k, max tokens, and seed, then see the generated story and latency."
+      },
+      {
+        label: "Scope",
+        text: "This is a learning and portfolio demo for language modeling and model serving. It runs on CPU with short output limits to keep the AWS cost under control."
+      }
+    ],
+    domains: ["AI Systems", "Backend", "Full Stack", "Software"],
+    stack: [
+      "PyTorch",
+      "Transformer decoder",
+      "Character tokenizer",
+      "TinyStories",
+      "FastAPI",
+      "Docker",
+      "AWS EC2",
+      "Amazon S3",
+      "Amazon SageMaker",
+      "Cloudflare Workers",
+      "TypeScript"
+    ],
+    metrics: [
+      { label: "Model", value: "63.49M parameters", detail: "Manual PyTorch implementation." },
+      { label: "Checkpoint", value: "242 MB", detail: "Inference-only artifact stored in S3." },
+      { label: "Context", value: "512 chars", detail: "Character-level vocabulary with 243 tokens." },
+      { label: "AWS workflow", value: "S3, EC2, SageMaker", detail: "SageMaker used for artifact validation, EC2 used for the live demo." }
+    ],
+    repoUrl: "https://github.com/Dinuxd/GPT_build",
+    datasetUrl: "https://huggingface.co/datasets/roneneldan/TinyStories/tree/main",
+    media: {
+      type: "image",
+      src: "/data/projects/tinystories-gpt-story-generator.jpg?v=1",
+      alt: "TinyStories GPT architecture showing character tokenizer, token and position embeddings, transformer decoder blocks, causal self-attention, MLP layers, language model head, sampling controls, and AWS deployment",
+      fit: "contain"
+    },
+    limitations:
+      "CPU-hosted demo with short generation limits, so it is useful for testing the idea but not meant to behave like a large production LLM.",
+    priority: 0.5,
     featured: true
   },
   {

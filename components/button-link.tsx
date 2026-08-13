@@ -19,6 +19,8 @@ export function ButtonLink({
   external,
   className = ""
 }: ButtonLinkProps) {
+  const isStaticAsset =
+    href.startsWith("/data/") || /\.(pdf|zip|png|jpe?g|webp|svg|mp4)(\?.*)?$/i.test(href);
   const classes = [
     "inline-flex h-11 items-center justify-center gap-2 rounded-xl border px-5 text-sm font-semibold transition-all duration-300",
     "focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-graphite-950",
@@ -36,13 +38,20 @@ export function ButtonLink({
     .filter(Boolean)
     .join(" ");
 
-  if (external || href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+  if (
+    external ||
+    isStaticAsset ||
+    href.startsWith("http") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:")
+  ) {
     return (
       <a
         href={href}
         className={classes}
         target={href.startsWith("http") ? "_blank" : undefined}
         rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+        download={href.toLowerCase().includes(".pdf") ? true : undefined}
       >
         <Icon aria-hidden="true" className="h-4 w-4" />
         <span>{children}</span>

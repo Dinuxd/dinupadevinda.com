@@ -18,11 +18,11 @@ const config: Config = {
         signal: {
           cyan: "#4dd8ff",
           green: "#2dd4bf",
-          amber: "#7dd3fc"
+          sky: "#7dd3fc"
         }
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"]
+        sans: ["ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"]
       },
       boxShadow: {
         panel: "0 26px 80px rgba(0, 11, 32, 0.34)",
