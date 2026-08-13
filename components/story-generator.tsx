@@ -17,8 +17,25 @@ type StoryResponse = {
 };
 
 const storyApiUrl =
-  process.env.NEXT_PUBLIC_STORY_API_URL ??
+  normalizeStoryApiUrl(process.env.NEXT_PUBLIC_STORY_API_URL) ??
   "https://tinystories-gpt-proxy.dwmddevinda.workers.dev/generate";
+
+function normalizeStoryApiUrl(value: string | undefined) {
+  if (!value) return undefined;
+
+  try {
+    const url = new URL(value);
+    if (url.hostname !== "tinystories-gpt-proxy.dwmddevinda.workers.dev") {
+      return undefined;
+    }
+    url.pathname = "/generate";
+    url.search = "";
+    url.hash = "";
+    return url.toString();
+  } catch {
+    return undefined;
+  }
+}
 
 const defaultPrompt = "Once upon a time";
 const defaultMaxTokens = 80;
