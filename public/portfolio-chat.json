@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-13",
+  "updated": "2026-08-20",
   "sourceSummary": "Portfolio site, CV/LinkedIn information provided by Dinupa Devinda, public GitHub repositories, and public LinkedIn project links.",
   "profile": {
     "name": "Dinupa Devinda",
@@ -22,7 +22,8 @@
     "Python, TensorFlow/Keras, PyTorch, scikit-learn, XGBoost, OpenCV, TFLite, ONNX, FastAPI, Docker, AWS EC2, Amazon S3, Amazon SageMaker, Cloudflare Workers, React, Spring Boot, Go, C/C++, Java, and SQL",
     "LLM application integration through a portfolio chatbot using Gemini, Cloudflare Workers, CORS, secret handling, and source-based prompting",
     "RAG implementation covering chunking, Gemini embeddings, Cloudflare Vectorize, keyword retrieval, reciprocal-rank fusion, source validation, and evaluation",
-    "Small language model serving with PyTorch, FastAPI, Docker, AWS EC2, Amazon S3, Cloudflare Workers, and SageMaker notebook validation"
+    "Small language model serving with PyTorch, FastAPI, Docker, AWS EC2, Amazon S3, Cloudflare Workers, and SageMaker notebook validation",
+    "Transformer interpretability work with GPT-2-small, logit lens, attention inspection, ablations, activation patching, causal tracing, and reproducible evaluation artifacts"
   ],
   "education": [
     {
@@ -99,6 +100,16 @@
       "link": "https://github.com/Dinuxd/GPT_build",
       "dataset": "TinyStories dataset from Hugging Face. The dataset is cited, not copied into GitHub.",
       "limitations": "Learning and portfolio demo. It runs on CPU with short output limits to keep AWS cost controlled and is not intended to behave like a large production LLM."
+    },
+    {
+      "title": "TransformerScope: GPT-2 Interpretability Workbench",
+      "type": "Local LLM tooling and interpretability project",
+      "summary": "Local workbench for inspecting GPT-2-small predictions, tokenization, logit-lens trajectories, attention heads, head and MLP ablations, activation patching, causal tracing, and reviewed experiment artifacts. The portfolio shows safe static samples instead of exposing the full local dashboard.",
+      "areas": ["LLM interpretability", "Transformers", "GPT-2", "Attention analysis", "Logit lens", "Ablation", "Activation patching", "Evaluation"],
+      "stack": ["Python", "PyTorch", "Transformers", "GPT-2-small", "Local dashboard", "CLI tools", "pytest"],
+      "metrics": ["GPT-2-small 124M parameter model", "12 layers and 12 attention heads per layer", "144 attention heads covered by the causal head map", "24-case final evaluation with bootstrap intervals", "31 tests passed in the prepared public release"],
+      "link": "https://github.com/Dinuxd/transformer-scope",
+      "limitations": "Designed for trusted local analysis, not as an unrestricted public multi-user service. The portfolio uses reviewed static examples because arbitrary scans and interventions can be slow and are not suitable for an unauthenticated public website."
     },
     {
       "title": "Vehicular Black Box: Vehicle Violation Detector",

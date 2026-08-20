@@ -1,5 +1,6 @@
 export type ProjectDomain =
   | "AI Systems"
+  | "LLM Interpretability"
   | "Edge AI"
   | "Computer Vision"
   | "Audio ML"
@@ -167,6 +168,63 @@ const projectEntries: Project[] = [
     limitations:
       "CPU-hosted demo with short generation limits, so it is useful for testing the idea but not meant to behave like a large production LLM.",
     priority: 0.5,
+    featured: true
+  },
+  {
+    slug: "transformer-scope",
+    title: "TransformerScope: GPT-2 Interpretability Workbench",
+    role: "Transformer analysis and evaluation tools",
+    status: "Local LLM tooling project",
+    summary:
+      "A local workbench for inspecting GPT-2-small predictions, tokenization, logit-lens trajectories, attention heads, ablations, activation patching, causal tracing, and reviewed experiment artifacts.",
+    detailPoints: [
+      {
+        label: "Purpose",
+        text: "Built to understand what happens inside a transformer model instead of only calling an LLM API. It focuses on next-token behavior, internal activations, attention patterns, and controlled interventions."
+      },
+      {
+        label: "Dashboard and CLI",
+        text: "Includes a local browser dashboard and Python command-line tools for prediction, attention inspection, generation traces, layer-by-token maps, neuron inspection, prompt comparison, causal tracing, and exportable JSON sessions."
+      },
+      {
+        label: "Evaluation",
+        text: "The project keeps discovery, validation, final-test, and random-control results separate. The final 24-case evaluation preserved a null result instead of overstating a clean circuit discovery."
+      },
+      {
+        label: "Public demo boundary",
+        text: "The portfolio shows reviewed static samples only. The full dashboard remains local because unrestricted scans and interventions are not suitable for an unauthenticated public website."
+      }
+    ],
+    domains: ["AI Systems", "LLM Interpretability", "Software"],
+    stack: [
+      "Python",
+      "PyTorch",
+      "Transformers",
+      "GPT-2-small",
+      "Logit lens",
+      "Attention analysis",
+      "Activation patching",
+      "Ablation",
+      "Bootstrap intervals",
+      "Local dashboard",
+      "CLI tools",
+      "pytest"
+    ],
+    metrics: [
+      { label: "Model", value: "GPT-2-small", detail: "124M parameter transformer model." },
+      { label: "Scope", value: "144 heads", detail: "12 layers with 12 attention heads each." },
+      { label: "Tests", value: "31 passed", detail: "Prepared public release with local test coverage." }
+    ],
+    repoUrl: "https://github.com/Dinuxd/transformer-scope",
+    media: {
+      type: "image",
+      src: "/data/projects/transformer-scope.svg?v=1",
+      alt: "TransformerScope architecture showing prompt tokens, GPT-2-small, logit lens, attention inspection, interventions, local dashboard, reviewed results, and static portfolio preview",
+      fit: "contain"
+    },
+    limitations:
+      "Designed as a local interpretability workbench for GPT-2-small. The portfolio uses static reviewed samples, not an unrestricted hosted dashboard.",
+    priority: 0.75,
     featured: true
   },
   {

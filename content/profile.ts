@@ -26,6 +26,7 @@ export const profile = {
   },
   focusChips: [
     "ML projects",
+    "LLM tooling",
     "Computer vision",
     "Audio classification",
     "IMU and sensor data",
@@ -62,9 +63,13 @@ export const skills = [
       "XGBoost",
       "Optuna",
       "Transformers",
+      "LLM interpretability",
       "RAG",
       "Embeddings",
       "Vector search",
+      "Logit lens",
+      "Attention analysis",
+      "Activation patching",
       "Model evaluation"
     ]
   },

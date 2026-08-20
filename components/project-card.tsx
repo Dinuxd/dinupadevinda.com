@@ -4,6 +4,7 @@ import { ButtonLink } from "./button-link";
 import { MediaFrame } from "./media-frame";
 import { MetricCard } from "./metric-card";
 import { StoryGenerator } from "./story-generator";
+import { TransformerScopeDemo } from "./transformer-scope-demo";
 
 export function ProjectCard({ project, compact = false }: { project: Project; compact?: boolean }) {
   const showMedia = project.media && project.media.type === "image";
@@ -89,6 +90,7 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
       </div>
 
       {project.slug === "tinystories-gpt-story-generator" ? <StoryGenerator /> : null}
+      {project.slug === "transformer-scope" ? <TransformerScopeDemo /> : null}
 
       <div className="mt-auto flex flex-wrap gap-3 pt-6">
         {project.repoUrl ? (
