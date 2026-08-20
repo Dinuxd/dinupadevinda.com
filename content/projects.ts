@@ -176,23 +176,23 @@ const projectEntries: Project[] = [
     role: "Transformer analysis and evaluation tools",
     status: "Local LLM tooling project",
     summary:
-      "A local workbench for inspecting GPT-2-small predictions, tokenization, logit-lens trajectories, attention heads, ablations, activation patching, causal tracing, and reviewed experiment artifacts.",
+      "A local workbench for looking inside GPT-2-small predictions: tokenization, logit-lens traces, attention heads, ablations, activation patching, causal tracing, and saved experiment results.",
     detailPoints: [
       {
         label: "Purpose",
-        text: "Built to understand what happens inside a transformer model instead of only calling an LLM API. It focuses on next-token behavior, internal activations, attention patterns, and controlled interventions."
+        text: "Built to understand transformer behavior beyond normal LLM API usage. It focuses on next-token predictions, internal activations, attention patterns, and controlled interventions."
       },
       {
         label: "Dashboard and CLI",
-        text: "Includes a local browser dashboard and Python command-line tools for prediction, attention inspection, generation traces, layer-by-token maps, neuron inspection, prompt comparison, causal tracing, and exportable JSON sessions."
+        text: "Includes a local browser dashboard and Python CLI tools for prediction, attention inspection, generation traces, layer-by-token maps, neuron checks, prompt comparison, causal tracing, and JSON exports."
       },
       {
         label: "Evaluation",
-        text: "The project keeps discovery, validation, final-test, and random-control results separate. The final 24-case evaluation preserved a null result instead of overstating a clean circuit discovery."
+        text: "The project separates discovery, validation, final-test, and random-control results. The final 24-case check did not prove a clean capital-retrieval circuit, so the result is reported as-is."
       },
       {
         label: "Public demo boundary",
-        text: "The portfolio shows reviewed static samples only. The full dashboard remains local because unrestricted scans and interventions are not suitable for an unauthenticated public website."
+        text: "The portfolio shows saved sample outputs. The full dashboard stays local because open-ended scans and interventions are too heavy for an unauthenticated public page."
       }
     ],
     domains: ["AI Systems", "LLM Interpretability", "Software"],
@@ -223,7 +223,7 @@ const projectEntries: Project[] = [
       fit: "contain"
     },
     limitations:
-      "Designed as a local interpretability workbench for GPT-2-small. The portfolio uses static reviewed samples, not an unrestricted hosted dashboard.",
+      "Designed as a local GPT-2-small workbench. The portfolio shows saved examples instead of exposing the full dashboard publicly.",
     priority: 0.75,
     featured: true
   },

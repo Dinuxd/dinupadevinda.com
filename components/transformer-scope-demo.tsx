@@ -14,14 +14,29 @@ export function TransformerScopeDemo() {
   const maxAttention = Math.max(...demo.attention.sources.map((item) => item.weight));
 
   return (
-    <div className="mt-5 rounded-2xl border border-cyan-300/18 bg-graphite-950/55 p-4">
-      <div className="flex flex-wrap items-start justify-between gap-3">
+    <details className="group mt-5 rounded-2xl border border-cyan-300/18 bg-graphite-950/55 p-4">
+      <summary className="flex cursor-pointer list-none flex-wrap items-center justify-between gap-3">
+        <span>
+          <span className="block text-xs font-bold uppercase tracking-[0.22em] text-signal-cyan">
+            View sample analysis
+          </span>
+          <span className="mt-1 block text-sm leading-6 text-slate-400">
+            A small GPT-2 example from the local workbench.
+          </span>
+        </span>
+        <span className="rounded-lg border border-cyan-300/15 bg-cyan-300/10 px-3 py-2 text-sm font-semibold text-cyan-100">
+          <span className="group-open:hidden">Open</span>
+          <span className="hidden group-open:inline">Close</span>
+        </span>
+      </summary>
+
+      <div className="mt-4 flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-signal-cyan">
-            Static lab preview
+            Sample output
           </p>
           <p className="mt-2 text-sm leading-6 text-slate-400">
-            Reviewed GPT-2-small outputs are shown here instead of exposing the full local dashboard.
+            These values come from saved GPT-2-small outputs, so visitors can inspect the idea without running the full local dashboard.
           </p>
         </div>
         <div className="rounded-lg border border-cyan-300/15 bg-cyan-300/10 px-3 py-2 text-right text-xs text-slate-300">
@@ -112,6 +127,6 @@ export function TransformerScopeDemo() {
           <p className="mt-3 text-xs leading-5 text-slate-500">{demo.ablation.note}</p>
         </div>
       </div>
-    </div>
+    </details>
   );
 }

@@ -4,7 +4,7 @@ export const transformerScopeDemo = {
     parameters: "124.4M",
     layers: 12,
     headsPerLayer: 12,
-    execution: "Precomputed static portfolio sample"
+    execution: "Static portfolio sample"
   },
   prompt: "The capital of France is",
   predictions: [
@@ -26,7 +26,7 @@ export const transformerScopeDemo = {
       { token: " France", weight: 0.00726 },
       { token: " is", weight: 0.023631 }
     ],
-    note: "Attention weights show where a head reads, not whether that read caused the output."
+    note: "Attention shows which tokens this head focused on. I treat it as a clue, not a full explanation."
   },
   logitLens: [
     { stage: 0, token: " destro", probability: 0.532703 },
@@ -51,6 +51,6 @@ export const transformerScopeDemo = {
     ablatedProbability: 0.024848,
     probabilityDelta: -0.007397,
     logitDelta: -0.258545,
-    note: "This is one fixed intervention result, not evidence of a universal component function."
+    note: "This is one small intervention example. It helps inspect the head, but I do not use it to label the whole model."
   }
 };

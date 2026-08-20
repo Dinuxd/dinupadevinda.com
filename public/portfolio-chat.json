@@ -104,12 +104,12 @@
     {
       "title": "TransformerScope: GPT-2 Interpretability Workbench",
       "type": "Local LLM tooling and interpretability project",
-      "summary": "Local workbench for inspecting GPT-2-small predictions, tokenization, logit-lens trajectories, attention heads, head and MLP ablations, activation patching, causal tracing, and reviewed experiment artifacts. The portfolio shows safe static samples instead of exposing the full local dashboard.",
+      "summary": "Local workbench for looking inside GPT-2-small predictions: tokenization, logit-lens traces, attention heads, head and MLP ablations, activation patching, causal tracing, and saved experiment results. The portfolio shows saved sample outputs instead of exposing the full local dashboard.",
       "areas": ["LLM interpretability", "Transformers", "GPT-2", "Attention analysis", "Logit lens", "Ablation", "Activation patching", "Evaluation"],
       "stack": ["Python", "PyTorch", "Transformers", "GPT-2-small", "Local dashboard", "CLI tools", "pytest"],
       "metrics": ["GPT-2-small 124M parameter model", "12 layers and 12 attention heads per layer", "144 attention heads covered by the causal head map", "24-case final evaluation with bootstrap intervals", "31 tests passed in the prepared public release"],
       "link": "https://github.com/Dinuxd/transformer-scope",
-      "limitations": "Designed for trusted local analysis, not as an unrestricted public multi-user service. The portfolio uses reviewed static examples because arbitrary scans and interventions can be slow and are not suitable for an unauthenticated public website."
+      "limitations": "Designed for local GPT-2-small analysis. The portfolio uses saved examples because open-ended scans and interventions can be slow and are not suitable for an unauthenticated public page."
     },
     {
       "title": "Vehicular Black Box: Vehicle Violation Detector",

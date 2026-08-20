@@ -8,10 +8,9 @@ import { TransformerScopeDemo } from "./transformer-scope-demo";
 
 export function ProjectCard({ project, compact = false }: { project: Project; compact?: boolean }) {
   const showMedia = project.media && project.media.type === "image";
-  const wideClass = project.layout === "wide" ? "lg:col-span-2" : "";
   const articleClass = compact
     ? "flex flex-col glass rounded-2xl p-5"
-    : `flex h-full flex-col glass rounded-2xl p-5 ${wideClass}`;
+    : "flex h-full flex-col glass rounded-2xl p-5";
 
   return (
     <article className={articleClass}>
@@ -41,14 +40,21 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
       </div>
 
       {!compact && project.detailPoints ? (
-        <div className="mt-5 grid gap-3 md:grid-cols-2">
-          {project.detailPoints.map((point) => (
-            <div key={`${project.slug}-${point.label}`} className="soft-panel rounded-xl p-4">
-              <h4 className="text-sm font-semibold text-signal-cyan">{point.label}</h4>
-              <p className="mt-2 text-sm leading-6 text-slate-400">{point.text}</p>
-            </div>
-          ))}
-        </div>
+        <details className="group mt-5 rounded-xl border border-cyan-300/14 bg-cyan-300/[0.04] p-4">
+          <summary className="cursor-pointer list-none text-sm font-semibold text-signal-cyan transition-colors hover:text-cyan-100">
+            <span>View project details</span>
+            <span className="ml-2 text-xs text-slate-500 group-open:hidden">+</span>
+            <span className="ml-2 hidden text-xs text-slate-500 group-open:inline">-</span>
+          </summary>
+          <div className="mt-4 grid gap-3">
+            {project.detailPoints.map((point) => (
+              <div key={`${project.slug}-${point.label}`} className="soft-panel rounded-xl p-4">
+                <h4 className="text-sm font-semibold text-signal-cyan">{point.label}</h4>
+                <p className="mt-2 text-sm leading-6 text-slate-400">{point.text}</p>
+              </div>
+            ))}
+          </div>
+        </details>
       ) : null}
 
       {compact ? (
