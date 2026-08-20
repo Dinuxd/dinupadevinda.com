@@ -218,8 +218,8 @@ const projectEntries: Project[] = [
     repoUrl: "https://github.com/Dinuxd/transformer-scope",
     media: {
       type: "image",
-      src: "/data/projects/transformer-scope.svg?v=1",
-      alt: "TransformerScope architecture showing prompt tokens, GPT-2-small, logit lens, attention inspection, interventions, local dashboard, reviewed results, and static portfolio preview",
+      src: "/data/projects/transformer-scope.jpg?v=2",
+      alt: "TransformerScope workflow showing prompt text, GPT-2 tokenizer, GPT-2-small, interpretation tools, saved results, and static portfolio preview",
       fit: "contain"
     },
     limitations:
