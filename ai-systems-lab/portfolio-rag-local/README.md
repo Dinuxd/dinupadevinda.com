@@ -49,7 +49,7 @@ Then add your Gemini key:
 GEMINI_API_KEY=your_key_here
 ```
 
-The API key is only for local learning. Do not commit `.env`.
+Keep the Gemini key in your local `.env` file.
 
 ## Docker Setup
 
@@ -165,6 +165,6 @@ eval/report.md
 - Grounding means the answer should come from retrieved evidence.
 - Evaluation tests whether the assistant answers correctly and refuses unsupported claims.
 
-## Honest Limitation
+## Scope
 
-This lab is for learning and offline comparison, not production hosting. Public concerns such as CORS, request limits, rate limiting, secret handling, prompt-injection checks, structured logs, and Cloudflare Vectorize live in `portfolio-chat-worker/`.
+This lab is for local experiments and offline comparison. The public Worker handles browser-facing details such as CORS, request limits, rate limiting, secret handling, prompt checks, structured logs, and Cloudflare Vectorize.

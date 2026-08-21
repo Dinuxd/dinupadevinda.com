@@ -84,7 +84,7 @@ const projectEntries: Project[] = [
       {
         label: "Tests",
         value: "20 eval questions",
-        detail: "Checks retrieval and unsupported claims."
+        detail: "Checks retrieval and unsupported questions."
       },
       {
         label: "Local lab",

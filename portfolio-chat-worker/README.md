@@ -43,7 +43,7 @@ GEMINI_API_KEY=your_key_here
 RAG_ADMIN_TOKEN=a_long_random_value_used_only_for_reindexing
 ```
 
-Never commit `.dev.vars`.
+Keep `.dev.vars` on your own machine.
 
 ## Local Checks
 
@@ -105,8 +105,7 @@ Health:
 Invoke-RestMethod "https://portfolio-chat-worker.dwmddevinda.workers.dev/health"
 ```
 
-Expected architecture: `hybrid-rag-v2`. After reindexing, `vectorize.reachable` should be
-`true` and `vectorize.vectorsCount` should be greater than zero.
+After reindexing, Vectorize should be reachable and contain portfolio chunks.
 
 Chat:
 

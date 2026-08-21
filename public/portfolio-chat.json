@@ -225,7 +225,7 @@
       "Hybrid retrieval using Gemini embeddings, Vectorize, lexical ranking, and reciprocal-rank fusion",
       "Dockerized local embedding-based RAG with Chroma",
       "Structured outputs with validated source IDs",
-      "Evaluation harness for retrieval coverage, supported answers, and unsupported-claim refusal",
+      "Evaluation harness for retrieval coverage, supported answers, and unsupported questions",
       "API security through rate limiting, request caps, CORS, secret handling, and prompt-injection checks"
     ],
     "skillsVisualized": {

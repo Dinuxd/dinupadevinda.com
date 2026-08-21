@@ -193,8 +193,8 @@ export function buildRagChunks(context: string): RagChunk[] {
   if (data.answeringRules?.length) {
     chunks.push({
       id: "answering-rules",
-      title: "Answering rules and claim limits",
-      source: "Portfolio claim limits",
+      title: "Answering rules",
+      source: "Portfolio answering rules",
       category: "AI Systems",
       url: "/projects/",
       text: `Rules:\n${formatList(data.answeringRules)}`

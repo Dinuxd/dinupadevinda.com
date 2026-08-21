@@ -42,4 +42,4 @@ pnpm.cmd --dir tinystories-worker\tinystories-gpt-proxy test
 
 ## Notes
 
-Secrets are stored in Cloudflare Worker secrets and local `.env` files only. Do not commit `.env.local`, `.dev.vars`, model checkpoints, or generated dependency/build folders.
+Secrets live in Cloudflare Worker secrets or local env files. Local env files, model artifacts, dependencies, and build outputs stay out of Git.

@@ -77,7 +77,7 @@ test("reciprocal-rank fusion combines keyword and vector candidates", () => {
   assert.deepEqual(results[0]?.matchedBy.sort(), ["keyword", "vector"]);
 });
 
-test("knowledge chunking includes claim limits", () => {
+test("knowledge chunking includes answering rules", () => {
   const context = JSON.stringify({
     profile: { role: "Machine Learning Focused Engineer" },
     answeringRules: ["Do not invent employment."]
