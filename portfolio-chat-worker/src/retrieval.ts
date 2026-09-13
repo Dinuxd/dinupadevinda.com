@@ -248,6 +248,39 @@ export async function embedDocument(chunk: RagChunk, env: Env): Promise<number[]
   return embedText(prepareEmbeddingDocument(chunk), env);
 }
 
+export async function embedDocuments(chunks: RagChunk[], env: Env): Promise<number[][]> {
+  const model = env.GEMINI_EMBEDDING_MODEL || DEFAULT_EMBEDDING_MODEL;
+  const dimensions = getEmbeddingDimensions(env);
+  const vectors: number[][] = [];
+  // Batch requests keep full reindexing below the Worker's subrequest limit.
+  for (let offset = 0; offset < chunks.length; offset += 20) {
+    const batch = chunks.slice(offset, offset + 20);
+    const response = await fetch(`${GEMINI_EMBEDDING_BASE_URL}/${model}:batchEmbedContents`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-goog-api-key": env.GEMINI_API_KEY },
+      body: JSON.stringify({ requests: batch.map(chunk => ({
+        model: `models/${model}`,
+        content: { parts: [{ text: prepareEmbeddingDocument(chunk).slice(0, 8000) }] },
+        outputDimensionality: dimensions
+      })) }),
+      signal: AbortSignal.timeout(30_000)
+    });
+    if (!response.ok) throw new Error(`Gemini batch embedding failed with status ${response.status}`);
+    const data: unknown = await response.json();
+    if (!isRecord(data) || !Array.isArray(data.embeddings) || data.embeddings.length !== batch.length) {
+      throw new Error("Gemini batch embedding returned an unexpected count");
+    }
+    for (const embedding of data.embeddings) {
+      if (!isRecord(embedding) || !Array.isArray(embedding.values) || embedding.values.length !== dimensions ||
+          !embedding.values.every(value => typeof value === "number" && Number.isFinite(value))) {
+        throw new Error("Gemini batch embedding returned an invalid vector");
+      }
+      vectors.push(embedding.values as number[]);
+    }
+  }
+  return vectors;
+}
+
 export function hasUsefulEvidence(result: RetrievalResult): boolean {
   const first = result.chunks[0];
   if (!first) {

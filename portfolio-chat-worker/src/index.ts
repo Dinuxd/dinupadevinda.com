@@ -13,7 +13,7 @@ import {
 } from "./security";
 import {
   VECTOR_NAMESPACE,
-  embedDocument,
+  embedDocuments,
   hasUsefulEvidence,
   retrieveEvidence
 } from "./retrieval";
@@ -270,8 +270,9 @@ async function handleReindex(
   const chunks = buildRagChunks(context);
   const vectors: VectorizeVector[] = [];
 
-  for (const chunk of chunks) {
-    const values = await embedDocument(chunk, env);
+  const embeddings = await embedDocuments(chunks, env);
+  for (const [index, chunk] of chunks.entries()) {
+    const values = embeddings[index];
     vectors.push({
       id: chunk.id,
       values,
