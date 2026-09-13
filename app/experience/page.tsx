@@ -5,7 +5,7 @@ import { experience } from "@/content/experience";
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "Industry experience of Dinupa Devinda across embedded firmware, IoT telemetry, telecom R&D, automation, and manufacturing systems.",
+    "Dinupa Devinda's experience at Scicom MSC Berhad, Sri Lanka Telecom, and Variosystems, across AI/ML software engineering, embedded systems, and automation.",
   alternates: {
     canonical: "/experience/"
   }
@@ -17,7 +17,7 @@ export default function ExperiencePage() {
       <SectionHeading
         eyebrow="Experience"
         title="Experience"
-        description="Industry work in embedded firmware, IoT telemetry, automation, and electronics manufacturing."
+        description="AI/ML software engineering at Scicom, with previous experience in telecom R&D, embedded systems, and industrial automation."
       />
 
       <div className="mt-10 space-y-6">
@@ -35,20 +35,20 @@ export default function ExperiencePage() {
               </div>
             </div>
             <p className="mt-5 text-base leading-7 text-slate-300">{item.summary}</p>
-            <ul className="mt-5 space-y-3">
+            {item.highlights.length > 0 && <ul className="mt-5 space-y-3">
               {item.highlights.map((highlight) => (
                 <li key={highlight} className="border-l-2 border-signal-cyan/40 pl-4 text-sm leading-6 text-slate-300">
                   {highlight}
                 </li>
               ))}
-            </ul>
-            <div className="mt-5 flex flex-wrap gap-2">
+            </ul>}
+            {item.stack.length > 0 && <div className="mt-5 flex flex-wrap gap-2">
               {item.stack.map((skill) => (
                 <span key={skill} className="rounded border border-cyan-300/12 bg-cyan-300/5 px-2.5 py-1 text-xs text-slate-300">
                   {skill}
                 </span>
               ))}
-            </div>
+            </div>}
           </article>
         ))}
       </div>

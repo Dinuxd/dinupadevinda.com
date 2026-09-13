@@ -193,7 +193,7 @@ export function StoryGenerator() {
           <div className="flex flex-wrap gap-3">
             <button
               type="button"
-              className="focus-ring inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-teal-400 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-950/30 disabled:cursor-not-allowed disabled:opacity-60"
+              className="focus-ring inline-flex items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-neutral-300 disabled:cursor-not-allowed disabled:opacity-60"
               onClick={generateStory}
               disabled={isGenerating || !prompt.trim()}
             >

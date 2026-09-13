@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 
 const config: Config = {
   content: [
@@ -7,27 +8,34 @@ const config: Config = {
     "./content/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
+    letterSpacing: { tight: "0", normal: "0", wide: "0", wider: "0", widest: "0" },
     extend: {
       colors: {
+        slate: colors.neutral,
+        cyan: colors.neutral,
+        teal: colors.neutral,
+        blue: colors.neutral,
+        emerald: colors.neutral,
+        red: colors.neutral,
         graphite: {
-          950: "#020817",
-          900: "#071324",
-          850: "#0c2038",
-          800: "#123054"
+          950: "#0a0a0a",
+          900: "#141414",
+          850: "#1c1c1c",
+          800: "#262626"
         },
         signal: {
-          cyan: "#4dd8ff",
-          green: "#2dd4bf",
-          sky: "#7dd3fc"
+          cyan: "#a8c7ff",
+          green: "#d4d4d4",
+          sky: "#bfd5ff"
         }
       },
       fontFamily: {
         sans: ["ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"]
       },
       boxShadow: {
-        panel: "0 26px 80px rgba(0, 11, 32, 0.34)",
-        glow: "0 0 32px rgba(77,216,255,0.14)",
-        "glow-lg": "0 18px 70px rgba(45,212,191,0.16)"
+        panel: "0 20px 60px rgba(0, 0, 0, 0.24)",
+        glow: "0 0 0 1px rgba(255,255,255,0.08)",
+        "glow-lg": "0 0 0 1px rgba(255,255,255,0.2)"
       }
     }
   },

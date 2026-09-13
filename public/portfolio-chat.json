@@ -1,12 +1,12 @@
 {
-  "updated": "2026-08-20",
+  "updated": "2026-09-12",
   "sourceSummary": "Portfolio site, CV/LinkedIn information provided by Dinupa Devinda, public GitHub repositories, and public LinkedIn project links.",
   "profile": {
     "name": "Dinupa Devinda",
     "location": "Colombo, Sri Lanka",
-    "role": "Machine Learning Focused Engineer",
-    "headline": "Machine Learning | AI/ML Developer | R&D Engineer",
-    "summary": "Machine learning focused engineer with a background in engineering, computer science, and mathematics. Experienced in data preparation, model development, evaluation, and model deployment. Interested in AI/ML work connected to real engineering and technology problems.",
+    "role": "AI/ML Engineer | Software Engineer",
+    "headline": "Machine Learning & Applied AI Systems",
+    "summary": "I'm an AI/ML engineer with a background in electrical and electronic engineering, computer science, and mathematics. My hands-on work spans computer vision, audio classification, sensor-based machine learning, deep learning, large language models, and retrieval-augmented generation. I enjoy understanding how models work and building useful AI applications, from data preparation and model training to evaluation, software integration, and cloud and edge deployment. Currently employed at Scicom MSC Berhad as a Trainee - Software Engineer (AI/ML), since September 2026, in a hybrid role in Sri Lanka. Contact me for AI/ML discussions and collaboration enquiries; availability for additional work has not been specified.",
     "contact": {
       "email": "dwmddevinda@gmail.com",
       "linkedin": "https://www.linkedin.com/in/dinupadevinda/",
@@ -56,6 +56,15 @@
     }
   ],
   "experience": [
+    {
+      "role": "Trainee - Software Engineer (AI/ML)",
+      "organization": "Scicom MSC Berhad",
+      "period": "Sep 2026 - Present",
+      "location": "Sri Lanka",
+      "workMode": "Hybrid",
+      "summary": "Joined Scicom MSC Berhad in September 2026 as a Trainee - Software Engineer (AI/ML). Specific responsibilities and employer project details have not been provided.",
+      "skills": []
+    },
     {
       "role": "Research and Development Engineering Intern",
       "organization": "Sri Lanka Telecom - Digital Lab",

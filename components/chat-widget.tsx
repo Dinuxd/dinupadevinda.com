@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent, type ReactNode } from "react";
 import { Bot, ExternalLink, FileText, Loader2, MessageCircle, Send, X } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 type ChatSource = {
   id: string;
@@ -292,6 +293,7 @@ function loadTurnstileScript() {
 }
 
 export function ChatWidget() {
+  const reducedMotion = useReducedMotion();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
   const [input, setInput] = useState("");
@@ -458,8 +460,13 @@ export function ChatWidget() {
   return (
     <div className="portfolio-chat-root flex max-w-[calc(100vw-2rem)] flex-col items-end gap-3">
       {turnstileSiteKey ? <div ref={turnstileContainerRef} className="sr-only" /> : null}
+      <AnimatePresence>
       {isOpen ? (
-        <section
+        <motion.section
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: reducedMotion ? 0 : 10 }}
+          transition={{ duration: reducedMotion ? 0 : .18 }}
           id="portfolio-chat-panel"
           aria-label="Portfolio chat"
           className="flex h-[min(620px,calc(100vh-7rem))] w-[min(390px,calc(100vw-2rem))] flex-col overflow-hidden rounded-xl border border-cyan-300/20 bg-graphite-950/95 shadow-2xl shadow-black/70 backdrop-blur-2xl"
@@ -588,12 +595,14 @@ export function ChatWidget() {
             </div>
             <p className="mt-2 text-right text-xs text-slate-500">{input.length}/500</p>
           </form>
-        </section>
+        </motion.section>
       ) : null}
+      </AnimatePresence>
 
       <button
         type="button"
         className="focus-ring inline-flex h-12 items-center gap-2 rounded-md border border-signal-cyan bg-gradient-to-r from-signal-cyan to-signal-green px-4 text-sm font-semibold text-graphite-950 shadow-2xl shadow-black/30 transition hover:-translate-y-0.5 hover:from-white hover:to-signal-cyan"
+        aria-label={isOpen ? "Close portfolio chat" : "Ask about my projects"}
         onClick={() => setIsOpen((current) => !current)}
         aria-expanded={isOpen}
         aria-controls="portfolio-chat-panel"

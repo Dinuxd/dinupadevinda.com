@@ -1,5 +1,14 @@
 export const experience = [
   {
+    organization: "Scicom MSC Berhad",
+    role: "Trainee - Software Engineer (AI/ML)",
+    period: "Sep 2026 - Present",
+    location: "Sri Lanka, Hybrid",
+    summary: "Joined Scicom MSC Berhad in September 2026 as a Trainee - Software Engineer (AI/ML).",
+    highlights: [],
+    stack: []
+  },
+  {
     organization: "Sri Lanka Telecom",
     role: "Research and Development Engineering Intern",
     period: "Jun 2025 - Sep 2025",

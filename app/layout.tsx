@@ -8,39 +8,39 @@ import { profile, siteUrl } from "@/content/profile";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Dinupa Devinda | Machine Learning | AI/ML Developer | R&D Engineer",
+    default: "Dinupa Devinda | AI/ML Engineer | Software Engineer",
     template: "%s | Dinupa Devinda"
   },
   description:
-    "Portfolio of Dinupa Devinda, with projects across machine learning, embedded systems, R&D, and software.",
+    "Dinupa Devinda's AI/ML and software engineering portfolio: computer vision, language models, RAG, audio and sensor-based ML, and model deployment.",
   alternates: {
     canonical: "/"
   },
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: "Dinupa Devinda | Machine Learning | AI/ML Developer | R&D Engineer",
+    title: "Dinupa Devinda | AI/ML Engineer | Software Engineer",
     description:
-      "Machine learning, embedded systems, R&D, automation, and software projects by Dinupa Devinda.",
+      "Computer vision, language models, RAG, and applied AI systems by Dinupa Devinda.",
     siteName: "Dinupa Devinda Portfolio",
     images: [
       {
-        url: "/data/avatar/profile_pic.jpg",
-        width: 800,
-        height: 800,
+        url: profile.portrait,
+        width: 1254,
+        height: 1254,
         alt: "Dinupa Devinda"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dinupa Devinda | Machine Learning | AI/ML Developer | R&D Engineer",
+    title: "Dinupa Devinda | AI/ML Engineer | Software Engineer",
     description:
-      "Machine learning, embedded systems, R&D, automation, and software projects.",
-    images: ["/data/avatar/profile_pic.jpg"]
+      "Computer vision, language models, RAG, and applied AI systems by Dinupa Devinda.",
+    images: [profile.portrait]
   },
   icons: {
-    icon: "/data/avatar/profile_pic.jpg"
+    icon: profile.portrait
   }
 };
 
@@ -49,7 +49,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@context": "https://schema.org",
     "@type": "Person",
     name: profile.name,
-    jobTitle: profile.role,
+    jobTitle: "Trainee - Software Engineer (AI/ML)",
+    worksFor: { "@type": "Organization", name: "Scicom MSC Berhad" },
     url: siteUrl,
     email: profile.email,
     sameAs: [profile.links.github, profile.links.linkedin, profile.links.kaggle]

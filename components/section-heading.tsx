@@ -13,8 +13,8 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
-      {eyebrow ? (
-        <p className="mb-3 text-xs font-bold uppercase tracking-[0.24em] text-signal-green">
+      {eyebrow && eyebrow.toLowerCase() !== title.toLowerCase() ? (
+        <p className="mb-3 text-sm font-medium text-signal-cyan">
           {eyebrow}
         </p>
       ) : null}

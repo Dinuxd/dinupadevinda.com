@@ -2,14 +2,16 @@ export const siteUrl = "https://www.dinupadevinda.com";
 
 export const profile = {
   name: "Dinupa Devinda",
+  portrait: "/data/avatar/dinupa-devinda-portrait-original.jpg",
   brand: "DD Dev Systems",
-  role: "Machine Learning Focused Engineer",
+  role: "AI/ML Engineer | Software Engineer",
   location: "Colombo, Sri Lanka",
   email: "dwmddevinda@gmail.com",
   phone: "+94 75 463 4737",
-  headline: "Machine Learning | AI/ML Developer | R&D Engineer",
+  headline: "Machine Learning & Applied AI Systems",
+  currentPosition: "Trainee - Software Engineer (AI/ML) at Scicom MSC Berhad",
   summary:
-    "Machine learning focused engineer with a background in engineering, computer science, and mathematics. Experienced in data preparation, model development, evaluation, and model deployment. Interested in AI/ML work connected to real engineering and technology problems.",
+    "I'm an AI/ML engineer with a background in electrical and electronic engineering, computer science, and mathematics. My hands-on work spans computer vision, audio classification, sensor-based machine learning, deep learning, large language models, and retrieval-augmented generation. I enjoy understanding how models work and building useful AI applications, from data preparation and model training to evaluation, software integration, and cloud and edge deployment.",
   links: {
     github: "https://github.com/Dinuxd",
     linkedin: "https://www.linkedin.com/in/dinupadevinda/",

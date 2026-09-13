@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ProjectGrid } from "@/components/project-grid";
+import { ProjectBrowser } from "@/components/project-browser";
 import { SectionHeading } from "@/components/section-heading";
 import { projects } from "@/content/projects";
 
@@ -20,7 +20,7 @@ export default function ProjectsPage() {
         title="Projects"
         description="Machine learning, LLM tooling, AI assistant, embedded systems, software, and engineering work."
       />
-      <ProjectGrid projects={projects} />
+      <ProjectBrowser projects={projects} />
     </section>
   );
 }

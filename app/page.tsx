@@ -1,89 +1,59 @@
 import Image from "next/image";
-import { Download, FolderOpen, Github, Linkedin, Mail } from "lucide-react";
+import Link from "next/link";
+import { ArrowDown, ArrowUpRight, BrainCircuit, Code2, Cpu, Download, FolderOpen, Mail } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
-import { MetricCard } from "@/components/metric-card";
 import { ProjectGrid } from "@/components/project-grid";
 import { SectionHeading } from "@/components/section-heading";
 import { education } from "@/content/experience";
 import { featuredProjects } from "@/content/projects";
 import { profile } from "@/content/profile";
 
+const focusAreas = [
+  { icon: BrainCircuit, title: "Machine learning", detail: "Computer vision, audio classification, and sensor-based models." },
+  { icon: Code2, title: "Language models & RAG", detail: "Language modelling, retrieval, evaluation, and interpretability." },
+  { icon: Cpu, title: "Applied AI systems", detail: "Model serving, backend APIs, cloud deployment, and edge inference." }
+];
+
 export default function HomePage() {
   return (
     <>
-      <section className="mx-auto grid max-w-7xl gap-10 px-4 pb-16 pt-14 sm:px-6 md:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:pt-20">
-        <div className="hero-fade flex flex-col justify-center">
-          <p className="text-sm font-bold uppercase tracking-[0.28em] text-signal-green">
-            {profile.role}
-          </p>
-          <h1 className="gradient-name mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
-            {profile.name}
-          </h1>
-          <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-200">{profile.headline}</p>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-400">{profile.summary}</p>
-
-          <div className="mt-7 flex flex-wrap gap-3">
-            <ButtonLink href="/projects/" icon={FolderOpen}>
-              View work
-            </ButtonLink>
-            <ButtonLink href={profile.links.github} icon={Github} variant="secondary" external>
-              GitHub
-            </ButtonLink>
-            <ButtonLink href={profile.links.linkedin} icon={Linkedin} variant="secondary" external>
-              LinkedIn
-            </ButtonLink>
-            <ButtonLink href={profile.links.cv} icon={Download} variant="secondary">
-              Download CV
-            </ButtonLink>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-2">
-            {profile.focusChips.map((chip) => (
-              <span
-                key={chip}
-                className="rounded border border-signal-cyan/20 bg-signal-cyan/10 px-3 py-1.5 text-sm font-semibold text-signal-cyan"
-              >
-                {chip}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="hero-fade hero-fade-d2 technical-panel p-4">
-          <div className="grid gap-4 sm:grid-cols-[0.78fr_1fr] md:grid-cols-1 xl:grid-cols-[0.78fr_1fr]">
-            <div className="media-depth overflow-hidden rounded-md border border-cyan-300/12 bg-graphite-900">
-              <Image
-                src="/data/avatar/profile_pic.jpg"
-                alt="Dinupa Devinda"
-                width={520}
-                height={640}
-                priority
-                className="h-full min-h-[340px] w-full object-cover object-[50%_38%]"
-              />
+      <section className="profile-hero">
+        <div className="hero-inner">
+          <div className="hero-copy hero-fade">
+            <p className="hero-role">{profile.role}</p>
+            <h1>Dinupa<br />Devinda</h1>
+            <p className="hero-specialism">{profile.headline}</p>
+            <p className="hero-intro">
+              I build and explore AI systems, from computer vision and sensor-based
+              models to language models, RAG, and the software that brings them to life.
+            </p>
+            <div className="hero-actions">
+              <ButtonLink href="/projects/" icon={FolderOpen}>Explore projects</ButtonLink>
+              <ButtonLink href={profile.links.cv} icon={Download} variant="secondary">Download CV</ButtonLink>
             </div>
-            <div className="soft-panel rounded-md p-4">
-              <div className="grid gap-3">
-                {profile.heroStats.map((metric) => (
-                  <MetricCard key={metric.label} metric={metric} />
-                ))}
-              </div>
-            </div>
+            <Link className="hero-employment" href="/experience/">
+              <span className="employment-marker" aria-hidden="true" />
+              <span>At Scicom MSC Berhad<span className="employment-title">Trainee - Software Engineer (AI/ML)</span></span>
+              <ArrowUpRight aria-hidden="true" size={18} />
+            </Link>
           </div>
+          <figure className="hero-portrait hero-fade hero-fade-d1">
+            <div className="portrait-crop">
+              <Image src={profile.portrait} alt="Dinupa Devinda wearing a suit outdoors" width={1254} height={1254} priority sizes="(max-width: 380px) 104px, (max-width: 760px) 124px, 440px" />
+            </div>
+            <figcaption><span>Colombo, Sri Lanka</span><a href="#focus" aria-label="Explore my work"><ArrowDown size={20} /></a></figcaption>
+          </figure>
         </div>
       </section>
 
-      <section className="flow-band py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="About me"
-            title="Machine learning with an engineering base."
-            description="Projects across ML, software, data, and engineering systems."
-          />
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {profile.capabilities.map((capability) => (
-              <div key={capability.title} className="glass rounded-md p-5">
-                <h3 className="text-lg font-semibold text-white">{capability.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-400">{capability.detail}</p>
+      <section id="focus" className="expertise-band">
+        <div className="expertise-inner">
+          <div className="expertise-heading"><h2>What I work on</h2><Link href="/about/">More about me <ArrowUpRight size={17} aria-hidden="true" /></Link></div>
+          <div className="expertise-grid">
+            {focusAreas.map(({ icon: Icon, title, detail }) => (
+              <div className="expertise-item" key={title}>
+                <Icon size={26} strokeWidth={1.5} aria-hidden="true" />
+                <h3>{title}</h3><p>{detail}</p>
               </div>
             ))}
           </div>
@@ -91,53 +61,30 @@ export default function HomePage() {
       </section>
 
       <section className="section-pad mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Education"
-          title="Education"
-          description="Engineering and physical sciences background."
-        />
-        <div className="mt-8 grid gap-5 md:grid-cols-2">
+        <div className="section-with-link">
+          <SectionHeading title="Selected work" description="Experiments, applications, and engineering projects." />
+          <Link href="/projects/" className="text-link">All projects <ArrowUpRight size={18} aria-hidden="true" /></Link>
+        </div>
+        <ProjectGrid projects={featuredProjects} />
+      </section>
+
+      <section className="section-pad mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading title="An engineering foundation" description="Electrical and electronic engineering, computer science, and mathematics." />
+        <div className="education-list">
           {education.slice(0, 2).map((item) => (
-            <article key={item.title} className="glass rounded-md p-5">
-              <p className="text-sm font-semibold text-signal-green">{item.period}</p>
+            <article key={item.title}>
+              <p className="text-sm text-slate-400">{item.period}</p>
               <h3 className="mt-3 text-xl font-semibold text-white">{item.title}</h3>
-              <p className="mt-1 text-sm font-semibold text-signal-cyan">{item.institution}</p>
+              <p className="mt-2 text-sm font-semibold text-signal-cyan">{item.institution}</p>
               <p className="mt-3 text-sm leading-6 text-slate-400">{item.detail}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="section-pad mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Projects"
-          title="Selected work"
-          description="Selected projects first, with the full list on the Projects page."
-        />
-        <ProjectGrid projects={featuredProjects} />
-      </section>
-
-      <section className="flow-band py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-5">
-            <div>
-              <p className="text-sm font-bold uppercase tracking-[0.24em] text-signal-green">
-                Contact
-              </p>
-              <h2 className="mt-2 text-2xl font-semibold text-white">
-                View the projects or get in touch.
-              </h2>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <ButtonLink href="/projects/" icon={FolderOpen}>
-                Browse all projects
-              </ButtonLink>
-              <ButtonLink href={profile.links.emailCompose} icon={Mail} variant="secondary" external>
-                Contact me
-              </ButtonLink>
-            </div>
-          </div>
-        </div>
+      <section className="contact-band">
+        <div><p>Have something in mind?</p><h2>Let&apos;s talk AI.</h2></div>
+        <ButtonLink href={profile.links.emailCompose} icon={Mail} external>Get in touch</ButtonLink>
       </section>
     </>
   );

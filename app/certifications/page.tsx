@@ -64,7 +64,6 @@ export default function CertificationsPage() {
                     src={honor.image}
                     title={honor.title}
                     issuer={honor.issuer}
-                    compact
                   />
                 </div>
                 <div>
@@ -97,18 +96,14 @@ function EvidencePreview({
   src,
   title,
   issuer,
-  compact = false
 }: {
   src: string;
   title: string;
   issuer: string;
-  compact?: boolean;
 }) {
   const isPdf = src.toLowerCase().endsWith(".pdf");
   const previewClass =
-    `aspect-[4/3] w-full cursor-zoom-in rounded bg-graphite-900 transition duration-300 ease-out group-hover:shadow-2xl group-hover:ring-1 group-hover:ring-signal-cyan/40 ${
-      compact ? "group-hover:scale-[1.28]" : "group-hover:scale-[1.5]"
-    }`;
+    "aspect-[4/3] w-full rounded bg-graphite-900 transition duration-200 group-hover:ring-1 group-hover:ring-signal-cyan/40";
 
   if (isPdf) {
     return (
@@ -127,6 +122,7 @@ function EvidencePreview({
   }
 
   return (
+    <a href={src} target="_blank" rel="noopener noreferrer" aria-label={`Open ${title} certificate`}>
     <Image
       src={src}
       alt={`${title} certificate from ${issuer}`}
@@ -134,5 +130,6 @@ function EvidencePreview({
       height={640}
       className={`${previewClass} object-contain`}
     />
+    </a>
   );
 }

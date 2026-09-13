@@ -9,7 +9,7 @@ import { profile, skills } from "@/content/profile";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Dinupa Devinda, with machine learning, embedded systems, software, and R&D project experience.",
+    "About Dinupa Devinda, an AI/ML and software engineer working across computer vision, language models, RAG, and applied machine learning.",
   alternates: {
     canonical: "/about/"
   }
@@ -20,13 +20,14 @@ export default function AboutPage() {
     <section className="section-pad mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
         <div>
+          <div className="portrait-crop">
           <Image
-            src="/data/avatar/profile_pic.jpg"
+            src={profile.portrait}
             alt="Portrait of Dinupa Devinda"
-            width={620}
-            height={760}
-            className="media-depth aspect-[4/5] w-full rounded-md border border-cyan-300/12 object-cover object-[50%_38%]"
+            width={1254}
+            height={1254}
           />
+          </div>
           <div className="mt-5 flex flex-wrap gap-3">
             <ButtonLink href={profile.links.github} icon={Github} external>
               GitHub
@@ -43,21 +44,13 @@ export default function AboutPage() {
         <div>
           <SectionHeading
             eyebrow="About me"
-            title="Machine learning and engineering projects."
+            title="Machine Learning & Applied AI Systems"
             description={profile.summary}
           />
           <div className="mt-8 space-y-5 text-base leading-7 text-slate-300">
             <p>
-              My projects sit across machine learning, software, embedded
-              systems, and engineering prototypes. I have worked on model
-              training, evaluation, Raspberry Pi deployment, computer vision,
-              audio classification, IMU data, backend APIs, dashboards, and
-              automation prototypes.
-            </p>
-            <p>
-              I am interested in using machine learning and engineering to solve
-              practical problems. I have also worked with lightweight model
-              deployment on Raspberry Pi where it fit the project.
+              I joined Scicom MSC Berhad in September 2026 as a Trainee - Software
+              Engineer (AI/ML), working in a hybrid role in Sri Lanka.
             </p>
           </div>
 

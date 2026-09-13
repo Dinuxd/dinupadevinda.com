@@ -12,7 +12,7 @@ const navItems = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-cyan-300/10 bg-graphite-950/72 shadow-[0_18px_50px_rgba(0,10,32,0.26)] backdrop-blur-2xl">
+    <header className="sticky top-0 z-50 border-b border-cyan-300/10 bg-graphite-950/95 shadow-[0_8px_24px_rgba(0,0,0,0.16)] backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center gap-3">
           <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-cyan-300/30 bg-cyan-300/10 text-sm font-black text-cyan-200 shadow-glow transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-teal-300/60 group-hover:text-white group-hover:shadow-glow-lg">
@@ -28,13 +28,13 @@ export function SiteHeader() {
 
         <nav
           aria-label="Primary navigation"
-          className="order-3 flex w-full flex-wrap items-center gap-1 md:order-none md:w-auto"
+          className="site-navigation order-3 flex w-full items-center gap-1 overflow-x-auto md:order-none md:w-auto"
         >
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-300 transition-all duration-300 hover:-translate-y-0.5 hover:bg-cyan-300/10 hover:text-cyan-100"
+              className="shrink-0 rounded-md px-2 py-2 text-xs font-medium text-slate-300 transition-colors sm:px-3 sm:text-sm"
             >
               {item.label}
             </Link>

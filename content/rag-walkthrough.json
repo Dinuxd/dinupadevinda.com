@@ -1,0 +1,74 @@
+{
+  "mode": "Saved keyword retrieval",
+  "samples": [
+    {
+      "question": "What computer vision projects has Dinupa built?",
+      "sources": [
+        {
+          "title": "Road Sign Detection with YOLO and ONNX",
+          "text": "Title: Road Sign Detection with YOLO and ONNX\nType: Computer vision prototype\nSummary: Two-stage road-sign recognition pipeline. YOLO localizes candidate signs and an ONNX classifier separates speed limits, traffic lights, no-honking signs, and other signs for Raspberry Pi style deployment.\nAreas: Computer vision, Edge deployment\nStack: YOLO, ONNX Runtime, NCNN, OpenCV, Python, Raspberry Pi\nMetrics: 9,062 image test set, NCNN/Raspberry Pi deployment work\nLink: https://github.com/Dinuxd/road-sign-detection-yolo-onnx",
+          "url": "https://github.com/Dinuxd/road-sign-detection-yolo-onnx",
+          "score": 1
+        },
+        {
+          "title": "Smart Fish Habitat Management System",
+          "text": "Title: Smart Fish Habitat Management System\nType: Raspberry Pi automation and vision project\nSummary: Automated aquarium system for water-quality monitoring, scheduled feeding, water changing, filtration, aeration, and heating. The project also tested YOLOv11 fish detection and TensorFlow Lite vision work for water-quality assessment.\nAreas: Embedded systems, Computer vision, Automation\nStack: Raspberry Pi 4, Python, DS18B20, PH-4502C, TensorFlow Lite, YOLOv11\nLink: https://www.linkedin.com/posts/dinupadevinda_im-happy-to-share-this-advanced-automated-ugcPost-7344258111374794753-unXK/",
+          "url": "https://www.linkedin.com/posts/dinupadevinda_im-happy-to-share-this-advanced-automated-ugcPost-7344258111374794753-unXK/",
+          "score": 0.9972440839291504
+        },
+        {
+          "title": "Vehicular Black Box: Vehicle Violation Detector",
+          "text": "Title: Vehicular Black Box: Vehicle Violation Detector\nType: Final-year integrated ML and embedded system\nSummary: Raspberry Pi based vehicle black-box prototype combining camera, audio, IMU, GPS/GSM inputs, violation and driving-event modules, evidence upload, backend services, and a React dashboard.\nAreas: Computer vision, Audio ML, Sensor fusion, Embedded systems, Backend, Full stack\nStack: Raspberry Pi 4B, Python, TFLite, ONNX, NCNN, Go, PostgreSQL, React, TypeScript\nLink: https://github.com/Dinuxd/vehicular-black-box-violation-detector\nLimitations: Prototype with validation notes and limitations documented. Do not describe it as a production-ready safety system.",
+          "url": "https://github.com/Dinuxd/vehicular-black-box-violation-detector",
+          "score": 0.8109066549304683
+        }
+      ]
+    },
+    {
+      "question": "What audio machine learning projects has Dinupa built?",
+      "sources": [
+        {
+          "title": "Crash Detection with Audio and IMU Sensor Fusion",
+          "text": "Title: Crash Detection with Audio and IMU Sensor Fusion\nType: FYP module\nSummary: Crash detection module combining audio and IMU signals. It packages separate model outputs into fusion labels for the vehicular black-box prototype.\nAreas: Audio ML, IMU data, Sensor fusion\nStack: PyTorch, TensorFlow/Keras, CNN-GRU, log-mel, Raspberry Pi, Python\nLink: https://github.com/Dinuxd/crash-detection-audio-imu-fusion",
+          "url": "https://github.com/Dinuxd/crash-detection-audio-imu-fusion",
+          "score": 1
+        },
+        {
+          "title": "Vehicle Horn Detection with Audio CNN",
+          "text": "Title: Vehicle Horn Detection with Audio CNN\nType: Audio ML prototype\nSummary: Vehicle horn detector using 1-second microphone windows, log-mel features, CNN training, and TensorFlow Lite export for lightweight inference.\nAreas: Audio ML, Signal processing, Edge deployment\nStack: TensorFlow, Keras, TFLite, librosa, SpecAugment, Python\nLink: https://github.com/Dinuxd/vehicle-horn-detection-audio-cnn\nLimitations: Internal metrics are strong; field validation is the next step.",
+          "url": "https://github.com/Dinuxd/vehicle-horn-detection-audio-cnn",
+          "score": 0.9930574064807421
+        },
+        {
+          "title": "Vehicular Black Box: Vehicle Violation Detector",
+          "text": "Title: Vehicular Black Box: Vehicle Violation Detector\nType: Final-year integrated ML and embedded system\nSummary: Raspberry Pi based vehicle black-box prototype combining camera, audio, IMU, GPS/GSM inputs, violation and driving-event modules, evidence upload, backend services, and a React dashboard.\nAreas: Computer vision, Audio ML, Sensor fusion, Embedded systems, Backend, Full stack\nStack: Raspberry Pi 4B, Python, TFLite, ONNX, NCNN, Go, PostgreSQL, React, TypeScript\nLink: https://github.com/Dinuxd/vehicular-black-box-violation-detector\nLimitations: Prototype with validation notes and limitations documented. Do not describe it as a production-ready safety system.",
+          "url": "https://github.com/Dinuxd/vehicular-black-box-violation-detector",
+          "score": 0.620278175464761
+        }
+      ]
+    },
+    {
+      "question": "What backend projects has Dinupa built?",
+      "sources": [
+        {
+          "title": "AI Portfolio Assistant with RAG and Vector Search",
+          "text": "Title: AI Portfolio Assistant with RAG and Vector Search\nType: Portfolio chatbot and retrieval system\nSummary: Portfolio chatbot built with a Cloudflare Worker, Gemini, Cloudflare Vectorize, keyword retrieval, reciprocal-rank fusion, and clickable portfolio sources. The project also includes a Dockerized local Python and Chroma RAG setup for learning, retrieval testing, and offline experiments.\nAreas: LLM integration, RAG, Embeddings, Vector search, Evaluation, Serverless backend, AI systems\nStack: Gemini API, Cloudflare Workers, Cloudflare Vectorize, Python, Chroma, sentence-transformers, Docker, Next.js, TypeScript, Evaluation harness\nMetrics: Hybrid vector and keyword retrieval, Structured source validation, 20-question retrieval evaluation set\nLink: https://github.com/Dinuxd/dinupadevinda.com\nLimitations: Personal portfolio chatbot used to practice retrieval, evaluation, and serverless AI integration.",
+          "url": "https://github.com/Dinuxd/dinupadevinda.com",
+          "score": 1
+        },
+        {
+          "title": "BRMS Boarding Room Management API",
+          "text": "Title: BRMS Boarding Room Management API\nType: Backend project\nSummary: Java Spring Boot REST API for boarding-room management workflows with Spring Data JPA, SQL Server configuration, environment-based settings, and H2-backed testing.\nAreas: Backend, REST APIs\nStack: Java, Spring Boot, REST APIs, Spring Data JPA, SQL Server, H2\nLink: https://github.com/Dinuxd/brms-spring-boot-api",
+          "url": "https://github.com/Dinuxd/brms-spring-boot-api",
+          "score": 0.9952544679320812
+        },
+        {
+          "title": "Vehicular Black Box: Vehicle Violation Detector",
+          "text": "Title: Vehicular Black Box: Vehicle Violation Detector\nType: Final-year integrated ML and embedded system\nSummary: Raspberry Pi based vehicle black-box prototype combining camera, audio, IMU, GPS/GSM inputs, violation and driving-event modules, evidence upload, backend services, and a React dashboard.\nAreas: Computer vision, Audio ML, Sensor fusion, Embedded systems, Backend, Full stack\nStack: Raspberry Pi 4B, Python, TFLite, ONNX, NCNN, Go, PostgreSQL, React, TypeScript\nLink: https://github.com/Dinuxd/vehicular-black-box-violation-detector\nLimitations: Prototype with validation notes and limitations documented. Do not describe it as a production-ready safety system.",
+          "url": "https://github.com/Dinuxd/vehicular-black-box-violation-detector",
+          "score": 0.9198450559584418
+        }
+      ]
+    }
+  ]
+}

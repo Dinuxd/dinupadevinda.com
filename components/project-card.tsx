@@ -5,6 +5,8 @@ import { MediaFrame } from "./media-frame";
 import { MetricCard } from "./metric-card";
 import { StoryGenerator } from "./story-generator";
 import { TransformerScopeDemo } from "./transformer-scope-demo";
+import { ProjectDetails } from "./project-details";
+import { RagWalkthrough } from "./rag-walkthrough";
 
 export function ProjectCard({ project, compact = false }: { project: Project; compact?: boolean }) {
   const showMedia = project.media && project.media.type === "image";
@@ -39,7 +41,7 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
         <p className="mt-3 text-sm leading-6 text-slate-300">{project.summary}</p>
       </div>
 
-      {!compact && project.detailPoints ? (
+      {!compact && project.detailPoints && project.slug !== "transformer-scope" ? <ProjectDetails points={project.detailPoints} /> : !compact && project.detailPoints ? (
         <details className="group mt-5 rounded-xl border border-cyan-300/14 bg-cyan-300/[0.04] p-4">
           <summary className="cursor-pointer list-none text-sm font-semibold text-signal-cyan transition-colors hover:text-cyan-100">
             <span>View project details</span>
@@ -96,6 +98,7 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
       </div>
 
       {project.slug === "tinystories-gpt-story-generator" ? <StoryGenerator /> : null}
+      {project.slug === "ai-portfolio-assistant-rag" ? <RagWalkthrough /> : null}
       {project.slug === "transformer-scope" ? <TransformerScopeDemo /> : null}
 
       <div className="mt-auto flex flex-wrap gap-3 pt-6">

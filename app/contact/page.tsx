@@ -27,8 +27,8 @@ export default function ContactPage() {
     <section className="section-pad contact-page mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <SectionHeading
         eyebrow="Contact"
-        title="Open to ML engineering, R&D, and project work"
-        description="For roles, internships, projects, or collaborations, email and LinkedIn are the best ways to reach me."
+        title="Let's connect"
+        description="For AI/ML discussions and collaboration enquiries, reach me by email or LinkedIn."
         align="center"
       />
 
