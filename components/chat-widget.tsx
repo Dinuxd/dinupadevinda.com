@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type FormEvent, type KeyboardEvent, type ReactNode } from "react";
 import { Bot, ExternalLink, FileText, Loader2, MessageCircle, Send, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
@@ -29,6 +29,9 @@ type ChatResponse = {
 
 const chatApiUrl = process.env.NEXT_PUBLIC_CHAT_API_URL ?? "";
 const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
+const verificationTimeoutMs = 15_000;
+const chatTimeoutMs = 45_000;
+const preparedTokenLifetimeMs = 240_000;
 
 type TurnstileWidgetId = string;
 
@@ -39,8 +42,9 @@ declare global {
         container: HTMLElement,
         options: {
           sitekey: string;
-          size?: "normal" | "compact" | "invisible";
+          appearance?: "interaction-only";
           execution?: "render" | "execute";
+          retry?: "auto" | "never";
           action?: string;
           callback?: (token: string) => void;
           "error-callback"?: () => void;
@@ -49,6 +53,7 @@ declare global {
       ) => TurnstileWidgetId;
       execute: (widgetId: TurnstileWidgetId) => void;
       reset: (widgetId: TurnstileWidgetId) => void;
+      remove: (widgetId: TurnstileWidgetId) => void;
     };
   }
 }
@@ -268,24 +273,29 @@ function loadTurnstileScript() {
   }
 
   if (!turnstileScriptPromise) {
-    turnstileScriptPromise = new Promise((resolve, reject) => {
-      const existingScript = document.getElementById("cloudflare-turnstile-script");
-      if (existingScript) {
-        existingScript.addEventListener("load", () => resolve(), { once: true });
-        existingScript.addEventListener("error", () => reject(new Error("Turnstile failed to load.")), {
-          once: true
-        });
-        return;
-      }
-
+    turnstileScriptPromise = new Promise<void>((resolve, reject) => {
       const script = document.createElement("script");
       script.id = "cloudflare-turnstile-script";
       script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
       script.async = true;
       script.defer = true;
-      script.onload = () => resolve();
-      script.onerror = () => reject(new Error("Turnstile failed to load."));
+      function fail() {
+        window.clearTimeout(timeout);
+        script.remove();
+        reject(new Error("Turnstile failed to load."));
+      }
+
+      const timeout = window.setTimeout(fail, verificationTimeoutMs);
+      script.onload = () => {
+        window.clearTimeout(timeout);
+        if (window.turnstile) resolve();
+        else fail();
+      };
+      script.onerror = fail;
       document.head.appendChild(script);
+    }).catch((error: unknown) => {
+      turnstileScriptPromise = null;
+      throw error;
     });
   }
 
@@ -297,10 +307,12 @@ export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
   const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [requestStage, setRequestStage] = useState<"verifying" | "answering" | null>(null);
+  const isLoading = requestStage !== null;
   const nextId = useRef(2);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
+  const preparedToken = useRef<{ startedAt: number; promise: Promise<string | undefined> } | null>(null);
   const turnstileWidgetId = useRef<TurnstileWidgetId | null>(null);
   const turnstileTokenResolver = useRef<{
     resolve: (token: string) => void;
@@ -351,12 +363,21 @@ export function ChatWidget() {
       return;
     }
 
-    setIsLoading(true);
+    setRequestStage(turnstileSiteKey ? "verifying" : "answering");
 
+    let verifying = Boolean(turnstileSiteKey);
     try {
-      const turnstileToken = await getTurnstileToken();
+      const prepared = preparedToken.current;
+      preparedToken.current = null;
+      const token = prepared && window.performance.now() - prepared.startedAt < preparedTokenLifetimeMs
+        ? await prepared.promise
+        : undefined;
+      const turnstileToken = token || await getTurnstileToken();
+      verifying = false;
+      setRequestStage("answering");
       const response = await fetch(chatApiUrl, {
         method: "POST",
+        signal: AbortSignal.timeout(chatTimeoutMs),
         headers: {
           "Content-Type": "application/json"
         },
@@ -393,13 +414,15 @@ export function ChatWidget() {
         {
           id: nextId.current++,
           role: "assistant",
-          text: rateLimited
+          text: verifying
+            ? "Verification didn't finish. Please try sending your question again."
+            : rateLimited
             ? "The chat has received several questions in a short time. Please wait a minute and try again."
             : "I could not reach the chat backend right now. Please try again later, or use the contact links on the site."
         }
       ]);
     } finally {
-      setIsLoading(false);
+      setRequestStage(null);
     }
   }
 
@@ -415,7 +438,7 @@ export function ChatWidget() {
     }
   }
 
-  async function getTurnstileToken() {
+  const getTurnstileToken = useCallback(async () => {
     if (!turnstileSiteKey) {
       return undefined;
     }
@@ -431,8 +454,9 @@ export function ChatWidget() {
     if (!turnstileWidgetId.current) {
       turnstileWidgetId.current = turnstile.render(container, {
         sitekey: turnstileSiteKey,
-        size: "invisible",
+        appearance: "interaction-only",
         execution: "execute",
+        retry: "never",
         action: "portfolio-chat",
         callback: (token) => {
           turnstileTokenResolver.current?.resolve(token);
@@ -442,24 +466,39 @@ export function ChatWidget() {
           turnstileTokenResolver.current?.reject(new Error("Turnstile verification failed."));
           turnstileTokenResolver.current = null;
         },
-        "expired-callback": () => {
-          if (turnstileWidgetId.current) {
-            turnstile.reset(turnstileWidgetId.current);
-          }
-        }
+        "expired-callback": () => turnstileTokenResolver.current?.reject(new Error("Turnstile token expired."))
       });
     }
 
-    return new Promise<string>((resolve, reject) => {
-      turnstileTokenResolver.current = { resolve, reject };
-      turnstile.reset(turnstileWidgetId.current as TurnstileWidgetId);
-      turnstile.execute(turnstileWidgetId.current as TurnstileWidgetId);
-    });
-  }
+    const widgetId = turnstileWidgetId.current;
+    let timeout: number | undefined;
+    try {
+      return await new Promise<string>((resolve, reject) => {
+        turnstileTokenResolver.current = { resolve, reject };
+        timeout = window.setTimeout(() => reject(new Error("Verification timed out.")), verificationTimeoutMs);
+        turnstile.reset(widgetId);
+        turnstile.execute(widgetId);
+      });
+    } finally {
+      window.clearTimeout(timeout);
+      turnstileTokenResolver.current = null;
+      turnstileWidgetId.current = null;
+      turnstile.remove(widgetId);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!turnstileSiteKey || !isOpen || preparedToken.current || requestStage !== null) return;
+
+    preparedToken.current = {
+      startedAt: window.performance.now(),
+      promise: getTurnstileToken().catch(() => undefined)
+    };
+  }, [getTurnstileToken, isOpen, requestStage]);
 
   return (
     <div className="portfolio-chat-root flex max-w-[calc(100vw-2rem)] flex-col items-end gap-3">
-      {turnstileSiteKey ? <div ref={turnstileContainerRef} className="sr-only" /> : null}
+      {turnstileSiteKey ? <div ref={turnstileContainerRef} className="empty:hidden" /> : null}
       <AnimatePresence>
       {isOpen ? (
         <motion.section
@@ -563,7 +602,7 @@ export function ChatWidget() {
             {isLoading ? (
               <div className="mr-auto flex items-center gap-2 rounded-md border border-cyan-300/14 bg-graphite-900/95 px-3 py-2 text-sm text-slate-300">
                 <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />
-                Thinking
+                {requestStage === "verifying" ? "Verifying…" : "Thinking"}
               </div>
             ) : null}
             <div ref={messagesEndRef} />
