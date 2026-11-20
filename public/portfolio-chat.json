@@ -102,13 +102,13 @@
     {
       "title": "TinyStories GPT Story Generator",
       "type": "Small language model demo",
-      "summary": "Character-level GPT-style story generator built in PyTorch and served as a live AWS demo. The portfolio UI calls a Cloudflare Worker proxy, which forwards valid requests to a Dockerized FastAPI service running on AWS EC2. The inference checkpoint is stored in Amazon S3 and was validated through an Amazon SageMaker notebook workflow.",
+      "summary": "Character-level GPT-style story generator built in PyTorch. The live portfolio demo is paused. Its deployment used a Cloudflare Worker proxy and a Dockerized FastAPI service on AWS EC2. The inference checkpoint is stored in Amazon S3 and was validated in an Amazon SageMaker notebook.",
       "areas": ["Language modelling", "PyTorch", "Model serving", "Cloud deployment", "AWS", "Docker"],
       "stack": ["PyTorch", "Transformer decoder", "Character tokenizer", "TinyStories", "FastAPI", "Docker", "AWS EC2", "Amazon S3", "Amazon SageMaker", "Cloudflare Workers", "TypeScript"],
-      "metrics": ["63.49M parameters", "242 MB inference checkpoint", "512-character context window", "243-character vocabulary", "160 max-token UI cap for the public CPU demo"],
+      "metrics": ["63.49M parameters", "242 MB inference checkpoint", "512-character context window", "243-character vocabulary"],
       "link": "https://github.com/Dinuxd/GPT_build",
       "dataset": "TinyStories dataset from Hugging Face. The dataset is cited, not copied into GitHub.",
-      "limitations": "Learning and portfolio demo. It runs on CPU with short output limits to keep AWS cost controlled and is not intended to behave like a large production LLM."
+      "limitations": "The hosted demo ran on CPU with short output limits and is currently paused. The project code remains available on GitHub."
     },
     {
       "title": "TransformerScope: GPT-2 Interpretability Workbench",

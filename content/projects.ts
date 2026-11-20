@@ -108,9 +108,9 @@ const projectEntries: Project[] = [
     slug: "tinystories-gpt-story-generator",
     title: "TinyStories GPT Story Generator",
     role: "Small language model demo",
-    status: "Live AWS demo",
+    status: "AWS deployment project",
     summary:
-      "A small story generator I built with a GPT-style decoder in PyTorch. It uses a character-level tokenizer, was trained on TinyStories, and is served as a live demo through FastAPI, Docker, AWS EC2, Amazon S3, and a Cloudflare Worker proxy.",
+      "A small story generator I built with a GPT-style decoder in PyTorch. I trained it on TinyStories using a character-level tokenizer and deployed it with FastAPI, Docker, AWS EC2, Amazon S3, and a Cloudflare Worker proxy.",
     detailPoints: [
       {
         label: "Dataset",
@@ -122,7 +122,7 @@ const projectEntries: Project[] = [
       },
       {
         label: "Deployment",
-        text: "The portfolio calls a Cloudflare Worker proxy. The proxy forwards valid requests to a Dockerized FastAPI service on AWS EC2. The inference checkpoint stays outside GitHub and is stored in Amazon S3."
+        text: "The demo used a Cloudflare Worker proxy to forward requests to a Dockerized FastAPI service on AWS EC2. The inference checkpoint is stored in Amazon S3."
       },
       {
         label: "SageMaker check",
@@ -130,11 +130,11 @@ const projectEntries: Project[] = [
       },
       {
         label: "Controls",
-        text: "The test panel lets visitors change the prompt, temperature, top-k, max tokens, and seed, then see the generated story and latency."
+        text: "The generator supports a custom prompt, temperature, top-k, maximum output length, and seed."
       },
       {
         label: "Scope",
-        text: "This is a learning and portfolio demo for language modeling and model serving. It runs on CPU with short output limits to keep the AWS cost under control."
+        text: "I built this to learn language modeling and model serving. The hosted demo ran on CPU with short output limits."
       }
     ],
     domains: ["AI Systems", "Backend", "Full Stack", "Software"],

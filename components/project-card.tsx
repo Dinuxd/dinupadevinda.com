@@ -3,7 +3,6 @@ import type { Project } from "@/content/projects";
 import { ButtonLink } from "./button-link";
 import { MediaFrame } from "./media-frame";
 import { MetricCard } from "./metric-card";
-import { StoryGenerator } from "./story-generator";
 import { TransformerScopeDemo } from "./transformer-scope-demo";
 import { ProjectDetails } from "./project-details";
 import { RagWalkthrough } from "./rag-walkthrough";
@@ -97,7 +96,11 @@ export function ProjectCard({ project, compact = false }: { project: Project; co
         ))}
       </div>
 
-      {project.slug === "tinystories-gpt-story-generator" ? <StoryGenerator /> : null}
+      {project.slug === "tinystories-gpt-story-generator" ? (
+        <p className="mt-5 border-t border-white/10 pt-4 text-sm font-medium text-slate-300">
+          Live demo paused
+        </p>
+      ) : null}
       {project.slug === "ai-portfolio-assistant-rag" ? <RagWalkthrough /> : null}
       {project.slug === "transformer-scope" ? <TransformerScopeDemo /> : null}
 
