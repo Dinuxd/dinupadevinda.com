@@ -30,6 +30,7 @@ export async function generateGroundedAnswer(
   chunks: RankedChunk[],
   env: Env
 ): Promise<GeneratedAnswer> {
+  const model = env.GEMINI_MODEL || DEFAULT_MODEL;
   const response = await fetch(GEMINI_GENERATION_ENDPOINT, {
     method: "POST",
     headers: {
@@ -37,8 +38,10 @@ export async function generateGroundedAnswer(
       "x-goog-api-key": env.GEMINI_API_KEY
     },
     body: JSON.stringify({
-      model: env.GEMINI_MODEL || DEFAULT_MODEL,
+      model,
       input: buildPrompt(question, chunks),
+      store: false,
+      ...(model === DEFAULT_MODEL ? { generation_config: { thinking_level: "low" } } : {}),
       response_format: {
         type: "text",
         mime_type: "application/json",
